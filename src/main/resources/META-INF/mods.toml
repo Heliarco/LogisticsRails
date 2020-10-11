@@ -20,7 +20,7 @@ displayURL="http://example.com/" #optional
 
 logoFile="examplemod.png" #optional
 
-credits="Thanks to TechnoVision for introducing me to ForgeModding. Check him out on youtube to get started modding :)" #optional
+credits="Thanks to TechnoVision & SilentChaos512 for introducing me to ForgeModding and going through the initial setups. Check them out on youtube." #optional
 
 authors="Heliarco" #optional
 
