@@ -1,5 +1,6 @@
 package dk.brandbyge.alexander;
 
+import dk.brandbyge.alexander.util.RegistryHandler;
 import net.minecraft.block.Blocks;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
@@ -13,11 +14,16 @@ import org.apache.logging.log4j.Logger;
 public class LogisticsRails
 {
     private static final Logger LOGGER = LogManager.getLogger();
+    public static final String MOD_ID = "heliarco_logisticsrails";
+
 
     public LogisticsRails() {
 
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
+
+        RegistryHandler.init();
+
         MinecraftForge.EVENT_BUS.register(this);
     }
 
