@@ -1,6 +1,0 @@
-{
-  "parent": "item/generated",
-  "textures": {
-    "layer0": "heliarco_logisticsrails:items/ruby"
-  }
-}
