@@ -8,7 +8,7 @@ issueTrackerURL="http://my.issue.tracker/" #optional
 
 [[mods]] #mandatory
 
-modId="heliarco_logisticsrails" #mandatory
+modId="vertexspace_logisticsrails" #mandatory
 
 version="1.16.3-0.0.1" #mandatory
 
@@ -16,13 +16,13 @@ displayName="LogisticsRails" #mandatory
 
 #updateJSONURL="http://myurl.me/" #optional
 
-#displayURL="http://example.com/" #optional
+#displayURL="https://vertexspace.dk/" #optional
 
 logoFile="examplemod.png" #optional
 
 credits="Thanks to TechnoVision & SilentChaos512 for introducing me to ForgeModding and going through the initial setups. Check them out on youtube." #optional
 
-authors="Heliarco" #optional
+authors="Heliarco & Halfheart77" #optional
 
 description='''
 A mod for moving items around with small robots
