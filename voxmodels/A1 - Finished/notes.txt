@@ -1,0 +1,10 @@
+Rules for finished models:
+
+Palette, must be the same for all models, this does not "break" anything code wise, but keeps it consistent :)
+
+names:
+    Must be only lowercase letters/numbers and  underscore_
+    Must not start with number
+
+Blocks (and things placed like blocks) must be in a 16 x 16 x 16 model. No exceptions
+"Multiblock" ideas must therefore be made from seperate sub models

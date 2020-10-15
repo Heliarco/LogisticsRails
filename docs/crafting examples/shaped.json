@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    "xxx",
+    "xxx",
+    "xxx"
+  ],
+  "key":
+  {
+    "x":
+    {
+      "item": "MOD_ID:ITEM"
+    }
+  },
+  "result":
+  {
+    "item": "MOD_ID:ITEM",
+    "count": 1
+  }
+}
