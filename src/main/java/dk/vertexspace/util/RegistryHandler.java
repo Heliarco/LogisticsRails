@@ -26,7 +26,9 @@ public class RegistryHandler {
 
 
     // Items
-    //public static final RegistryObject<Item> LOGISTICSBOT = ITEMS.register(name:"logisti");
+    public static final RegistryObject<Item> CLAYCRETE = ITEMS.register("claycrete", ItemBase::new);
+
+
     public static final RegistryObject<Item> RUBY = ITEMS.register("ruby", ItemBase::new);
 
 

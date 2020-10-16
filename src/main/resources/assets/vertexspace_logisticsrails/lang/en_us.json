@@ -1,6 +1,6 @@
 {
   "item.vertexspace_logisticsrails.ruby": "Ruby",
-
+  "item.vertexspace_logisticsrails.claycrete": "Claycrete",
   "block.vertexspace_logisticsrails.ruby_block": "Block of ruby",
   "itemGroup.vertexspace_logisticsrails_tab"  : "Logistics Rails"
 }
