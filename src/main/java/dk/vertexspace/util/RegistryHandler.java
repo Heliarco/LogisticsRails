@@ -46,6 +46,10 @@ public class RegistryHandler {
             ));
 
 
+    // Other built in tools:
+    // PickaxeItem, shovelitem, axeitem, same arguments
+    // Hoeitem has different constructor. No damage value
+
     // Blocks
     public static final RegistryObject<Block> RUBY_BLOCK = BLOCKS.register("ruby_block", RubyBlock::new);
 
