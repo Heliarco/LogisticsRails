@@ -11,7 +11,7 @@ public class RubyBlock extends Block {
         super(Block.Properties.create(Material.IRON)
                 .hardnessAndResistance(5.0f, 6.0f)
                 .sound(SoundType.METAL)
-                .func_235861_h_() // Mapping missing of "setrequirestool"
+                .func_235861_h_() // Mapping missing of "setrequirestool" // New in forge 1.16.3 (or minecraft 1.16.3 whatever)
                 .harvestLevel(2) // 0 is wood, 1 is stone, 2 is iron, 3 is diamond etc.
                 .harvestTool(ToolType.PICKAXE));
     }

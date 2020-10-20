@@ -1,14 +1,15 @@
-package dk.vertexspace.common;
+package dk.vertexspace.constants;
 
-import dk.vertexspace.util.RegistryHandler;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+import static dk.vertexspace.constants.NameConstants.TAB_ID;
+
 public class TabGroups {
     public static final ItemGroup TAB =
-            new ItemGroup("vertexspace_logisticsrails_tab") {
+            new ItemGroup(TAB_ID) {
                 @Override
                 @OnlyIn(Dist.CLIENT)
                 public ItemStack createIcon()
@@ -17,5 +18,4 @@ public class TabGroups {
                     return new ItemStack(RegistryHandler.RUBY.get());
                 }
             };
-
 }

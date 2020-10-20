@@ -1,6 +1,10 @@
 {
   "item.vertexspace_logisticsrails.ruby": "Ruby",
   "item.vertexspace_logisticsrails.ruby_sword": "Ruby Sword",
+  "item.vertexspace_logisticsrails.ruby_chestplate" : "Ruby Chestplate",
+  "item.vertexspace_logisticsrails.ruby_leggings" : "Ruby Leggings",
+  "item.vertexspace_logisticsrails.ruby_helmet" : "Ruby Helmet",
+  "item.vertexspace_logisticsrails.ruby_boots" : "Ruby Boots",
   "item.vertexspace_logisticsrails.claycrete": "Claycrete",
   "block.vertexspace_logisticsrails.ruby_block": "Block of ruby",
   "itemGroup.vertexspace_logisticsrails_tab"  : "Logistics Rails"

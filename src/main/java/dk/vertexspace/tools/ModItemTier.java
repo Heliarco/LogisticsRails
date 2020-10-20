@@ -1,6 +1,6 @@
 package dk.vertexspace.tools;
 
-import dk.vertexspace.util.RegistryHandler;
+import dk.vertexspace.constants.RegistryHandler;
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.crafting.Ingredient;
 

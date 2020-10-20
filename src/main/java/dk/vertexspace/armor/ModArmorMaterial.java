@@ -1,19 +1,34 @@
 package dk.vertexspace.armor;
 
+import dk.vertexspace.constants.RegistryHandler;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.IArmorMaterial;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.util.SoundEvents;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.function.Supplier;
 
-public enum ModArmorMaterial implements IArmorMaterial {
-    ;
-// or anybody on 1.16 this is how you would put in this command: public enum ModArmorMaterial implements IArmorMaterial {
-//
-//    RUBY("tutorial" + ":ruby", 25, new int[] { 2, 5, 6, 2}, )
+import static dk.vertexspace.constants.NameConstants.MOD_ID;
 
-    RUby() Got to 4:41 in armor tutorial
+public enum ModArmorMaterial implements IArmorMaterial {
+
+
+
+    // The name parameter has a specific meaning!
+    // It defines the paths for the armor layers, so in this case: ruby_layer_1, ruby_layer_2
+    RUBY(
+            MOD_ID + ":ruby",
+            25, // durability would be better name
+             new int[] {2, 5, 6, 2}, // This is the armor values. 2 equals one "suit" of armor
+            18,
+            SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, // Equipping sound
+            0.0F, //by setting it to 0. toughness is disabled. Diamond has 2.0F,
+            () -> { return Ingredient.fromItems(RegistryHandler.RUBY.get());} // Repair material. Lazy evaluation
+    );
 
 
 
@@ -37,44 +52,45 @@ public enum ModArmorMaterial implements IArmorMaterial {
 
     }
 
-
     @Override
     public int getDurability(EquipmentSlotType slotIn) {
-        return 0;
+
+
+        return MAX_DAMAGE_ARRAY[slotIn.getIndex()] * this.maxDamageFactor;
     }
 
     @Override
     public int getDamageReductionAmount(EquipmentSlotType slotIn) {
-        return 0;
+        return this.damageReductionAmountArray[slotIn.getIndex()];
     }
 
     @Override
     public int getEnchantability() {
-        return 0;
+        return this.enchantability;
     }
 
     @Override
     public SoundEvent getSoundEvent() {
-        return null;
+        return this.soundEvent;
     }
 
     @Override
     public Ingredient getRepairMaterial() {
-        return null;
+        return this.repairMaterial.get();
     }
 
     @Override
     public String getName() {
-        return null;
+        return this.name;
     }
 
     @Override
     public float getToughness() {
-        return 0;
+        return this.toughness;
     }
 
     @Override
     public float func_230304_f_() { // Knockback resistance
-        return 0;
+        return 10; // LOL
     }
 }
