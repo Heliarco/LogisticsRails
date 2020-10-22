@@ -8,6 +8,13 @@ buildscript {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
     }
 }
+
+
+
+plugins {
+    id "org.sonarqube" version "3.0"
+}
+
 apply plugin: 'net.minecraftforge.gradle'
 // Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 apply plugin: 'eclipse'
@@ -147,5 +154,13 @@ publishing {
         maven {
             url "file:///${project.projectDir}/mcmodsrepo"
         }
+    }
+}
+
+sonarqube {
+    properties {
+        property "sonar.projectKey", "Heliarco_LogisticsRails"
+        property "sonar.organization", "heliarco"
+        property "sonar.host.url", "https://sonarcloud.io"
     }
 }

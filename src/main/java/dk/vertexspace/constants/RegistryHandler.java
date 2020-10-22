@@ -1,9 +1,11 @@
 package dk.vertexspace.constants;
 
 import dk.vertexspace.armor.ModArmorMaterial;
-import dk.vertexspace.blocks.BlockItemBase;
+import dk.vertexspace.blocks.RubyOre;
+import dk.vertexspace.items.BlockItemBase;
 import dk.vertexspace.blocks.RubyBlock;
 import dk.vertexspace.items.ItemBase;
+import dk.vertexspace.items.PoisonApple;
 import dk.vertexspace.tools.ModItemTier;
 import net.minecraft.block.Block;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -34,7 +36,7 @@ public class RegistryHandler {
 
     // Items
     public static final RegistryObject<Item> CLAYCRETE = ITEMS.register("claycrete", ItemBase::new);
-
+    public static final RegistryObject<PoisonApple> POISON_APPLE = ITEMS.register("poison_apple", PoisonApple::new);
 
     public static final RegistryObject<Item> RUBY = ITEMS.register("ruby", ItemBase::new);
 
@@ -69,8 +71,11 @@ public class RegistryHandler {
     // Blocks
     public static final RegistryObject<Block> RUBY_BLOCK = BLOCKS.register("ruby_block", RubyBlock::new);
 
+    public static final RegistryObject<Block> RUBY_ORE = BLOCKS.register("ruby_ore", RubyOre::new);
+
     // Block Items
     public static final RegistryObject<Item> RUBY_BLOCK_ITEM = ITEMS.register("ruby_block", () -> new BlockItemBase(RUBY_BLOCK.get()));
+    public static final RegistryObject<Item> RUBY_ORE_ITEM = ITEMS.register("ruby_ore", () -> new BlockItemBase(RUBY_BLOCK.get()));
 
 
 
