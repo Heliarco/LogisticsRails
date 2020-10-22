@@ -1,4 +1,4 @@
-package dk.vertexspace.blocks;
+package dk.vertexspace.items;
 
 import dk.vertexspace.constants.TabGroups;
 import net.minecraft.block.Block;
