@@ -15,10 +15,7 @@ public enum ModItemTier implements IItemTier {
             11.0f, // Efficiency
             3.0f, // Base damage.
             12, // Enchantability
-            () ->
-            {
-                return Ingredient.fromItems(RegistryHandler.RUBY.get()); // Repair material
-            }
+            () ->  Ingredient.fromItems(RegistryHandler.RUBY.get()) // Repair material
     );
 
     // Adding more tiers. Just add more enum values
