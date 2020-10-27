@@ -50,5 +50,12 @@
 		"ground": {
 			"scale": [1, 0.23, 1]
 		}
-	}
+	},
+	"groups": [
+		{
+			"name": "VoxelShapes",
+			"origin": [8, 8, 8],
+			"children": [0, 1, 2]
+		}
+	]
 }

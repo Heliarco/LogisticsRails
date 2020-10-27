@@ -8,5 +8,7 @@
   "item.vertexspace_logisticsrails.ruby_boots" : "Ruby Boots",
   "item.vertexspace_logisticsrails.claycrete": "Claycrete",
   "block.vertexspace_logisticsrails.ruby_block": "Block of ruby",
-  "itemGroup.vertexspace_logisticsrails_tab"  : "Logistics Rails"
+  "itemGroup.vertexspace_logisticsrails_tab"  : "Logistics Rails",
+  "item.vertexspace_logisticsrails.debug_rail_v2" : "Debug Rail"
+
 }

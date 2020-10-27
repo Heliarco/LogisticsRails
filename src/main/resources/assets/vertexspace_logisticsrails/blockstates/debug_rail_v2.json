@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "vertexspace_logisticsrails:block/debug_rail_v2" },
+    "facing=south": { "model": "vertexspace_logisticsrails:block/debug_rail_v2", "y":  180},
+    "facing=west": { "model": "vertexspace_logisticsrails:block/debug_rail_v2", "y":  270},
+    "facing=east": { "model": "vertexspace_logisticsrails:block/debug_rail_v2", "y":  90}
+  }
+}

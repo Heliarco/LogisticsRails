@@ -66,6 +66,10 @@ public class RegistryHandler {
     public static final RegistryObject<Block> RUBY_BLOCK = BLOCKS.register("ruby_block", RubyBlock::new);
     public static final RegistryObject<Block> DEBUG_RAIL_V2 = BLOCKS.register("debug_rail_v2", DebugRailV2::new);
 
+
+
+
+
     // Block Items
     public static final RegistryObject<Item> RUBY_BLOCK_ITEM = ITEMS.register("ruby_block", () -> new BlockItemBase(RUBY_BLOCK.get()));
     public static final RegistryObject<Item> DEBUG_RAIL_V2_ITEM = ITEMS.register("debug_rail_v2", () -> new BlockItemBase(DEBUG_RAIL_V2.get()));
