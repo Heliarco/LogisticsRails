@@ -1,9 +1,6 @@
 package dk.vertexspace.blocks;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.HorizontalBlock;
-import net.minecraft.block.SoundType;
+import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.BlockItemUseContext;
@@ -87,7 +84,7 @@ public class DebugRailV2 extends Block {
 
     @Override
     public float getAmbientOcclusionLightValue(BlockState state, IBlockReader worldIn, BlockPos pos) {
-        return 0.6f; // Get back to this one later!
+        return 1f; // Get back to this one later!
     }
 
 
@@ -119,18 +116,25 @@ public class DebugRailV2 extends Block {
     // Blockstates are reference equatable with "==" !USE IT
 
 
+    @Override
+    public boolean isTransparent(BlockState state) {
+        return true;
+    }
+
     // This is a blockstate property of 4 values!
     private static final DirectionProperty FACING = HorizontalBlock.HORIZONTAL_FACING;
 
     public DebugRailV2() {
-        super(Block.Properties.create(Material.IRON)
+        super(Block.Properties.create(Material.MISCELLANEOUS)
                 .hardnessAndResistance(1.0f, 1.0f)
-                .sound(SoundType.ANVIL)
+                .sound(SoundType.METAL)
                 .func_235861_h_() // Mapping missing of "setrequirestool" // New in forge 1.16.3 (or minecraft 1.16.3 whatever)
                 .harvestLevel(0) // 0 is wood, 1 is stone, 2 is iron, 3 is diamond etc.
-                .harvestTool(ToolType.PICKAXE));
+                .harvestTool(ToolType.PICKAXE)
+                .notSolid() // doesnt stop grass growth. Presumably
+                .doesNotBlockMovement()
+        );
     }
-
     @Override
     public void onBlockPlacedBy(World worldIn, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack){
         Direction x = state.get(FACING);
