@@ -1,6 +1,0 @@
-{
-  "parent": "item/generated",
-  "textures": {
-    "layer0": "vertexspace_logisticsrails:items/ruby_boots"
-  }
-}

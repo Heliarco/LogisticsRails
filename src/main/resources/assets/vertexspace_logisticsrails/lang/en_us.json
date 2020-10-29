@@ -1,14 +1,13 @@
 {
-  "item.vertexspace_logisticsrails.ruby": "Ruby",
-  "item.vertexspace_logisticsrails.poison_apple": "Poison apple",
-  "item.vertexspace_logisticsrails.ruby_sword": "Ruby Sword",
-  "item.vertexspace_logisticsrails.ruby_chestplate" : "Ruby Chestplate",
-  "item.vertexspace_logisticsrails.ruby_leggings" : "Ruby Leggings",
-  "item.vertexspace_logisticsrails.ruby_helmet" : "Ruby Helmet",
-  "item.vertexspace_logisticsrails.ruby_boots" : "Ruby Boots",
   "item.vertexspace_logisticsrails.claycrete": "Claycrete",
-  "block.vertexspace_logisticsrails.ruby_block": "Block of ruby",
+
+  "item.vertexspace_logisticsrails.redstone_alloy_ingot": "Redstone Alloy Ingot",
+  "item.vertexspace_logisticsrails.redstone_alloy_blend": "Redstone Alloy Blend",
+  "item.vertexspace_logisticsrails.lapis_alloy_ingot": "Lapis Alloy Ingot",
+  "item.vertexspace_logisticsrails.lapis_alloy_blend": "Lapis Alloy Blend",
+
+
   "itemGroup.vertexspace_logisticsrails_tab"  : "Logistics Rails",
-  "item.vertexspace_logisticsrails.debug_rail_v2" : "Debug Rail"
+  "block.vertexspace_logisticsrails.debug_rail_v2" : "Debug Rail"
 
 }

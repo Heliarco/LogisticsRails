@@ -1,7 +1,6 @@
 package dk.vertexspace;
 
 import dk.vertexspace.constants.NameConstants;
-import dk.vertexspace.constants.RegistryHandler;
 import net.minecraft.block.Blocks;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;

@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "x x",
+    "yly",
+    "z z"
+  ],
+  "key": {
+    "x": {
+      "item": "minecraft:iron_ingot"
+    },
+    "y": {
+      "item": "vertexspace_logisticsrails:redstone_alloy_ingot"
+    },
+    "z" : {
+      "item": "vertexspace_logisticsrails:claycrete"
+    },
+    "l" : {
+     "item": "vertexspace_logisticsrails:lapis_alloy_ingot"
+    }
+  },
+
+  "result": {
+    "item": "vertexspace_logisticsrails:debug_rail_v2",
+    "count": 16
+  }
+}

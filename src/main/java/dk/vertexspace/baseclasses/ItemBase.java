@@ -1,4 +1,4 @@
-package dk.vertexspace.items;
+package dk.vertexspace.baseclasses;
 
 import dk.vertexspace.constants.TabGroups;
 import net.minecraft.item.Item;

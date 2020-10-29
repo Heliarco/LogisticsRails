@@ -1,5 +1,6 @@
 package dk.vertexspace.constants;
 
+import dk.vertexspace.RegistryHandler;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
@@ -15,7 +16,7 @@ public class TabGroups {
                 public ItemStack createIcon()
                 {
                     //return new ItemStack(Blocks.CHEST); // How to use built in defined
-                    return new ItemStack(RegistryHandler.RUBY.get());
+                    return new ItemStack(RegistryHandler.CLAYCRETE.get());
                 }
             };
 }

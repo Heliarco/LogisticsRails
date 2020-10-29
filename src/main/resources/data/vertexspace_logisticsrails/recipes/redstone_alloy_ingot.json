@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "vertexspace_logisticsrails:redstone_alloy_blend"
+  },
+  "result": "vertexspace_logisticsrails:redstone_alloy_ingot",
+  "experience": 0.0,
+  "cookingtime": 200
+}
