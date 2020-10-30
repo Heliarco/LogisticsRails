@@ -1,5 +1,6 @@
 package dk.vertexspace.blocks;
 
+import dk.vertexspace.constants.Log;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.LivingEntity;
@@ -19,6 +20,8 @@ import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
+import net.minecraft.world.IWorld;
+import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ToolType;
 
@@ -67,6 +70,36 @@ public class DebugRailV2 extends Block {
     }
 
 
+    // Called on updates on the cardinal directions.
+    public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
+
+        Log.info("Update post placement"
+        ,stateIn
+        ,facing
+        ,facingState
+        ,worldIn
+        ,currentPos
+        ,facingPos);
+
+
+
+        return facing == Direction.DOWN && !this.isValidPosition(stateIn, worldIn, currentPos) ? Blocks.AIR.getDefaultState() : super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+    }
+
+
+    // This is called on placement (Curiously enough, is called twice oO)
+    // Forces rail to be place on a solid surface below it. needs investigation
+    // The state is input here, as we gave it in getStateForPlacement.
+    // World in. Are we on server or on client right now?
+    // Blockpos. Makes sense :) X,Y,Z
+    public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
+        Log.info("isValidPosition",
+        state,
+        worldIn,
+        pos);
+        return hasEnoughSolidSide(worldIn, pos.down(), Direction.UP);
+    }
+
 
 
     private static final VoxelShape SHAPE_N =
@@ -84,7 +117,7 @@ public class DebugRailV2 extends Block {
 
     @Override
     public float getAmbientOcclusionLightValue(BlockState state, IBlockReader worldIn, BlockPos pos) {
-        return 1f; // Get back to this one later!
+        return 1f; // No shadows really its a tiny model
     }
 
 

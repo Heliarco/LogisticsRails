@@ -49,13 +49,10 @@
 	"display": {
 		"ground": {
 			"scale": [1, 0.23, 1]
+		},
+		"gui": {
+			"rotation": [37, 23, 0],
+			"translation": [0, 6.5, 0]
 		}
-	},
-	"groups": [
-		{
-			"name": "VoxelShapes",
-			"origin": [8, 8, 8],
-			"children": [0, 1, 2]
-		}
-	]
+	}
 }
