@@ -2,24 +2,24 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "minecraft:lapis_lazuli"
+      "tag": "forge:gems/lapis"
     },
     {
-      "item": "minecraft:lapis_lazuli"
+      "tag": "forge:gems/lapis"
     },
     {
-      "item": "minecraft:lapis_lazuli"
+      "tag": "forge:gems/lapis"
     },
     {
-      "item": "minecraft:lapis_lazuli"
+      "tag": "forge:gems/lapis"
     },
     {
-      "item": "minecraft:gold_ingot"
+      "tag": "forge:ingots/gold"
     }
   ],
   "result":
   {
     "item": "vertexspace_logisticsrails:lapis_alloy_blend",
-    "count": 2
+    "count": 1
   }
 }

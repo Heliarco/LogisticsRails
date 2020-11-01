@@ -7,21 +7,22 @@
   ],
   "key": {
     "x": {
-      "item": "minecraft:iron_ingot"
+      "tag": "forge:ingots/iron"
     },
     "y": {
-      "item": "vertexspace_logisticsrails:redstone_alloy_ingot"
+      "tag": "forge:ingots/red_alloy"
+
     },
     "z" : {
       "item": "vertexspace_logisticsrails:claycrete"
     },
     "l" : {
-     "item": "vertexspace_logisticsrails:lapis_alloy_ingot"
+     "tag": "forge:ingots/lapis_alloy"
     }
   },
 
   "result": {
     "item": "vertexspace_logisticsrails:debug_rail_v2",
-    "count": 16
+    "count": 32
   }
 }

@@ -2,24 +2,24 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "minecraft:redstone"
+      "tag": "forge:dusts/redstone"
     },
     {
-      "item": "minecraft:redstone"
+      "tag": "forge:dusts/redstone"
     },
     {
-      "item": "minecraft:redstone"
+      "tag": "forge:dusts/redstone"
     },
     {
-      "item": "minecraft:redstone"
+      "tag": "forge:dusts/redstone"
     },
     {
-      "item": "minecraft:iron_ingot"
+      "tag": "forge:ingots/iron"
     }
   ],
   "result":
   {
     "item": "vertexspace_logisticsrails:redstone_alloy_blend",
-    "count": 4
+    "count": 1
   }
 }

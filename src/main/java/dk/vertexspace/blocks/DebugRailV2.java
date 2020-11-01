@@ -49,8 +49,6 @@ public class DebugRailV2 extends Block {
         return buffer[0];
     }*/
 
-
-
     // Voxelshapes are normalized to between 0 and 1
     private static VoxelShape RotateModelY(VoxelShape shape){
         VoxelShape[] outShape = new VoxelShape[]{VoxelShapes.empty()};
@@ -193,11 +191,13 @@ public class DebugRailV2 extends Block {
     @Override
     @Deprecated
     public BlockState rotate(BlockState state, Rotation rot){
+        Log.info("ROTATING", rot);
         return state.with(FACING, rot.rotate(state.get(FACING)));
     }
 
     @Override
     public BlockState mirror(BlockState state, Mirror mirrorIn){
+        Log.info("MIRRORING", mirrorIn);
         return state.rotate(mirrorIn.toRotation(state.get(FACING)));
     }
 
