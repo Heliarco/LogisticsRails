@@ -1,6 +1,7 @@
 package dk.vertexspace.blocks;
 
 import dk.vertexspace.constants.Log;
+import dk.vertexspace.rails.RailBase;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.LivingEntity;
@@ -25,10 +26,11 @@ import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ToolType;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.stream.Stream;
 
-public class DebugRailV2 extends Block {
+public class DebugRailV2 extends RailBase {
 
     /*
     public static VoxelShape rotateShape(Direction from, Direction to, VoxelShape shape) {
@@ -152,19 +154,10 @@ public class DebugRailV2 extends Block {
         return true;
     }
 
-    // This is a blockstate property of 4 values!
-    private static final DirectionProperty FACING = HorizontalBlock.HORIZONTAL_FACING;
+
 
     public DebugRailV2() {
-        super(Block.Properties.create(Material.MISCELLANEOUS)
-                .hardnessAndResistance(1.0f, 1.0f)
-                .sound(SoundType.METAL)
-                .func_235861_h_() // Mapping missing of "setrequirestool" // New in forge 1.16.3 (or minecraft 1.16.3 whatever)
-                .harvestLevel(0) // 0 is wood, 1 is stone, 2 is iron, 3 is diamond etc.
-                .harvestTool(ToolType.PICKAXE)
-                .notSolid() // doesnt stop grass growth. Presumably
-                .doesNotBlockMovement()
-        );
+
     }
     @Override
     public void onBlockPlacedBy(World worldIn, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack){
@@ -188,18 +181,7 @@ public class DebugRailV2 extends Block {
 
     }
 
-    @Override
-    @Deprecated
-    public BlockState rotate(BlockState state, Rotation rot){
-        Log.info("ROTATING", rot);
-        return state.with(FACING, rot.rotate(state.get(FACING)));
-    }
 
-    @Override
-    public BlockState mirror(BlockState state, Mirror mirrorIn){
-        Log.info("MIRRORING", mirrorIn);
-        return state.rotate(mirrorIn.toRotation(state.get(FACING)));
-    }
 
 
     @Override
