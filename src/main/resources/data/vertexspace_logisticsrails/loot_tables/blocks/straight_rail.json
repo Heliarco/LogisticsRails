@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "vertexspace_logisticsrails:debug_rail_v2"
+          "name": "vertexspace_logisticsrails:straight_rail"
         }
       ]
     }

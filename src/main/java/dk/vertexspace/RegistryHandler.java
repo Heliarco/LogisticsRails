@@ -1,6 +1,6 @@
 package dk.vertexspace;
 
-import dk.vertexspace.blocks.DebugRailV2;
+import dk.vertexspace.blocks.StraightRail;
 import dk.vertexspace.items.BlockItemBase;
 import dk.vertexspace.items.ItemBase;
 import net.minecraft.block.Block;
@@ -32,10 +32,12 @@ public class RegistryHandler {
     public static final RegistryObject<Item> LAPIS_ALLOY_INGOT = ITEMS.register("lapis_alloy_ingot", ItemBase::new);
     public static final RegistryObject<Item> LAPIS_ALLOY_BLEND = ITEMS.register("lapis_alloy_blend", ItemBase::new);
 
+
+
     // Blocks
-    public static final RegistryObject<Block> DEBUG_RAIL_V2 = BLOCKS.register("debug_rail_v2", DebugRailV2::new);
+    public static final RegistryObject<Block> STRAIGHT_RAIL = BLOCKS.register("straight_rail", StraightRail::new);
 
     // Block Items
-    public static final RegistryObject<Item> DEBUG_RAIL_V2_ITEM = ITEMS.register("debug_rail_v2", () -> new BlockItemBase(DEBUG_RAIL_V2.get()));
+    public static final RegistryObject<Item> STRAIGHT_RAIL_ITEM = ITEMS.register("straight_rail", () -> new BlockItemBase(STRAIGHT_RAIL.get()));
 
 }
