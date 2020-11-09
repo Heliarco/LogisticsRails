@@ -98,8 +98,19 @@ public class DebugRailV2 extends RailBase {
         worldIn,
         pos);
         return hasEnoughSolidSide(worldIn, pos.down(), Direction.UP);
-    }
 
+
+        isSolidSide // From abstract block. Checks if the block in the direction has a solid face (Does geometry checking, but cached)
+        /*
+        example from torchblock
+         public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
+      Direction direction = state.get(HORIZONTAL_FACING);
+      BlockPos blockpos = pos.offset(direction.getOpposite());
+      BlockState blockstate = worldIn.getBlockState(blockpos);
+      return blockstate.isSolidSide(worldIn, blockpos, direction);
+   }
+         */
+    }
 
 
     private static final VoxelShape SHAPE_N =
