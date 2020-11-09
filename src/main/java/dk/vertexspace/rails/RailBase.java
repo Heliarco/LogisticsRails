@@ -96,6 +96,10 @@ public class RailBase extends DirectionalBlock {
     }
 
 
+    @Override
+    public boolean isTransparent(BlockState state) {
+        return true;
+    }
 
     @Override
     @SuppressWarnings("deprecation")

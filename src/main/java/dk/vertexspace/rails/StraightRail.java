@@ -1,4 +1,4 @@
-package dk.vertexspace.blocks;
+package dk.vertexspace.rails;
 
 import dk.vertexspace.constants.Log;
 import dk.vertexspace.rails.RailBase;
@@ -30,8 +30,12 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.stream.Stream;
 
+
 public class StraightRail extends RailBase {
 
+
+    // Inherits FACING
+    public static final BooleanProperty ROTATED = BooleanProperty.create("rotated");
 
 
     // Voxelshapes are normalized to between 0 and 1
@@ -92,9 +96,20 @@ public class StraightRail extends RailBase {
     // private static final BooleanProperty ROTATED =  BooleanProperty.create("rotated");
 
 
-    @Override
-    public boolean isTransparent(BlockState state) {
-        return true;
+
+
+    public BlockState getStateForPlacement(BlockItemUseContext context) {
+        BlockState superState = super.getStateForPlacement(context);
+        // Here we can do our own modifications on top
+
+        Direction facing = superState.get(FACING);
+        switch (facing){
+            // Now we need to calculate if we are mirrored
+        }
+
+
+        return superState;
+
     }
 
 
@@ -104,11 +119,10 @@ public class StraightRail extends RailBase {
 
 
 
-
-
-    @Override
+        @Override
     public void fillStateContainer(StateContainer.Builder<Block, BlockState> builder)
     {
+        builder.add(ROTATED);
         super.fillStateContainer(builder);
     }
 }

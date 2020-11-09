@@ -1,6 +1,6 @@
 package dk.vertexspace;
 
-import dk.vertexspace.blocks.StraightRail;
+import dk.vertexspace.rails.StraightRail;
 import dk.vertexspace.items.BlockItemBase;
 import dk.vertexspace.items.ItemBase;
 import net.minecraft.block.Block;
