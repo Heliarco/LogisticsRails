@@ -47,7 +47,32 @@ public class RailBase extends DirectionalBlock {
     // Called when block is placed.
     // Here we can calculate the state of the block before ultimate placement
     public BlockState getStateForPlacement(BlockItemUseContext context) {
-        Direction facing = Direction.NORTH;
+
+        BlockState blockstate = this.getDefaultState();
+        IWorldReader iworldreader = context.getWorld();
+        BlockPos blockpos = context.getPos();
+        Direction[] adirection = context.getNearestLookingDirections();
+
+        Log.info("getstateforplacement aDirection", adirection[0].toString(), adirection.length);
+
+
+        for(Direction direction : adirection) {
+            //if (direction.getAxis().isHorizontal()) {
+                Direction direction1 = direction.getOpposite();
+                blockstate = blockstate.with(FACING, direction1);
+                if (blockstate.isValidPosition(iworldreader, blockpos)) {
+                    return blockstate;
+                }
+            //}
+        }
+
+        return null;
+
+
+
+
+
+     /*   Direction facing = Direction.NORTH;
         PlayerEntity player = context.getPlayer();
 
         if (player != null){
@@ -92,7 +117,7 @@ public class RailBase extends DirectionalBlock {
                 }
             }
         }
-        return this.getDefaultState().with(FACING, facing.getOpposite());
+        return this.getDefaultState().with(FACING, facing.getOpposite());*/
     }
 
 
@@ -105,16 +130,14 @@ public class RailBase extends DirectionalBlock {
     @SuppressWarnings("deprecation")
     @Nonnull
     public BlockState rotate(BlockState state, Rotation rot) {
-        throw new UnsupportedOperationException("FIND ME");
-        //return state.with(FACING, rot.rotate(state.get(FACING)));
+         return state.with(FACING, rot.rotate(state.get(FACING)));
     }
 
     @Override
     @SuppressWarnings("deprecation")
     @Nonnull
     public BlockState mirror(BlockState state, Mirror mirrorIn) {
-        throw new UnsupportedOperationException("FIND ME");
-        //return state.rotate(mirrorIn.toRotation(state.get(FACING)));
+        return state.rotate(mirrorIn.toRotation(state.get(FACING)));
     }
 
     public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {

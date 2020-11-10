@@ -2,6 +2,8 @@ package dk.vertexspace.rails;
 
 import dk.vertexspace.constants.Log;
 import dk.vertexspace.rails.RailBase;
+import dk.vertexspace.voxelshapes.RailStraightShapes;
+import dk.vertexspace.voxelshapes.ShapeBase;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.LivingEntity;
@@ -31,42 +33,18 @@ import javax.annotation.Nullable;
 import java.util.stream.Stream;
 
 
-public class StraightRail extends RailBase {
+public class RailStraight extends RailBase {
 
 
     // Inherits FACING
     public static final BooleanProperty ROTATED = BooleanProperty.create("rotated");
 
 
-    // Voxelshapes are normalized to between 0 and 1
-    private static VoxelShape RotateModelY(VoxelShape shape){
-        VoxelShape[] outShape = new VoxelShape[]{VoxelShapes.empty()};
 
-        shape.forEachBox(
-                (minX, minY, minZ, maxX, maxY, maxZ) -> {
-                    outShape[0] = VoxelShapes.or(outShape[0], VoxelShapes.create(
-                            1-maxZ,
-                            minY,
-                            minX,
-                            1-minZ,
-                            maxY,
-                            maxX));
-                }
-        );
-        return outShape[0];
+    public RailStraight() {
+
     }
 
-    private static final VoxelShape SHAPE_N =
-        Stream.of(
-            Block.makeCuboidShape(5, 0, 0, 11, 2, 9),
-            Block.makeCuboidShape(12, 0, 0, 14, 2, 16),
-            Block.makeCuboidShape(2, 0, 0, 4, 2, 16)
-        ).reduce((v1, v2) -> {return VoxelShapes.combineAndSimplify(v1, v2, IBooleanFunction.OR);}).get();
-
-
-    private static final VoxelShape SHAPE_E = RotateModelY(SHAPE_N);
-    private static final VoxelShape SHAPE_S = RotateModelY(SHAPE_E);
-    private static final VoxelShape SHAPE_W = RotateModelY(SHAPE_S);
 
 
 
@@ -75,18 +53,22 @@ public class StraightRail extends RailBase {
 
     @Override
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context){
-        switch(state.get(FACING)){
-            case NORTH:
-                return SHAPE_N;
+        Direction facing = state.get(FACING);
+        boolean rotated = state.get(ROTATED);
+        Log.info(facing, rotated);
 
-            case SOUTH:
-                return SHAPE_S;
-            case EAST:
-                return SHAPE_E;
-            case WEST:
-                return SHAPE_W;
+        switch(state.get(FACING)) {
+            case UP:
+                if (rotated) {
+                    return RailStraightShapes.SHAPE_UP_EW;
+                }
+                else {
+                    return RailStraightShapes.SHAPE_UP_NS;
+                }
+
             default:
-                return SHAPE_N; // MBY reconsider this later?
+
+                return ShapeBase.PLACEHOLDER_SHAPE;
         }
     }
 
@@ -102,6 +84,8 @@ public class StraightRail extends RailBase {
         BlockState superState = super.getStateForPlacement(context);
         // Here we can do our own modifications on top
 
+        if (superState == null)
+            return null;
         Direction facing = superState.get(FACING);
         switch (facing){
             // Now we need to calculate if we are mirrored

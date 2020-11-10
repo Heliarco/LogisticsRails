@@ -1,6 +1,6 @@
 package dk.vertexspace;
 
-import dk.vertexspace.rails.StraightRail;
+import dk.vertexspace.rails.RailStraight;
 import dk.vertexspace.items.BlockItemBase;
 import dk.vertexspace.items.ItemBase;
 import net.minecraft.block.Block;
@@ -35,9 +35,9 @@ public class RegistryHandler {
 
 
     // Blocks
-    public static final RegistryObject<Block> STRAIGHT_RAIL = BLOCKS.register("straight_rail", StraightRail::new);
+    public static final RegistryObject<Block> RAIL_STRAIGHT = BLOCKS.register("rail_straight", RailStraight::new);
 
     // Block Items
-    public static final RegistryObject<Item> STRAIGHT_RAIL_ITEM = ITEMS.register("straight_rail", () -> new BlockItemBase(STRAIGHT_RAIL.get()));
+    public static final RegistryObject<Item> RAIL_STRAIGHT_ITEM = ITEMS.register("rail_straight", () -> new BlockItemBase(RAIL_STRAIGHT.get()));
 
 }

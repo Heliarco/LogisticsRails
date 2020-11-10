@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "facing=north": { "model": "vertexspace_logisticsrails:block/rail_straight_north_ew" },
+    "facing=south": { "model": "vertexspace_logisticsrails:block/rail_straight_south_ew"},
+    "facing=west": { "model": "vertexspace_logisticsrails:block/rail_straight_west_ns"},
+    "facing=east": { "model": "vertexspace_logisticsrails:block/rail_straight_east_ns"},
+    "facing=up": { "model": "vertexspace_logisticsrails:block/rail_straight_up_ns"},
+    "facing=down": { "model": "vertexspace_logisticsrails:block/rail_straight_down_ns"}
+  }
+}

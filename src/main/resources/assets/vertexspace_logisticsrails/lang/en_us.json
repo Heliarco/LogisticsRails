@@ -8,6 +8,6 @@
 
 
   "itemGroup.vertexspace_logisticsrails_tab"  : "Logistics Rails",
-  "block.vertexspace_logisticsrails.straight_rail" : "Straight Rail"
+  "block.vertexspace_logisticsrails.rail_straight" : "Straight Rail"
 
 }
