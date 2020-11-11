@@ -30,7 +30,7 @@ public class RailBase extends DirectionalBlock {
                 .harvestLevel(0) //
                 .harvestTool(ToolType.PICKAXE)
                 .notSolid() // doesn't stop grass growth. Presumably
-                .doesNotBlockMovement()
+              //  .doesNotBlockMovement()
         );
     }
 
