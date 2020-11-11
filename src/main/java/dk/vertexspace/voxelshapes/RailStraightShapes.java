@@ -1,10 +1,15 @@
 package dk.vertexspace.voxelshapes;
 
 import net.minecraft.block.Block;
+import net.minecraft.util.Direction;
 import net.minecraft.util.math.shapes.IBooleanFunction;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 
+import java.util.Collections;
+import java.util.EnumMap;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.stream.Stream;
 
 public class RailStraightShapes extends ShapeBase {
@@ -20,4 +25,43 @@ public class RailStraightShapes extends ShapeBase {
             ).reduce((v1, v2) -> {return VoxelShapes.combineAndSimplify(v1, v2, IBooleanFunction.OR);}).get();
 
     public static final VoxelShape SHAPE_UP_EW = RotateModelY(SHAPE_UP_NS);
+
+
+
+
+
+
+
+
+
+
+
+  /*  private static final Map<Direction, Map<Boolean, VoxelShape>>  shapeMap = new EnumMap<Direction, Map<Boolean, VoxelShape>>(Direction.class) {{
+        put(Direction.UP, new HashMap<Boolean, VoxelShape>() {{
+            put(true, SHAPE_UP_EW); put(false, SHAPE_UP_NS);
+        }});
+        put(Direction.DOWN, Collections.unmodifiableMap(new HashMap<Boolean, VoxelShape>() {{
+            put(true, SHAPE_UP_EW);
+            put(false, SHAPE_UP_NS);
+        }}));
+        put(Direction.NORTH, new HashMap<Boolean, VoxelShape>() {{
+            put(true, SHAPE_UP_EW); put(false, SHAPE_UP_NS);
+        }});
+        put(Direction.SOUTH, new HashMap<Boolean, VoxelShape>() {{
+            put(true, SHAPE_UP_EW); put(false, SHAPE_UP_NS);
+        }});
+        put(Direction.WEST, new HashMap<Boolean, VoxelShape>() {{
+            put(true, SHAPE_UP_EW); put(false, SHAPE_UP_NS);
+        }});
+        put(Direction.EAST, new HashMap<Boolean, VoxelShape>() {{
+            put(true, SHAPE_UP_EW); put(false, SHAPE_UP_NS);
+        }});
+
+        //etc
+    }};
+
+
+*/
+
+
 }

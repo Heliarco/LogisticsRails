@@ -14,6 +14,13 @@ import java.util.stream.Stream;
 
 public class PlayerEntityInteractions {
 
+
+    public static Direction GetFirstLookDirExcept(PlayerEntity player, Direction ... skip){
+        return GetSortedLookDirections(player).filter(
+                x -> Arrays.stream(skip).noneMatch(s -> s == x)
+        ).findFirst().get();
+    }
+
     public static Stream<Direction> GetSortedLookDirections(PlayerEntity player) {
 
 

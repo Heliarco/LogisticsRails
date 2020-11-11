@@ -35,11 +35,15 @@ import java.util.stream.Stream;
 
 
 public class RailStraight extends RailBase {
+    public enum RailStraightOrientations {
+        NORTH_SOUTH,
+        EAST_WEST,
+        UP_DOWN
+    }
 
 
     // Inherits FACING
     public static final BooleanProperty ROTATED = BooleanProperty.create("rotated");
-
 
 
     public RailStraight() {
@@ -73,44 +77,65 @@ public class RailStraight extends RailBase {
                 else {
                     return RailStraightShapes.SHAPE_UP_NS;
                 }
+            case DOWN:
+                break;
+            case  EAST:
+                break;
+            case NORTH:
+                break;
+            case SOUTH:
+                break;
+            case WEST:
+                break;
+
 
             default:
-
                 return ShapeBase.PLACEHOLDER_SHAPE;
         }
+        return ShapeBase.PLACEHOLDER_SHAPE;
     }
-
-    // IProperties
-    // AttachedTo (UP, DOWN, NORTH, SOUTH, EAST, WEST)
-    // Rotated (It has a default heading, have we rotated 90 degrees?)
-    // private static final BooleanProperty ROTATED =  BooleanProperty.create("rotated");
-
-
 
 
     public BlockState getStateForPlacement(BlockItemUseContext context) {
         BlockState superState = super.getStateForPlacement(context);
-        // Here we can do our own modifications on top
+        PlayerEntity player = context.getPlayer();
 
         if (superState == null)
             return null;
 
-
-
-
         Direction facing = superState.get(FACING);
 
-        Log.info("GetStateForPlacement: ", facing);
-        PlayerEntityInteractions.GetSortedLookDirections(context.getPlayer()).forEach(Log::info);
-
-
+        boolean rotated = false;
+        Direction d;
         switch (facing) {
-            // Now we need to calculate if we are mirrored
+            case UP:
+            case DOWN:
+                d = PlayerEntityInteractions.GetFirstLookDirExcept(player, Direction.UP, Direction.DOWN);
+                if ( d == Direction.EAST || d == Direction.WEST )
+                {
+                    rotated = true;
+                }
+                break;
+            case EAST:
+            case WEST:
+                d = PlayerEntityInteractions.GetFirstLookDirExcept(player, Direction.WEST, Direction.EAST);
+                if ( d == Direction.NORTH || d == Direction.SOUTH )
+                {
+                    rotated = true;
+                }
+                break;
+            default: // North south
+            //case NORTH:
+            //case SOUTH:
+                d = PlayerEntityInteractions.GetFirstLookDirExcept(player, Direction.NORTH, Direction.SOUTH);
+                if ( d == Direction.EAST || d == Direction.WEST )
+                {
+                    rotated = true;
+                }
+                break;
         }
 
-
-        return superState;
-
+        return superState.with(ROTATED, rotated);
     }
 
 
