@@ -2,6 +2,7 @@ package dk.vertexspace.rails;
 
 import dk.vertexspace.constants.Log;
 import dk.vertexspace.rails.RailBase;
+import dk.vertexspace.util.PlayerEntityInteractions;
 import dk.vertexspace.voxelshapes.RailStraightShapes;
 import dk.vertexspace.voxelshapes.ShapeBase;
 import net.minecraft.block.*;
@@ -62,7 +63,7 @@ public class RailStraight extends RailBase {
         Direction facing = state.get(FACING);
         boolean rotated = state.get(ROTATED);
 
-        Log.info(state);
+       // Log.info(state);
 
         switch(state.get(FACING)) {
             case UP:
@@ -93,8 +94,17 @@ public class RailStraight extends RailBase {
 
         if (superState == null)
             return null;
+
+
+
+
         Direction facing = superState.get(FACING);
-        switch (facing){
+
+        Log.info("GetStateForPlacement: ", facing);
+        PlayerEntityInteractions.GetSortedLookDirections(context.getPlayer()).forEach(Log::info);
+
+
+        switch (facing) {
             // Now we need to calculate if we are mirrored
         }
 
