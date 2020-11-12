@@ -14,6 +14,8 @@ import static dk.vertexspace.constants.NameConstants.MOD_ID;
 
 public class RegistryHandler {
 
+    private RegistryHandler(){}
+
     // Registered names here are ALWAYS lowercase with underscore separators.
     public static void init() {
         ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
