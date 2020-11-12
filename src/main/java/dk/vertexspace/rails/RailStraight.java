@@ -28,15 +28,9 @@ public class RailStraight extends RailBase {
     // Inherits FACING
     public static final BooleanProperty ROTATED = BooleanProperty.create("rotated");
 
-
-    public RailStraight() {
-
-    }
-
-
     // Right click basically
     @Override
-    @Deprecated
+    @SuppressWarnings("deprecation")
     public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit)
     {
         return  ActionResultType.PASS;
@@ -47,6 +41,7 @@ public class RailStraight extends RailBase {
 
 
     @Override
+    @SuppressWarnings("deprecation")
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context){
         Direction facing = state.get(FACING);
         boolean rotated = state.get(ROTATED);

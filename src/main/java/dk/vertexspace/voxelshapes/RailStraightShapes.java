@@ -1,15 +1,10 @@
 package dk.vertexspace.voxelshapes;
 
 import net.minecraft.block.Block;
-import net.minecraft.util.Direction;
 import net.minecraft.util.math.shapes.IBooleanFunction;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 
-import java.util.Collections;
-import java.util.EnumMap;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.stream.Stream;
 
 public class RailStraightShapes extends ShapeBase {
@@ -25,7 +20,7 @@ public class RailStraightShapes extends ShapeBase {
                     Block.makeCuboidShape(4, 1, 0, 5, 3, 16),
                     Block.makeCuboidShape(3, 1, 0, 4, 3, 16),
                     Block.makeCuboidShape(6, 0, 7.5, 10, 0.9, 8.5)
-            ).reduce((v1, v2) -> {return VoxelShapes.combineAndSimplify(v1, v2, IBooleanFunction.OR);}).get();
+            ).reduce((v1, v2) -> VoxelShapes.combineAndSimplify(v1, v2, IBooleanFunction.OR)).get();
 
     public static final VoxelShape SHAPE_UP_EW = rotateModelY(SHAPE_UP_NS);
 

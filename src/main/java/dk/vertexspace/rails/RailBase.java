@@ -31,6 +31,7 @@ public class RailBase extends DirectionalBlock {
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
         // Basically copied from wall torch.
         Direction currentFacing = state.get(FACING);
@@ -66,6 +67,7 @@ public class RailBase extends DirectionalBlock {
 
 
     @Override
+    @SuppressWarnings("deprecation")
     public boolean isTransparent(BlockState state) {
         return true;
     }
@@ -77,6 +79,7 @@ public class RailBase extends DirectionalBlock {
          return state.with(FACING, rot.rotate(state.get(FACING)));
     }
 
+
     @Override
     @SuppressWarnings("deprecation")
     @Nonnull
@@ -84,11 +87,15 @@ public class RailBase extends DirectionalBlock {
         return state.rotate(mirrorIn.toRotation(state.get(FACING)));
     }
 
+    @Override
+    @SuppressWarnings("deprecation")
+    // Makes the rail "pop" off if a neighboring attachment point disappears
     public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
         return !this.isValidPosition(stateIn, worldIn, currentPos) ? Blocks.AIR.getDefaultState() : super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public float getAmbientOcclusionLightValue(BlockState state, IBlockReader worldIn, BlockPos pos) {
         return 1f; // No shadows really its a tiny model
     }
@@ -99,5 +106,4 @@ public class RailBase extends DirectionalBlock {
     {
         builder.add(FACING);
     }
-
 }
