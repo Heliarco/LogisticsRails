@@ -51,13 +51,6 @@ public class RailStraight extends RailBase {
     }
 
 
-    // Rightclick basically
-    @Override
-    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit)
-    {
-        return  ActionResultType.PASS;
-    }
-
 
 
 

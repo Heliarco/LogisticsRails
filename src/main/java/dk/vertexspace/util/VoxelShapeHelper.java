@@ -48,12 +48,12 @@ public class VoxelShapeHelper {
         shape.forEachBox(
                 (minX, minY, minZ, maxX, maxY, maxZ) -> {
                     outShape[0] = VoxelShapes.or(outShape[0], VoxelShapes.create(
-                            1-maxZ,
-                            minY,
                             minX,
-                            1-minZ,
+                            minY,
+                            minZ, //
+                            maxX,
                             maxY,
-                            maxX));
+                            maxZ)); //
                 }
         );
         return outShape[0];
