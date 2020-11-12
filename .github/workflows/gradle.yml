@@ -57,3 +57,17 @@ jobs:
         tag: ${{ github.ref }}
         overwrite: true
         body: "This is my release text"
+
+
+    #- name: Run test action
+    #  uses: itsmeow/curseforge-upload@master
+    #  with:
+    #    token: ${{ secrets.CF_API_TOKEN }}
+    #    project_id: 262222
+    #    game_endpoint: minecraft
+    #    file_path: test_jar.jar
+    #    changelog: Test changelog message!
+    #    display_name: Test Jar
+    #    game_versions: minecraft-1-12:1.12.2,4458,2:Java 7,Minecraft 1.12:1-12,1.12.1,Forge
+    #    release_type: alpha
+    #    relations: betteranimalsplus:incompatible,claimit:optionalDependency
