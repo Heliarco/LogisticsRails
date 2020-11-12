@@ -1,16 +1,13 @@
 package dk.vertexspace.rails;
 
-import dk.vertexspace.constants.Log;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.StateContainer;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
@@ -23,17 +20,17 @@ import javax.annotation.Nullable;
 public class RailBase extends DirectionalBlock {
 
     public RailBase() {
-        super(Block.Properties.create(Material.MISCELLANEOUS)
+        super(AbstractBlock.Properties.create(Material.MISCELLANEOUS)
                 .hardnessAndResistance(1.0f, 1.0f)
                 .sound(SoundType.METAL)
                 .func_235861_h_() // setrequirestool
                 .harvestLevel(0) //
                 .harvestTool(ToolType.PICKAXE)
                 .notSolid() // doesn't stop grass growth. Presumably
-              //  .doesNotBlockMovement()
         );
     }
 
+    @Override
     public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
         // Basically copied from wall torch.
         Direction currentFacing = state.get(FACING);

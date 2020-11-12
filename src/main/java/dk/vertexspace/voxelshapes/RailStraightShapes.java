@@ -13,6 +13,9 @@ import java.util.Map;
 import java.util.stream.Stream;
 
 public class RailStraightShapes extends ShapeBase {
+
+    private RailStraightShapes(){}
+
     public static final VoxelShape SHAPE_UP_NS =
             Stream.of(
                     Block.makeCuboidShape(10, 0, 0, 14, 1, 16),
@@ -24,44 +27,6 @@ public class RailStraightShapes extends ShapeBase {
                     Block.makeCuboidShape(6, 0, 7.5, 10, 0.9, 8.5)
             ).reduce((v1, v2) -> {return VoxelShapes.combineAndSimplify(v1, v2, IBooleanFunction.OR);}).get();
 
-    public static final VoxelShape SHAPE_UP_EW = RotateModelY(SHAPE_UP_NS);
-
-
-
-
-
-
-
-
-
-
-
-  /*  private static final Map<Direction, Map<Boolean, VoxelShape>>  shapeMap = new EnumMap<Direction, Map<Boolean, VoxelShape>>(Direction.class) {{
-        put(Direction.UP, new HashMap<Boolean, VoxelShape>() {{
-            put(true, SHAPE_UP_EW); put(false, SHAPE_UP_NS);
-        }});
-        put(Direction.DOWN, Collections.unmodifiableMap(new HashMap<Boolean, VoxelShape>() {{
-            put(true, SHAPE_UP_EW);
-            put(false, SHAPE_UP_NS);
-        }}));
-        put(Direction.NORTH, new HashMap<Boolean, VoxelShape>() {{
-            put(true, SHAPE_UP_EW); put(false, SHAPE_UP_NS);
-        }});
-        put(Direction.SOUTH, new HashMap<Boolean, VoxelShape>() {{
-            put(true, SHAPE_UP_EW); put(false, SHAPE_UP_NS);
-        }});
-        put(Direction.WEST, new HashMap<Boolean, VoxelShape>() {{
-            put(true, SHAPE_UP_EW); put(false, SHAPE_UP_NS);
-        }});
-        put(Direction.EAST, new HashMap<Boolean, VoxelShape>() {{
-            put(true, SHAPE_UP_EW); put(false, SHAPE_UP_NS);
-        }});
-
-        //etc
-    }};
-
-
-*/
-
+    public static final VoxelShape SHAPE_UP_EW = rotateModelY(SHAPE_UP_NS);
 
 }

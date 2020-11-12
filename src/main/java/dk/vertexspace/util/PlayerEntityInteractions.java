@@ -7,25 +7,24 @@ import org.javatuples.Pair;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Comparator;
-import java.util.LinkedList;
-import java.util.stream.Collectors;
+import java.util.Optional;
 import java.util.stream.Stream;
 
 public class PlayerEntityInteractions {
+    private PlayerEntityInteractions(){}
 
-
-    public static Direction GetFirstLookDirExcept(PlayerEntity player, Direction ... skip){
-        return GetSortedLookDirections(player).filter(
+    public static Direction getFirstLookDirExcept(PlayerEntity player, Direction ... skip){
+        Optional<Direction> dir = getSortedLookDirections(player).filter(
                 x -> Arrays.stream(skip).noneMatch(s -> s == x)
-        ).findFirst().get();
+        ).findFirst();
+        return dir.orElseThrow(IllegalArgumentException::new);
     }
 
-    public static Stream<Direction> GetSortedLookDirections(PlayerEntity player) {
+    public static Stream<Direction> getSortedLookDirections(PlayerEntity player) {
 
 
         if (player == null){
-            Stream.<Direction>empty();
+            return Stream.<Direction>empty();
         }
 
         // This look vector is normalized

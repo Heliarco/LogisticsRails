@@ -10,7 +10,7 @@ issueTrackerURL="https://github.com/Heliarco/LogisticsRails" #optional
 
 modId="vertexspace_logisticsrails" #mandatory
 
-version="1.16.3-1.0.0" #mandatory
+version="1.16.3-0.0.1" #mandatory
 
 displayName="LogisticsRails" #mandatory
 
