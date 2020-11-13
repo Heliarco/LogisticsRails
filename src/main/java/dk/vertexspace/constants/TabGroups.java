@@ -9,6 +9,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import static dk.vertexspace.constants.NameConstants.TAB_ID;
 
 public class TabGroups {
+    private TabGroups(){}
     public static final ItemGroup TAB =
             new ItemGroup(TAB_ID) {
                 @Override
