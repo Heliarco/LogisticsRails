@@ -1,0 +1,73 @@
+{
+    "targetfolder": "../../src/main/resources/assets/vertexspace_logisticsrails/models/block",
+    "name" :"rail_straight",
+    "combinations": [
+        {
+            "suffix": "_up_ns",
+            "transform": ""
+        },
+        {
+            "suffix": "_up_ew",
+            "transform": "y+"
+        },
+        {
+            "suffix": "_down_ns",
+            "transform": "x+x+"
+        },
+        {
+            "suffix": "_down_ew",
+            "transform": "x+x+y+"
+        },
+        {
+            "suffix": "_north_ud",
+            "transform": "x-"
+        },
+        {
+            "suffix": "_north_ew",
+            "transform": "x-z+"
+        },
+        {
+            "suffix": "_south_ud",
+            "transform": "x+"
+        },
+        {
+            "suffix": "_south_ew",
+            "transform": "x+z+"
+        },
+        {
+            "suffix": "_west_ud",
+            "transform": "z+x+"
+        },
+        {
+            "suffix": "_west_ns",
+            "transform": "z+"
+        },
+        {
+            "suffix": "_east_ud",
+            "transform": "z-x+"
+        },
+        {
+            "suffix": "_east_ns",
+            "transform": "z-"
+        }
+    ]
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

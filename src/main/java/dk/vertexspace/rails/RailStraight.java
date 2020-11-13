@@ -13,6 +13,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.util.math.vector.TransformationMatrix;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 
@@ -24,7 +25,7 @@ public class RailStraight extends RailBase {
         UP_DOWN
     }
 
-
+    //TransformationMatrix
     // Inherits FACING
     public static final BooleanProperty ROTATED = BooleanProperty.create("rotated");
 
