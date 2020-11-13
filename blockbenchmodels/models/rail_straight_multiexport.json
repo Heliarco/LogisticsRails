@@ -1,6 +1,8 @@
 {
     "targetfolder": "../../src/main/resources/assets/vertexspace_logisticsrails/models/block",
     "name" :"rail_straight",
+    "shapefile": "../../src/main/java/dk/vertexspace/voxelshapes/RailStraightShapes.java",
+    "shapenamespace": "dk.vertexspace.voxelshapes",
     "combinations": [
         {
             "suffix": "_up_ns",

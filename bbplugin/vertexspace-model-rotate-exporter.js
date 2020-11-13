@@ -18,9 +18,14 @@
 			
 			originalFile : ModelMeta.save_path,
 			projectName : cfg.name,
-			
+
+			shapefile: path.join(path.dirname(ModelMeta.save_path),cfg.shapefile),
+			shapeclass: path.parse(cfg.shapefile).name,
+			shapenamespace: cfg.shapenamespace,
+
 			combinations : cfg.combinations.map(mutDef => {
 				return {
+					suffix: mutDef.suffix,
 
 					path: path.join(
 						path.dirname(cfgPath),
@@ -36,8 +41,9 @@
 	var exportMaster = function() {
 		var job = readconfig();
 		
-		console.log(job);
+		shapesnippets = [];
 
+		
 		jobqueue = [];
 
 		job.combinations.forEach(combination => {
@@ -49,6 +55,9 @@
 				$("#menu_bar > li:nth-child(1)").click();
 			});
 
+			jobqueue.push( ()=> {
+				shapesnippets.push(getVoxelShapeSnippet(combination.suffix));
+			});
 			
 			jobqueue.push(() => { 
 				var s = $("[menu_item='export']")
@@ -62,13 +71,21 @@
 			jobqueue.push(() => { rewindTransformations(combination.transformations);});
 		});
 
-		var myInterval = setInterval(function () {
-			job = jobqueue.shift();
-			job();
-			if(jobqueue.length == 0){
+		jobqueue.push(() => {
+			writeShapes(shapesnippets,job);
+		});
 
-				clearInterval(myInterval);
+
+		var myInterval = setInterval(function () {
+			try {
+					j = jobqueue.shift();
+				j();
+				if(jobqueue.length <= 0){
+
+					clearInterval(myInterval);
+				}
 			}
+			catch(e){clearInterval(myInterval); throw e;}
 		}, 50);
 
 
@@ -164,7 +181,6 @@
 		if(s[0] === undefined) {
 			debugger;
 		}
-		console.log(s[0]);
 		s.click() // Sighs this is the best hook i could find
 		ModelMeta.export_path = oldName;
 		ElecDialogs.showSaveDialog = oldD;
@@ -208,7 +224,98 @@
 			multiExportAction.delete();
 		}
 		
-    });
+	});
+	
+
+
+
+
+
+	//---- voxelshape
+
+	function writeShapes(shapesnippets,cfg){
+		
+		var header = `package ${cfg.shapenamespace};
+import net.minecraft.block.Block;
+import net.minecraft.util.math.shapes.IBooleanFunction;
+import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.util.math.shapes.VoxelShapes;
+import java.util.stream.Stream;
+
+public class ${cfg.shapeclass} {
+	private ${cfg.shapeclass}(){}
+`;
+		
+		var footer = "}";
+		
+		var text = header;
+		
+		for(var i = 0; i < shapesnippets.length; i++){
+			
+			text = text + shapesnippets[i] + "\n";
+		}
+		text = text + footer;
+
+		fs.writeFileSync(cfg.shapefile,text);
+	}
+
+	function getVoxelShapeSnippet(suffix){
+		
+		var voxelShapeGroup = searchVoxelShapeGroup(Outliner.elements);
+	
+		if(voxelShapeGroup === undefined) return;
+	
+		var output = generateShape(voxelShapeGroup);
+		return "\tpublic static final VoxelShape " + "S" + suffix.toUpperCase() + " = " + output;
+	}
+
+
+	function searchVoxelShapeGroup(elements){
+		var rGroup;
+		Group.all.forEach(
+			group => {
+				if(group.name === "VoxelShapes")
+				rGroup = group;
+			}
+		)
+		return rGroup;
+	}
+
+
+
+	function generateShape(group){
+		
+		var method = [];
+		
+		for(var i = 0; i < group.children.length; i++){
+			var child = group.children[i];
+			if(child instanceof Group){
+				method.push(generateShape(child));
+			}else{
+				method.push("\t\tBlock.makeCuboidShape" + "(" + child.from[0] + ", " + child.from[1] + ", " + child.from[2] + ", " + child.to[0] + ", " + child.to[1] + ", " + child.to[2] + ")");
+			}
+		}
+		
+		
+		
+		var output = "Stream.of(\n";
+		
+		for(var i = 0; i < method.length; i++){
+			if(i == method.length -1){
+				output = output + method[i];
+			}else{
+				output = output + method[i] + ",\n";
+			}
+		}
+		
+		output = output + ").reduce((v1, v2) -> VoxelShapes.combineAndSimplify(v1, v2, IBooleanFunction.OR)).get();";
+		
+		return output;
+		
+	}
+
+
+
 })();
 
 

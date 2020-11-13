@@ -18,7 +18,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 
-public class RailBase extends DirectionalBlock {
+public abstract class RailBase extends DirectionalBlock {
 
     public RailBase() {
         super(AbstractBlock.Properties.create(Material.MISCELLANEOUS)
@@ -68,11 +68,13 @@ public class RailBase extends DirectionalBlock {
     @Override
     public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit)
     {
+        boolean success = this.handleRightClick(state, worldIn, pos, player, handIn, hit);
+        if(success){
+            return ActionResultType.func_233537_a_(worldIn.isRemote);
+        }
         return  ActionResultType.PASS;
-
-      //  return ActionResultType.func_233537_a_(worldIn.isRemote);
     }
-
+    protected abstract boolean handleRightClick(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit);
 
 
     @Override
