@@ -37,27 +37,20 @@ public class RailStraight extends RailBase {
 
         switch(facing) {
             case UP:
-                if (rotated) {
-                    return RailStraightShapes.SHAPE_UP_EW;
-                }
-                else {
-                    return RailStraightShapes.SHAPE_UP_NS;
-                }
+                return rotated ? RailStraightShapes.S_UP_EW : RailStraightShapes.S_UP_NS;
             case DOWN:
-                break;
-            case  EAST:
-                break;
-            case NORTH:
-                break;
-            case SOUTH:
-                break;
+                return rotated ? RailStraightShapes.S_DOWN_EW : RailStraightShapes.S_DOWN_NS;
+            case EAST:
+                return rotated ? RailStraightShapes.S_EAST_NS : RailStraightShapes.S_EAST_UD;
             case WEST:
-                break;
-
+                return rotated ? RailStraightShapes.S_WEST_NS : RailStraightShapes.S_WEST_UD;
+            case NORTH:
+                return rotated ? RailStraightShapes.S_NORTH_EW : RailStraightShapes.S_NORTH_UD;
+            case SOUTH:
+                return rotated ? RailStraightShapes.S_SOUTH_EW : RailStraightShapes.S_SOUTH_UD;
             default:
                 return ShapeBase.PLACEHOLDER_SHAPE;
         }
-        return ShapeBase.PLACEHOLDER_SHAPE;
     }
 
 
@@ -104,14 +97,12 @@ public class RailStraight extends RailBase {
         return superState.with(ROTATED, rotated);
     }
 
+    @Override
+    protected boolean handleRightClick(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+        return false;
+    }
 
-
-
-
-
-
-
-        @Override
+    @Override
     public void fillStateContainer(StateContainer.Builder<Block, BlockState> builder)
     {
         builder.add(ROTATED);
