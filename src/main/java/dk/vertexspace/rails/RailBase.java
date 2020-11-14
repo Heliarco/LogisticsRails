@@ -68,6 +68,9 @@ public abstract class RailBase extends DirectionalBlock {
     @Override
     public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit)
     {
+        if (!player.getHeldItemMainhand().isEmpty()){
+            return ActionResultType.PASS;
+        }
         boolean success = this.handleRightClick(state, worldIn, pos, player, handIn, hit);
         if(success){
             return ActionResultType.func_233537_a_(worldIn.isRemote);
