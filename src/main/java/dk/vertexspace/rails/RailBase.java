@@ -20,7 +20,7 @@ import javax.annotation.Nullable;
 
 public abstract class RailBase extends DirectionalBlock {
 
-    public RailBase() {
+    protected RailBase() {
         super(AbstractBlock.Properties.create(Material.MISCELLANEOUS)
                 .hardnessAndResistance(1.0f, 1.0f)
                 .sound(SoundType.METAL)
@@ -64,8 +64,9 @@ public abstract class RailBase extends DirectionalBlock {
     }
 
 
-    // Rightclick basically
+    // Right click basically
     @Override
+    @SuppressWarnings("deprecation")
     public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit)
     {
         if (!player.getHeldItemMainhand().isEmpty()){
