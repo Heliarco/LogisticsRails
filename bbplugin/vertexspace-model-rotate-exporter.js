@@ -7,7 +7,6 @@
 
 	const fs = require('fs');
 	const path = require('path');
-	var plugin_variable_1;
 	
 
 	var readconfig = function() {
@@ -41,10 +40,10 @@
 	var exportMaster = function() {
 		var job = readconfig();
 		
-		shapesnippets = [];
+		let shapesnippets = [];
 
 		
-		jobqueue = [];
+		let jobqueue = [];
 
 		job.combinations.forEach(combination => {
 			
@@ -78,7 +77,7 @@
 
 		var myInterval = setInterval(function () {
 			try {
-					j = jobqueue.shift();
+                let j = jobqueue.shift();
 				j();
 				if(jobqueue.length <= 0){
 
@@ -274,8 +273,9 @@ public class ${cfg.shapeclass} {
 		var rGroup;
 		Group.all.forEach(
 			group => {
-				if(group.name === "VoxelShapes")
-				rGroup = group;
+				if(group.name === "VoxelShapes") {
+				    rGroup = group;
+				}
 			}
 		)
 		return rGroup;
@@ -300,7 +300,7 @@ public class ${cfg.shapeclass} {
 		
 		var output = "Stream.of(\n";
 		
-		for(var i = 0; i < method.length; i++){
+		for(i = 0; i < method.length; i++){
 			if(i == method.length -1){
 				output = output + method[i];
 			}else{
