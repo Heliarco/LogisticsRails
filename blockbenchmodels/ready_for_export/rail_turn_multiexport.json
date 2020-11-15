@@ -1,18 +1,98 @@
 {
   "targetfolder": "../../src/main/resources/assets/vertexspace_logisticsrails/models/block",
-  "name" :"x",
-  "shapefile": "../../src/main/java/dk/vertexspace/voxelshapes/x.java",
+  "name" :"rail_turn",
+  "shapefile": "../../src/main/java/dk/vertexspace/voxelshapes/RailTurnShapes.java",
   "shapenamespace": "dk.vertexspace.voxelshapes",
   "combinations": [
     {
-      "suffix": "_up_ns",
+      "suffix": "_up_ne",
       "transform": ""
     },
     {
-      "suffix": "_up_ew",
+      "suffix": "_up_se",
       "transform": "y+"
     },
+    {
+      "suffix": "_up_sw",
+      "transform": "y+y+"
+    },
+    {
+      "suffix": "_up_nw",
+      "transform": "y-"
+    },
+    {
+      "suffix": "_down_se",
+      "transform": "x+x+"
+    },
+    {
+      "suffix": "_down_sw",
+      "transform": "x+x+y+"
+    },
+    {
+      "suffix": "_down_ne",
+      "transform": "x+x+y+y+"
+    },
+    {
+      "suffix": "_down_nw",
+      "transform": "x+x+y-"
+    },
+    {
+      "suffix": "_north_de",
+      "transform": "x-"
+    },{
+      "suffix": "_north_ue",
+      "transform": "x-z+"
+    },{
+      "suffix": "_north_uw",
+      "transform": "x-z+z+"
+    },{
+      "suffix": "_north_dw",
+      "transform": "x-z-"
+    },
+    {
+      "suffix": "_south_ue",
+      "transform": "x+"
+    },{
+      "suffix": "_south_uw",
+      "transform": "x+z+"
+    },{
+      "suffix": "_south_dw",
+      "transform": "x+z+z+"
+    },{
+      "suffix": "_south_de",
+      "transform": "x+z-"
+    },
 
+
+
+    {
+      "suffix": "_west_un",
+      "transform": "z+"
+    },{
+      "suffix": "_west_us",
+      "transform": "z+x+"
+    },{
+      "suffix": "_west_ds",
+      "transform": "z+x+x+"
+    },{
+      "suffix": "_west_dn",
+      "transform": "z+x-"
+    },
+
+
+    {
+      "suffix": "_east_dn",
+      "transform": "z-"
+    },{
+      "suffix": "_east_un",
+      "transform": "z-x+"
+    },{
+      "suffix": "_east_us",
+      "transform": "z-x+x+"
+    },{
+      "suffix": "_east_ds",
+      "transform": "z-x-"
+    }
   ]
 }
 
