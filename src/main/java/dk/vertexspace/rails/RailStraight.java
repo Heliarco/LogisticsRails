@@ -17,7 +17,7 @@ import net.minecraft.util.math.vector.TransformationMatrix;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 
-
+@SuppressWarnings("java:S110") // We can't really control the inheritance depth here.
 public class RailStraight extends RailBase {
     public enum RailStraightOrientations {
         NORTH_SOUTH,

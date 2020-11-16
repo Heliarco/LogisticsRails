@@ -8,6 +8,8 @@
 
 
   "itemGroup.vertexspace_logisticsrails_tab"  : "Logistics Rails",
-  "block.vertexspace_logisticsrails.rail_straight" : "Straight Rail"
-
+  "block.vertexspace_logisticsrails.rail_straight" : "Rail",
+  "block.vertexspace_logisticsrails.rail_turn" : "Rail (Bend)",
+  "block.vertexspace_logisticsrails.rail_tsection" : "Rail (T Section)",
+  "block.vertexspace_logisticsrails.rail_xsection" : "Rail (X Section)"
 }
