@@ -1,0 +1,36 @@
+{
+  "targetfolder": "../../src/main/resources/assets/vertexspace_logisticsrails/models/block",
+  "name" :"x",
+  "shapefile": "../../src/main/java/dk/vertexspace/voxelshapes/x.java",
+  "shapenamespace": "dk.vertexspace.voxelshapes",
+  "combinations": [
+    {
+      "suffix": "_up_ns",
+      "transform": ""
+    },
+    {
+      "suffix": "_up_ew",
+      "transform": "y+"
+    },
+
+  ]
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
