@@ -1,7 +1,9 @@
 package dk.vertexspace.rails;
 
+import dk.vertexspace.stateproperties.RailRotation;
 import dk.vertexspace.stateproperties.RailRotationProperty;
 import dk.vertexspace.voxelshapes.RailStraightShapes;
+import dk.vertexspace.voxelshapes.RailTurnShapes;
 import dk.vertexspace.voxelshapes.ShapeBase;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -35,4 +37,87 @@ public class RailTurn extends RailBase {
         super.fillStateContainer(builder);
     }
 
+    @Override
+    @SuppressWarnings("deprecation")
+    public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context){
+        Direction facing = state.get(FACING);
+        RailRotation rotation = state.get(ROTATION);
+
+        switch(facing) {
+            case UP:
+                switch (rotation){
+                    case ROT_0:
+                        return RailTurnShapes.S_UP_NE;
+                    case ROT_1:
+                        return RailTurnShapes.S_UP_SE;
+                    case ROT_2:
+                        return RailTurnShapes.S_UP_SW;
+                    case ROT_3:
+                        return RailTurnShapes.S_UP_NW;
+                }
+                break;
+            case DOWN:
+                switch (rotation){
+                    case ROT_0:
+                        return RailTurnShapes.S_DOWN_SW;
+                    case ROT_1:
+                        return RailTurnShapes.S_DOWN_SE;
+                    case ROT_2:
+                        return RailTurnShapes.S_DOWN_NW;
+                    case ROT_3:
+                        return RailTurnShapes.S_DOWN_NE;
+                }
+                break;
+            case EAST:
+                switch (rotation){
+                    case ROT_0:
+                        return RailTurnShapes.S_EAST_DS;
+                    case ROT_1:
+                        return RailTurnShapes.S_EAST_US;
+                    case ROT_2:
+                        return RailTurnShapes.S_EAST_UN;
+                    case ROT_3:
+                        return RailTurnShapes.S_EAST_DN;
+                }
+                break;
+            case WEST:
+                switch (rotation){
+                    case ROT_0:
+                        return RailTurnShapes.S_WEST_DS;
+                    case ROT_1:
+                        return RailTurnShapes.S_WEST_DN;
+                    case ROT_2:
+                        return RailTurnShapes.S_WEST_UN;
+                    case ROT_3:
+                        return RailTurnShapes.S_WEST_US;
+                }
+                break;
+            case NORTH:
+                switch (rotation){
+                    case ROT_0:
+                        return RailTurnShapes.S_NORTH_DE;
+                    case ROT_1:
+                        return RailTurnShapes.S_NORTH_UE;
+                    case ROT_2:
+                        return RailTurnShapes.S_NORTH_UW;
+                    case ROT_3:
+                        return RailTurnShapes.S_NORTH_DW;
+                }
+                break;
+            case SOUTH:
+                switch (rotation){
+                    case ROT_0:
+                        return RailTurnShapes.S_SOUTH_DW;
+                    case ROT_1:
+                        return RailTurnShapes.S_SOUTH_UW;
+                    case ROT_2:
+                        return RailTurnShapes.S_SOUTH_UE;
+                    case ROT_3:
+                        return RailTurnShapes.S_SOUTH_DE;
+                }
+                break;
+
+        }
+        return ShapeBase.PLACEHOLDER_SHAPE;
+    }
 }

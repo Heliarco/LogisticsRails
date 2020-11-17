@@ -26,11 +26,10 @@ public enum RailRotation implements IStringSerializable {
                 return ROT_2;
             case ROT_2:
                 return ROT_3;
-            //case ROT_3:
-            //    return ROT_0;
-            default:
+            case ROT_3:
                 return ROT_0;
         }
+        return ROT_0;
     }
 
 }
