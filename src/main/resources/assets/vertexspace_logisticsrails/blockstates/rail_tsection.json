@@ -1,33 +1,33 @@
 {
   "variants": {
     "facing=up,rotation=0":    { "model": "vertexspace_logisticsrails:block/rail_tsection_up_e"    },
-    "facing=up,rotation=1":    { "model": "vertexspace_logisticsrails:block/rail_tsection_up_n"    },
-    "facing=up,rotation=2":    { "model": "vertexspace_logisticsrails:block/rail_tsection_up_s"    },
-    "facing=up,rotation=3":    { "model": "vertexspace_logisticsrails:block/rail_tsection_up_w"    },
+    "facing=up,rotation=1":    { "model": "vertexspace_logisticsrails:block/rail_tsection_up_s"    },
+    "facing=up,rotation=2":    { "model": "vertexspace_logisticsrails:block/rail_tsection_up_w"    },
+    "facing=up,rotation=3":    { "model": "vertexspace_logisticsrails:block/rail_tsection_up_n"    },
 
     "facing=down,rotation=0":  { "model": "vertexspace_logisticsrails:block/rail_tsection_down_e"  },
     "facing=down,rotation=1":  { "model": "vertexspace_logisticsrails:block/rail_tsection_down_n"  },
-    "facing=down,rotation=2":  { "model": "vertexspace_logisticsrails:block/rail_tsection_down_s"  },
-    "facing=down,rotation=3":  { "model": "vertexspace_logisticsrails:block/rail_tsection_down_w"  },
+    "facing=down,rotation=2":  { "model": "vertexspace_logisticsrails:block/rail_tsection_down_w"  },
+    "facing=down,rotation=3":  { "model": "vertexspace_logisticsrails:block/rail_tsection_down_s"  },
 
     "facing=north,rotation=0": { "model": "vertexspace_logisticsrails:block/rail_tsection_north_d" },
-    "facing=north,rotation=1": { "model": "vertexspace_logisticsrails:block/rail_tsection_north_e" },
+    "facing=north,rotation=1": { "model": "vertexspace_logisticsrails:block/rail_tsection_north_w" },
     "facing=north,rotation=2": { "model": "vertexspace_logisticsrails:block/rail_tsection_north_u" },
-    "facing=north,rotation=3": { "model": "vertexspace_logisticsrails:block/rail_tsection_north_w" },
+    "facing=north,rotation=3": { "model": "vertexspace_logisticsrails:block/rail_tsection_north_e" },
 
     "facing=south,rotation=0": { "model": "vertexspace_logisticsrails:block/rail_tsection_south_d" },
-    "facing=south,rotation=1": { "model": "vertexspace_logisticsrails:block/rail_tsection_south_e" },
+    "facing=south,rotation=1": { "model": "vertexspace_logisticsrails:block/rail_tsection_south_w" },
     "facing=south,rotation=2": { "model": "vertexspace_logisticsrails:block/rail_tsection_south_u" },
-    "facing=south,rotation=3": { "model": "vertexspace_logisticsrails:block/rail_tsection_south_w" },
+    "facing=south,rotation=3": { "model": "vertexspace_logisticsrails:block/rail_tsection_south_e" },
 
     "facing=west,rotation=0":  { "model": "vertexspace_logisticsrails:block/rail_tsection_west_d"  },
     "facing=west,rotation=1":  { "model": "vertexspace_logisticsrails:block/rail_tsection_west_n"  },
-    "facing=west,rotation=2":  { "model": "vertexspace_logisticsrails:block/rail_tsection_west_s"  },
-    "facing=west,rotation=3":  { "model": "vertexspace_logisticsrails:block/rail_tsection_west_u"  },
+    "facing=west,rotation=2":  { "model": "vertexspace_logisticsrails:block/rail_tsection_west_u"  },
+    "facing=west,rotation=3":  { "model": "vertexspace_logisticsrails:block/rail_tsection_west_s"  },
 
     "facing=east,rotation=0":  { "model": "vertexspace_logisticsrails:block/rail_tsection_east_d"  },
-    "facing=east,rotation=1":  { "model": "vertexspace_logisticsrails:block/rail_tsection_east_n"  },
-    "facing=east,rotation=2":  { "model": "vertexspace_logisticsrails:block/rail_tsection_east_s"  },
-    "facing=east,rotation=3":  { "model": "vertexspace_logisticsrails:block/rail_tsection_east_u"  }
+    "facing=east,rotation=1":  { "model": "vertexspace_logisticsrails:block/rail_tsection_east_s"  },
+    "facing=east,rotation=2":  { "model": "vertexspace_logisticsrails:block/rail_tsection_east_u"  },
+    "facing=east,rotation=3":  { "model": "vertexspace_logisticsrails:block/rail_tsection_east_n"  }
   }
 }

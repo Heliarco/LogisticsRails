@@ -18,4 +18,19 @@ public enum RailRotation implements IStringSerializable {
     public String func_176610_l() {
         return this.name;
     }
+    public RailRotation next(){
+        switch(this){
+            case ROT_0:
+                return ROT_1;
+            case ROT_1:
+                return ROT_2;
+            case ROT_2:
+                return ROT_3;
+            //case ROT_3:
+            //    return ROT_0;
+            default:
+                return ROT_0;
+        }
+    }
+
 }
