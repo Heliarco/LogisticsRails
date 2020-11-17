@@ -1,20 +1,44 @@
 {
   "targetfolder": "../../src/main/resources/assets/vertexspace_logisticsrails/models/block",
-  "name" :"x",
-  "shapefile": "../../src/main/java/dk/vertexspace/voxelshapes/x.java",
+  "name" :"rail_xsection",
+  "shapefile": "../../src/main/java/dk/vertexspace/voxelshapes/RailXSectionShape.java",
   "shapenamespace": "dk.vertexspace.voxelshapes",
   "combinations": [
     {
-      "suffix": "_up_ns",
+      "suffix": "_up",
       "transform": ""
     },
+
     {
-      "suffix": "_up_ew",
-      "transform": "y+"
+      "suffix": "_down",
+      "transform": "x+x+"
     },
 
+    {
+      "suffix": "_north",
+      "transform": "x-"
+    },
+
+    {
+      "suffix": "_south",
+      "transform": "x+"
+    },
+
+    {
+      "suffix": "_west",
+      "transform": "z+"
+    },
+
+
+    {
+      "suffix": "_east",
+      "transform": "z-"
+    }
   ]
 }
+
+
+
 
 
 
