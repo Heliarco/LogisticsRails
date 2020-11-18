@@ -85,12 +85,18 @@ public class RailBendUp extends RailBase {
 
         RailBendUpKind orientation = state.get(ORIENTATION);
 
-        orientation.
+        return orientation.getElements().allMatch(side -> {
+            BlockPos attachedToPos = pos.offset(side.getOpposite());
+            BlockState blockstate = worldIn.getBlockState(attachedToPos);
+            return blockstate.isSolidSide(worldIn, attachedToPos, side);
+
+        });
 
 
-        BlockPos attachedToPos = pos.offset(currentFacing.getOpposite());
-        BlockState blockstate = worldIn.getBlockState(attachedToPos);
-        return blockstate.isSolidSide(worldIn, attachedToPos, currentFacing);
+
+
+
+
     }
     @Override
     @SuppressWarnings("deprecation")
