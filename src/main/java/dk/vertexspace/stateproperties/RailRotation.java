@@ -1,6 +1,7 @@
 package dk.vertexspace.stateproperties;
 
 import net.minecraft.util.IStringSerializable;
+import org.apache.commons.lang3.ArrayUtils;
 
 // We have a problem in that each facing of turn/t section rails has 4 valid rotations but we cannot label them by name since it changes for each facing :/ Oh well
 public enum RailRotation implements IStringSerializable {
@@ -19,6 +20,17 @@ public enum RailRotation implements IStringSerializable {
         return this.name;
     }
     public RailRotation next(){
+        RailRotation[] values = RailRotation.values();
+        int i = ArrayUtils.indexOf(values,this);
+        i++;
+        if(i >= values.length){
+            i = 0;
+        }
+        return values[i];
+
+
+
+        /*
         switch(this){
             case ROT_0:
                 return ROT_1;
@@ -29,6 +41,6 @@ public enum RailRotation implements IStringSerializable {
             case ROT_3:
                 return ROT_0;
         }
-        return ROT_0;
+        return ROT_0;*/
     }
 }

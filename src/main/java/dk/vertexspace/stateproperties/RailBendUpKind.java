@@ -49,10 +49,15 @@ public enum RailBendUpKind implements IStringSerializable {
 
     public RailBendUpKind next(){
 
-        int i = ArrayUtils.indexOf(RailBendUpKind.values(),this);
-        
+        RailBendUpKind[] values = RailBendUpKind.values();
+        int i = ArrayUtils.indexOf(values,this);
+        i++;
+        if(i >= values.length){
+            i = 0;
+        }
+        return values[i];
 
-
+/*
         switch(this){
             case UP_EAST:
                 return UP_WEST;
@@ -82,7 +87,7 @@ public enum RailBendUpKind implements IStringSerializable {
             case SOUTH_WEST:
                 return UP_EAST;
         }
-        return UP_EAST;
+        return UP_EAST;*/
     }
 
 }
