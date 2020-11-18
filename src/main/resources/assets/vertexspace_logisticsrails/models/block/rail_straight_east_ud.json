@@ -2,7 +2,8 @@
 	"credit": "Made with Blockbench",
 	"texture_size": [64, 64],
 	"textures": {
-		"6": "vertexspace_logisticsrails:blocks/rail_straight"
+		"6": "vertexspace_logisticsrails:blocks/rail_straight",
+		"particle": "block/texture"
 	},
 	"elements": [
 		{
@@ -20,7 +21,6 @@
 		{
 			"from": [0, 0, 10],
 			"to": [1, 16, 14],
-			"rotation": {"angle": 0, "axis": "y", "origin": [8, 8, 16]},
 			"faces": {
 				"north": {"uv": [4.5, 4.5, 8.5, 4.75], "rotation": 270, "texture": "#6"},
 				"east": {"uv": [3, 6, 2, 2], "texture": "#6"},
@@ -33,7 +33,6 @@
 		{
 			"from": [1, 0, 3],
 			"to": [3, 16, 4],
-			"rotation": {"angle": 0, "axis": "y", "origin": [9, 8, 8]},
 			"faces": {
 				"north": {"uv": [1, 0, 5, 0.5], "rotation": 270, "texture": "#6"},
 				"east": {"uv": [0.25, 8, 0, 4], "texture": "#6"},
@@ -46,7 +45,6 @@
 		{
 			"from": [1, 0, 4],
 			"to": [3, 16, 5],
-			"rotation": {"angle": 0, "axis": "y", "origin": [9, 8, 9]},
 			"faces": {
 				"north": {"uv": [2, 1, 6, 1.5], "rotation": 270, "texture": "#6"},
 				"east": {"uv": [0.75, 8, 0.5, 4], "texture": "#6"},
@@ -59,7 +57,6 @@
 		{
 			"from": [1, 0, 11],
 			"to": [3, 16, 12],
-			"rotation": {"angle": 0, "axis": "y", "origin": [9, 8, 16]},
 			"faces": {
 				"north": {"uv": [4, 4, 8, 4.5], "rotation": 270, "texture": "#6"},
 				"east": {"uv": [1.25, 9, 1, 5], "texture": "#6"},
@@ -72,7 +69,6 @@
 		{
 			"from": [1, 0, 12],
 			"to": [3, 16, 13],
-			"rotation": {"angle": 0, "axis": "y", "origin": [9, 8, 17]},
 			"faces": {
 				"north": {"uv": [3, 2, 7, 2.5], "rotation": 270, "texture": "#6"},
 				"east": {"uv": [4.25, 8.5, 4, 4.5], "texture": "#6"},
@@ -85,7 +81,6 @@
 		{
 			"from": [0, 7.5, 6],
 			"to": [0.9, 8.5, 10],
-			"rotation": {"angle": 0, "axis": "y", "origin": [8, 1, 11]},
 			"faces": {
 				"north": {"uv": [5.25, 5.75, 5.5, 6], "rotation": 270, "texture": "#6"},
 				"east": {"uv": [5.5, 5.75, 4.5, 5.5], "texture": "#6"},
@@ -121,9 +116,14 @@
 	},
 	"groups": [
 		{
+			"name": "Themodel",
+			"origin": [7, 9, 8],
+			"children": [0, 1, 2, 3, 4, 5, 6]
+		},
+		{
 			"name": "VoxelShapes",
 			"origin": [8, 8, 8],
-			"children": [0, 1, 2, 3, 4, 5, 6]
+			"children": [7]
 		}
 	]
 }

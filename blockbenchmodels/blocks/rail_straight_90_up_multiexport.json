@@ -1,0 +1,87 @@
+{
+  "targetfolder": "../../src/main/resources/assets/vertexspace_logisticsrails/models/block",
+  "name" :"rail_bend_up",
+  "shapefile": "../../src/main/java/dk/vertexspace/voxelshapes/RailBendUpShapes.java",
+  "shapenamespace": "dk.vertexspace.voxelshapes",
+  "combinations": [
+    {
+      "suffix": "_un",
+      "transform": ""
+    },
+    {
+      "suffix": "_ue",
+      "transform": "y+"
+    },
+
+    {
+      "suffix": "_us",
+      "transform": "y+y+"
+    },
+    {
+      "suffix": "_uw",
+      "transform": "y-"
+    },
+
+
+    {
+      "suffix": "_dn",
+      "transform": "x-"
+    },
+    {
+      "suffix": "_de",
+      "transform": "x-y+"
+    },
+    {
+      "suffix": "_ds",
+      "transform": "x-y+y+"
+    },
+    {
+      "suffix": "_dw",
+      "transform": "x-y-"
+    },
+
+
+
+
+    {
+      "suffix": "_nw",
+      "transform": "z+"
+    },
+
+    {
+      "suffix": "_ne",
+      "transform": "z-"
+    },
+
+    {
+      "suffix": "_sw",
+      "transform": "x+z+"
+    },
+
+
+    {
+      "suffix": "_se",
+      "transform": "x+z-"
+    }
+
+  ]
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

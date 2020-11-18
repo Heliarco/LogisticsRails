@@ -2,7 +2,8 @@
 	"credit": "Made with Blockbench",
 	"texture_size": [64, 64],
 	"textures": {
-		"6": "vertexspace_logisticsrails:blocks/rail_straight"
+		"6": "vertexspace_logisticsrails:blocks/rail_straight",
+		"particle": "block/texture"
 	},
 	"elements": [
 		{
@@ -20,7 +21,6 @@
 		{
 			"from": [0, 15, 2],
 			"to": [16, 16, 6],
-			"rotation": {"angle": 0, "axis": "y", "origin": [8, 8, 0]},
 			"faces": {
 				"north": {"uv": [4.5, 4.75, 8.5, 5], "rotation": 180, "texture": "#6"},
 				"east": {"uv": [5, 0.5, 6, 0.75], "rotation": 180, "texture": "#6"},
@@ -33,7 +33,6 @@
 		{
 			"from": [0, 13, 12],
 			"to": [16, 15, 13],
-			"rotation": {"angle": 0, "axis": "y", "origin": [8, 7, 8]},
 			"faces": {
 				"north": {"uv": [1, 0.5, 5, 1], "rotation": 180, "texture": "#6"},
 				"east": {"uv": [1.75, 5, 2, 5.5], "rotation": 180, "texture": "#6"},
@@ -46,7 +45,6 @@
 		{
 			"from": [0, 13, 11],
 			"to": [16, 15, 12],
-			"rotation": {"angle": 0, "axis": "y", "origin": [8, 7, 7]},
 			"faces": {
 				"north": {"uv": [2, 1.5, 6, 2], "rotation": 180, "texture": "#6"},
 				"east": {"uv": [1.75, 5.5, 2, 6], "rotation": 180, "texture": "#6"},
@@ -59,7 +57,6 @@
 		{
 			"from": [0, 13, 4],
 			"to": [16, 15, 5],
-			"rotation": {"angle": 0, "axis": "y", "origin": [8, 7, 0]},
 			"faces": {
 				"north": {"uv": [4, 3, 8, 3.5], "rotation": 180, "texture": "#6"},
 				"east": {"uv": [5, 5.75, 5.25, 6.25], "rotation": 180, "texture": "#6"},
@@ -72,7 +69,6 @@
 		{
 			"from": [0, 13, 3],
 			"to": [16, 15, 4],
-			"rotation": {"angle": 0, "axis": "y", "origin": [8, 7, -1]},
 			"faces": {
 				"north": {"uv": [3, 2.5, 7, 3], "rotation": 180, "texture": "#6"},
 				"east": {"uv": [4.5, 5.75, 4.75, 6.25], "rotation": 180, "texture": "#6"},
@@ -85,7 +81,6 @@
 		{
 			"from": [7.5, 15.1, 6],
 			"to": [8.5, 16, 10],
-			"rotation": {"angle": 0, "axis": "y", "origin": [15, 8, 5]},
 			"faces": {
 				"north": {"uv": [5.5, 5.75, 5.75, 6], "rotation": 180, "texture": "#6"},
 				"east": {"uv": [4.5, 5.25, 5.5, 5.5], "rotation": 180, "texture": "#6"},
@@ -121,9 +116,14 @@
 	},
 	"groups": [
 		{
+			"name": "Themodel",
+			"origin": [7, 9, 8],
+			"children": [0, 1, 2, 3, 4, 5, 6]
+		},
+		{
 			"name": "VoxelShapes",
 			"origin": [8, 8, 8],
-			"children": [0, 1, 2, 3, 4, 5, 6]
+			"children": [7]
 		}
 	]
 }

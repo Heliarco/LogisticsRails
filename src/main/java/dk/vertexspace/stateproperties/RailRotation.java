@@ -31,5 +31,4 @@ public enum RailRotation implements IStringSerializable {
         }
         return ROT_0;
     }
-
 }
