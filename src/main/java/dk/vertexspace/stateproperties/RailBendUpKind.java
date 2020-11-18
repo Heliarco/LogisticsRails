@@ -2,6 +2,10 @@ package dk.vertexspace.stateproperties;
 
 import net.minecraft.util.Direction;
 import net.minecraft.util.IStringSerializable;
+import org.apache.commons.lang3.ArrayUtils;
+
+import java.util.Arrays;
+import java.util.stream.Stream;
 
 public enum RailBendUpKind implements IStringSerializable {
 
@@ -21,16 +25,64 @@ public enum RailBendUpKind implements IStringSerializable {
     SOUTH_EAST(Direction.SOUTH, Direction.EAST),
     SOUTH_WEST(Direction.SOUTH, Direction.WEST);
 
-    private final Direction item1;
-    private final Direction item2;
+    private final String name;
+    private final Direction [] directions;
 
     RailBendUpKind(Direction item1, Direction item2){
-        this.item1 = item1;
-        this.item2 = item2;
+        this.directions = new Direction[2];
+        directions[0] = item1;
+        directions[1] = item2;
+
+        this.name = String.format("%s_%s", item1.func_176610_l(), item2.func_176610_l());
+    }
+
+    public Stream<Direction> getElements(){
+        return Arrays.stream(this.directions);
     }
 
     @Override
     public String func_176610_l() {
-        return String.format("%s_%d", this.item1.name(), this.item2.name());
+        return this.name;
+
+
     }
+
+    public RailBendUpKind next(){
+
+        int i = ArrayUtils.indexOf(RailBendUpKind.values(),this);
+        
+
+
+        switch(this){
+            case UP_EAST:
+                return UP_WEST;
+            case UP_WEST:
+                return UP_NORTH;
+            case UP_NORTH:
+                return UP_SOUTH;
+            case UP_SOUTH:
+                return DOWN_EAST;
+
+            case DOWN_EAST:
+                return DOWN_WEST;
+            case DOWN_WEST:
+                return DOWN_SOUTH;
+            case DOWN_SOUTH:
+                return DOWN_NORTH;
+            case DOWN_NORTH:
+                return NORTH_EAST;
+
+            case NORTH_EAST:
+                return NORTH_WEST;
+            case NORTH_WEST:
+                return SOUTH_EAST;
+
+            case SOUTH_EAST:
+                return SOUTH_WEST;
+            case SOUTH_WEST:
+                return UP_EAST;
+        }
+        return UP_EAST;
+    }
+
 }

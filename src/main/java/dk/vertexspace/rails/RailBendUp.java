@@ -8,7 +8,10 @@ import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.StateContainer;
+import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
+import net.minecraft.util.Mirror;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
@@ -17,6 +20,8 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import org.apache.commons.lang3.NotImplementedException;
+
+import javax.annotation.Nonnull;
 
 
 public class RailBendUp extends RailBase {
@@ -73,7 +78,33 @@ public class RailBendUp extends RailBase {
         super.fillStateContainer(builder);
     }
 
+    @Override
+    @SuppressWarnings("deprecation")
+    public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
+        // Basically copied from wall torch.
+
+        RailBendUpKind orientation = state.get(ORIENTATION);
+
+        orientation.
 
 
+        BlockPos attachedToPos = pos.offset(currentFacing.getOpposite());
+        BlockState blockstate = worldIn.getBlockState(attachedToPos);
+        return blockstate.isSolidSide(worldIn, attachedToPos, currentFacing);
+    }
+    @Override
+    @SuppressWarnings("deprecation")
+    @Nonnull
+    public BlockState rotate(BlockState state, Rotation rot) {
+        return state.with(FACING, rot.rotate(state.get(FACING)));
+    }
+
+
+    @Override
+    @SuppressWarnings("deprecation")
+    @Nonnull
+    public BlockState mirror(BlockState state, Mirror mirrorIn) {
+        return state.rotate(mirrorIn.toRotation(state.get(FACING)));
+    }
 
 }
