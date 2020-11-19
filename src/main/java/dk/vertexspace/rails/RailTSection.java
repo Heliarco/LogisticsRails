@@ -23,10 +23,8 @@ public class RailTSection extends RailBase {
     public static final RailRotationProperty ROTATION = RailRotationProperty.create("rotation");
 
     @Override
-    protected boolean handleRightClick(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-        BlockState s = state.with(ROTATION, state.get(ROTATION).next());
-        worldIn.setBlockState(pos, s, 3);
-        return true;
+    protected BlockState rotateOnRightClick(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+        return state.with(ROTATION, state.get(ROTATION).next());
     }
 
 

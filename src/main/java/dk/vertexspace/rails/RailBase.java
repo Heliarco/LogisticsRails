@@ -72,13 +72,20 @@ public abstract class RailBase extends DirectionalBlock {
         if (!player.getHeldItemMainhand().isEmpty()){
             return ActionResultType.PASS;
         }
-        boolean success = this.handleRightClick(state, worldIn, pos, player, handIn, hit);
-        if(success){
-            return ActionResultType.func_233537_a_(worldIn.isRemote);
+
+        BlockState newState = this.rotateOnRightClick(state, worldIn, pos, player, handIn, hit);
+
+        if (newState != null){
+            worldIn.setBlockState(pos, newState, 3);
         }
-        return  ActionResultType.PASS;
+        else {
+            return ActionResultType.FAIL;
+        }
+
+        return ActionResultType.func_233537_a_(worldIn.isRemote);
     }
-    protected abstract boolean handleRightClick(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit);
+
+    protected abstract BlockState rotateOnRightClick(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit);
 
 
     @Override

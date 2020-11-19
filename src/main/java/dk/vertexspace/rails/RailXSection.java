@@ -16,8 +16,8 @@ import net.minecraft.world.World;
 @SuppressWarnings("java:S110") // We can't really control the inheritance depth here.
 public class RailXSection extends RailBase{
     @Override
-    protected boolean handleRightClick(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-        return false;
+    protected BlockState rotateOnRightClick(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+        return null;
     }
 
     @Override
@@ -42,6 +42,4 @@ public class RailXSection extends RailBase{
                 return ShapeBase.PLACEHOLDER_SHAPE;
         }
     }
-
-
 }

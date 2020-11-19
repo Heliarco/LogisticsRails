@@ -42,7 +42,7 @@ public class RailBendUp extends RailBase {
 
 
     @Override
-    protected boolean handleRightClick(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+    protected BlockState rotateOnRightClick(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
 
         int timeout = 0;
         RailBendUpKind orientation = state.get(ORIENTATION);
@@ -50,16 +50,12 @@ public class RailBendUp extends RailBase {
 
             orientation = orientation.next();
 
-            if (isValidPosition(orientation, worldIn, pos )){
+            if (isValidPosition(orientation, worldIn, pos )) {
 
-                worldIn.setBlockState(pos, state.with(ORIENTATION, orientation), 3);
-
-                return true;
+                return state.with(ORIENTATION, orientation);
             }
-
-
         }
-        return false;
+        return null;
 
     }
 

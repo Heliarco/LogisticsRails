@@ -98,14 +98,9 @@ public class RailStraight extends RailBase {
     }
 
     @Override
-    protected boolean handleRightClick(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+    protected BlockState rotateOnRightClick(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
 
-        BlockState s = state.with(ROTATED, !state.get(ROTATED));
-        worldIn.setBlockState(pos, s, 3);
-
-
-
-        return true;
+        return state.with(ROTATED, !state.get(ROTATED));
     }
 
     @Override
