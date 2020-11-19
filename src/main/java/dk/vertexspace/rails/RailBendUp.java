@@ -25,6 +25,8 @@ import org.apache.commons.lang3.NotImplementedException;
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -42,12 +44,23 @@ public class RailBendUp extends RailBase {
     @Override
     protected boolean handleRightClick(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
 
-        //BlockState s = state.with(ROTATED, !state.get(ROTATED));
-        //worldIn.setBlockState(pos, s, 3);
+        int timeout = 0;
+        RailBendUpKind orientation = state.get(ORIENTATION);
+        while (timeout < 11){
+
+            orientation = orientation.next();
+
+            if (isValidPosition(orientation, worldIn, pos )){
+
+                worldIn.setBlockState(pos, state.with(ORIENTATION, orientation), 3);
+
+                return true;
+            }
 
 
-        throw new NotImplementedException("");
-        //return true;
+        }
+        return false;
+
     }
 
     @Override
@@ -93,86 +106,57 @@ public class RailBendUp extends RailBase {
         IWorldReader worldIn = context.getWorld();
         BlockPos pos = context.getPos();
 
+        Direction primaryPlacementDirection = context.getNearestLookingDirections()[0];
 
-        ArrayList<RailBendUpKind> validOrientations  = new ArrayList<RailBendUpKind>(
-                Arrays.stream(RailBendUpKind.values()).filter(bendKind -> {
+        // Filter only valid orientations based on world geometry
+        Optional<RailBendUpKind> kind = Arrays.stream(RailBendUpKind.values())
+            .filter(bendKind -> isValidPosition(bendKind, worldIn, pos))
 
+        // Filter those that match orientation
+            .filter(bendKind -> {
+                Direction neededFace = primaryPlacementDirection.getOpposite();
 
-            boolean isValid = bendKind.getElements().allMatch(side -> {
-                BlockPos attachedToPos = pos.offset(side.getOpposite());
-                BlockState blockstate = worldIn.getBlockState(attachedToPos);
-                return blockstate.isSolidSide(worldIn, attachedToPos, side);
-            });
-            return isValid;
-        }).collect(Collectors.toList()));
+                return bendKind.getElements().anyMatch(side -> side == neededFace);
+            }).findAny();
 
-        if (validOrientations.isEmpty()) {
+        if (!kind.isPresent()) {
             return null;
         }
 
-        // now to sort orientations and return first
-
-        Direction[] placeDirections = context.getNearestLookingDirections();
-        validOrientations.sort( (e1,e2) -> {
-
-
-            return 0;
-
-
-        });
-
-
-
-
-
-
-
-
-
-
-
-
-        PlayerEntity player = context.getPlayer();
-
         BlockState blockstate = this.getDefaultState();
-
-        //Direction[] adirection = context.getNearestLookingDirections();
-
-        return blockstate.with(ORIENTATION, RailBendUpKind.DOWN_EAST);
+        return blockstate.with(ORIENTATION, kind.get());
     }
 
     @Override
     public void fillStateContainer(StateContainer.Builder<Block, BlockState> builder)
     {
         builder.add(ORIENTATION);
-        super.fillStateContainer(builder);
     }
 
     @Override
     @SuppressWarnings("deprecation")
     public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
         // Basically copied from wall torch.
-
         RailBendUpKind orientation = state.get(ORIENTATION);
+        return isValidPosition(orientation, worldIn, pos);
 
+    }
+
+    public boolean isValidPosition(RailBendUpKind orientation, IWorldReader worldIn, BlockPos pos) {
         return orientation.getElements().allMatch(side -> {
             BlockPos attachedToPos = pos.offset(side.getOpposite());
             BlockState blockstate = worldIn.getBlockState(attachedToPos);
             return blockstate.isSolidSide(worldIn, attachedToPos, side);
-
         });
-
-
-
-
-
-
     }
+
+
+
     @Override
     @SuppressWarnings("deprecation")
     @Nonnull
     public BlockState rotate(BlockState state, Rotation rot) {
-        return state.with(FACING, rot.rotate(state.get(FACING)));
+        return state.with(ORIENTATION, state.get(ORIENTATION).next());
     }
 
 
@@ -180,7 +164,7 @@ public class RailBendUp extends RailBase {
     @SuppressWarnings("deprecation")
     @Nonnull
     public BlockState mirror(BlockState state, Mirror mirrorIn) {
-        return state.rotate(mirrorIn.toRotation(state.get(FACING)));
+        return state.with(ORIENTATION, state.get(ORIENTATION).next().next().next().next().next().next());
     }
 
 }
