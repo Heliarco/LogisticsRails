@@ -4,7 +4,6 @@ import dk.vertexspace.rails.*;
 import dk.vertexspace.items.BlockItemBase;
 import dk.vertexspace.items.ItemBase;
 import net.minecraft.block.Block;
-import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;

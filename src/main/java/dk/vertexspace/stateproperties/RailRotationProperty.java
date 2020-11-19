@@ -1,6 +1,5 @@
 package dk.vertexspace.stateproperties;
 
-import com.google.common.collect.Lists;
 import net.minecraft.state.EnumProperty;
 
 import java.util.Arrays;

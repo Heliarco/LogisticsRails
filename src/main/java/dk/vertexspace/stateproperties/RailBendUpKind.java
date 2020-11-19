@@ -56,38 +56,6 @@ public enum RailBendUpKind implements IStringSerializable {
             i = 0;
         }
         return values[i];
-
-/*
-        switch(this){
-            case UP_EAST:
-                return UP_WEST;
-            case UP_WEST:
-                return UP_NORTH;
-            case UP_NORTH:
-                return UP_SOUTH;
-            case UP_SOUTH:
-                return DOWN_EAST;
-
-            case DOWN_EAST:
-                return DOWN_WEST;
-            case DOWN_WEST:
-                return DOWN_SOUTH;
-            case DOWN_SOUTH:
-                return DOWN_NORTH;
-            case DOWN_NORTH:
-                return NORTH_EAST;
-
-            case NORTH_EAST:
-                return NORTH_WEST;
-            case NORTH_WEST:
-                return SOUTH_EAST;
-
-            case SOUTH_EAST:
-                return SOUTH_WEST;
-            case SOUTH_WEST:
-                return UP_EAST;
-        }
-        return UP_EAST;*/
     }
 
 }

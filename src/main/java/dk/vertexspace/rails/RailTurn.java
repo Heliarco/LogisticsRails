@@ -2,7 +2,6 @@ package dk.vertexspace.rails;
 
 import dk.vertexspace.stateproperties.RailRotation;
 import dk.vertexspace.stateproperties.RailRotationProperty;
-import dk.vertexspace.voxelshapes.RailStraightShapes;
 import dk.vertexspace.voxelshapes.RailTurnShapes;
 import dk.vertexspace.voxelshapes.ShapeBase;
 import net.minecraft.block.Block;

@@ -20,17 +20,12 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
-import org.apache.commons.lang3.NotImplementedException;
 
 import javax.annotation.Nonnull;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
-
+@SuppressWarnings("java:S110") // We can't really control the inheritance depth here.
 public class RailBendUp extends RailBase {
     public static final RailBendUpKindProperty ORIENTATION = RailBendUpKindProperty.create("orientation");
 
