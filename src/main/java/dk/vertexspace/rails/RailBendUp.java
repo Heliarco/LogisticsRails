@@ -2,6 +2,7 @@ package dk.vertexspace.rails;
 
 import dk.vertexspace.stateproperties.RailBendUpKind;
 import dk.vertexspace.stateproperties.RailBendUpKindProperty;
+import dk.vertexspace.voxelshapes.RailBendUpShapes;
 import dk.vertexspace.voxelshapes.ShapeBase;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -22,6 +23,10 @@ import net.minecraft.world.World;
 import org.apache.commons.lang3.NotImplementedException;
 
 import javax.annotation.Nonnull;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 
 public class RailBendUp extends RailBase {
@@ -52,6 +57,30 @@ public class RailBendUp extends RailBase {
         RailBendUpKind orientation = state.get(ORIENTATION);
 
         switch(orientation) {
+            case DOWN_EAST:
+                return RailBendUpShapes.S_DE;
+            case DOWN_NORTH:
+                return RailBendUpShapes.S_DN;
+            case DOWN_SOUTH:
+                return RailBendUpShapes.S_DS;
+            case DOWN_WEST:
+                return RailBendUpShapes.S_DW;
+            case NORTH_EAST:
+                return RailBendUpShapes.S_NE;
+            case NORTH_WEST:
+                return RailBendUpShapes.S_NW;
+            case SOUTH_EAST:
+                return RailBendUpShapes.S_SE;
+            case SOUTH_WEST:
+                return RailBendUpShapes.S_SW;
+            case UP_EAST:
+                return RailBendUpShapes.S_UE;
+            case UP_NORTH:
+                return RailBendUpShapes.S_UN;
+            case UP_SOUTH:
+                return RailBendUpShapes.S_US;
+            case UP_WEST:
+                return RailBendUpShapes.S_UW;
             default:
                 return ShapeBase.PLACEHOLDER_SHAPE;
         }
@@ -61,11 +90,52 @@ public class RailBendUp extends RailBase {
     @Override
     public BlockState getStateForPlacement(BlockItemUseContext context) {
 
+        IWorldReader worldIn = context.getWorld();
+        BlockPos pos = context.getPos();
+
+
+        ArrayList<RailBendUpKind> validOrientations  = new ArrayList<RailBendUpKind>(
+                Arrays.stream(RailBendUpKind.values()).filter(bendKind -> {
+
+
+            boolean isValid = bendKind.getElements().allMatch(side -> {
+                BlockPos attachedToPos = pos.offset(side.getOpposite());
+                BlockState blockstate = worldIn.getBlockState(attachedToPos);
+                return blockstate.isSolidSide(worldIn, attachedToPos, side);
+            });
+            return isValid;
+        }).collect(Collectors.toList()));
+
+        if (validOrientations.isEmpty()) {
+            return null;
+        }
+
+        // now to sort orientations and return first
+
+        Direction[] placeDirections = context.getNearestLookingDirections();
+        validOrientations.sort( (e1,e2) -> {
+
+
+            return 0;
+
+
+        });
+
+
+
+
+
+
+
+
+
+
+
+
         PlayerEntity player = context.getPlayer();
 
         BlockState blockstate = this.getDefaultState();
-        IWorldReader iworldreader = context.getWorld();
-        BlockPos blockpos = context.getPos();
+
         //Direction[] adirection = context.getNearestLookingDirections();
 
         return blockstate.with(ORIENTATION, RailBendUpKind.DOWN_EAST);
