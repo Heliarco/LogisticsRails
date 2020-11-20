@@ -30,7 +30,6 @@ Get-ChildItem *bbmodel | foreach {
             break;
         }
     }
-    break;
 
 
     #    Remove-Item -Path $_.FullName 

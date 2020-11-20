@@ -210,9 +210,12 @@
 	var autoexportMaster = function() {
 		setTimeout(() => {
 			//exportMaster();
-			console.log(app);
-			app.quit()
-		}, 10000);
+			exportMaster();
+			setTimeout(() => {
+				ElecDialogs.showMessageBox = () => true;
+				app.quit()
+			}, 1000);
+		}, 2000);
 	}
 
 
