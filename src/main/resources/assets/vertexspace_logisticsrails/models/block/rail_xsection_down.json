@@ -4,7 +4,7 @@
 	"texture_size": [64, 64],
 	"textures": {
 		"4": "vertexspace_logisticsrails:blocks/rail_xsection",
-		"particle": "blocks/texture"
+		"particle": "vertexspace_logisticsrails:blocks/texture"
 	},
 	"elements": [
 		{
