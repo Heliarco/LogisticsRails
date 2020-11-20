@@ -207,6 +207,13 @@
         }
     });
 
+	var autoexportMaster = function() {
+		setTimeout(() => {
+			//exportMaster();
+			console.log(app);
+			app.quit()
+		}, 10000);
+	}
 
 
     Plugin.register('vertexspace-model-rotate-exporter', {
@@ -218,6 +225,10 @@
         variant: 'desktop',
         onload() {
 			MenuBar.addAction(multiExportAction, 'file.export' );
+			if(process.env.BBAUTOEXPORT) {
+				autoexportMaster();
+			}
+			console.log(process.env);
 		},
 		onunload() {
 			multiExportAction.delete();

@@ -15,22 +15,26 @@ Set-Location $PSScriptRoot
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
 $PSDefaultParameterValues['*:ErrorAction']='Stop'
-Get-ChildItem *bbmodel | foreach { 
 
-    Start-Process $_
+$env:BBAUTOEXPORT = 'true'; 
+Get-ChildItem *bbmodel | foreach { 
+    $file = $_
+
+    Start-Process $file
+    Write-Host $file
     # wait for BB to exit
     while($true){
-        Start-Sleep -s 1
-        
-     
+        Start-Sleep -s 2
         $x = Get-Process BlockBench* -ErrorAction SilentlyContinue
         if (!$x){
             break;
         }
     }
-    
+    break;
 
 
     #    Remove-Item -Path $_.FullName 
 
 }
+
+Remove-Item Env:\BBAUTOEXPORT
