@@ -158,7 +158,7 @@
 			"shade": false,
 			"faces": {
 				"north": {"uv": [13, 1, 13.5, 2], "texture": "#4"},
-				"east": {"uv": [7, 0.5, 13.5, 1.5], "texture": "#4"},
+				"east": {"uv": [7, 1, 13.5, 2], "texture": "#4"},
 				"south": {"uv": [13, 0, 13.5, 1], "texture": "#4"},
 				"west": {"uv": [4, 2, 10.5, 3], "texture": "#4"},
 				"up": {"uv": [6, 16, 5.5, 9.5], "rotation": 180, "texture": "#4"},

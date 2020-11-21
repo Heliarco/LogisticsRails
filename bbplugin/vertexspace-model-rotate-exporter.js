@@ -37,7 +37,7 @@
 		};
 	}
 
-	var exportMaster = function() {
+	var exportMaster = function(callback) {
 		var job = readconfig();
 		
 		let shapesnippets = [];
@@ -73,6 +73,9 @@
 		jobqueue.push(() => {
 			writeShapes(shapesnippets,job);
 		});
+		if (callback){
+			jobqueue.push(callback);
+		}
 
 
 		var myInterval = setInterval(function () {
@@ -210,12 +213,14 @@
 	var autoexportMaster = function() {
 		setTimeout(() => {
 			//exportMaster();
-			exportMaster();
-			setTimeout(() => {
-				ElecDialogs.showMessageBox = () => true;
-				app.quit()
-			}, 1000);
-		}, 2000);
+			exportMaster(
+				() => {
+					setTimeout(() => {
+						ElecDialogs.showMessageBox = () => true;
+						app.quit()
+					}, 1000);
+				})
+		}, 5000);
 	}
 
 
@@ -331,62 +336,3 @@ public class ${cfg.shapeclass} {
 
 
 })();
-
-
-/*
-new Action('rotate_x_cw', {
-		name: tl('action.rotate_cw', 'X'),
-		icon: 'rotate_right',
-		color: 'x',
-		category: 'transform',
-		click: function () {
-			rotateSelected(0, 1);
-		}
-	})
-	new Action('rotate_x_ccw', {
-		name: tl('action.rotate_ccw', 'X'),
-		icon: 'rotate_left',
-		color: 'x',
-		category: 'transform',
-		click: function () {
-			rotateSelected(0, 3);
-		}
-	})
-	new Action('rotate_y_cw', {
-		name: tl('action.rotate_cw', 'Y'),
-		icon: 'rotate_right',
-		color: 'y',
-		category: 'transform',
-		click: function () {
-			rotateSelected(1, 1);
-		}
-	})
-	new Action('rotate_y_ccw', {
-		name: tl('action.rotate_ccw', 'Y'),
-		icon: 'rotate_left',
-		color: 'y',
-		category: 'transform',
-		click: function () {
-			rotateSelected(1, 3);
-		}
-	})
-	new Action('rotate_z_cw', {
-		name: tl('action.rotate_cw', 'Z'),
-		icon: 'rotate_right',
-		color: 'z',
-		category: 'transform',
-		click: function () {
-			rotateSelected(2, 1);
-		}
-	})
-	new Action('rotate_z_ccw', {
-		name: tl('action.rotate_ccw', 'Z'),
-		icon: 'rotate_left',
-		color: 'z',
-		category: 'transform',
-		click: function () {
-			rotateSelected(2, 3);
-		}
-	})
-
-*/
