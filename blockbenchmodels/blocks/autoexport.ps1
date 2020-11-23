@@ -16,6 +16,21 @@ Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
 $PSDefaultParameterValues['*:ErrorAction']='Stop'
 
+
+
+
+#Remove models and textures
+$blockmodelspath =  "..\..\src\main\resources\assets\vertexspace_logisticsrails\models\block"
+$blocktexturespath = "..\..\src\main\resources\assets\vertexspace_logisticsrails\textures\blocks"
+
+
+Remove-Item -Path ($blockmodelspath+ "\*") -WhatIf
+Remove-Item -Path ($blocktexturespath+ "\*") -WhatIf
+
+#Copy textures
+Copy-item -Verbose . -Destination $blocktexturespath -Filter -WhatIf
+
+
 $env:BBAUTOEXPORT = 'true'; 
 Get-ChildItem *bbmodel | foreach { 
     $file = $_
