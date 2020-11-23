@@ -24,12 +24,15 @@ $blockmodelspath =  "..\..\src\main\resources\assets\vertexspace_logisticsrails\
 $blocktexturespath = "..\..\src\main\resources\assets\vertexspace_logisticsrails\textures\blocks"
 
 
-Remove-Item -Path ($blockmodelspath+ "\*") -WhatIf
-Remove-Item -Path ($blocktexturespath+ "\*") -WhatIf
+Remove-Item -Path ($blockmodelspath+ "\*") 
+Remove-Item -Path ($blocktexturespath+ "\*") 
 
 #Copy textures
-Copy-item -Verbose . -Destination $blocktexturespath -Filter -WhatIf
+Get-ChildItem *.png | foreach {
+Copy-item -Verbose $_ -Destination $blocktexturespath 
+}
 
+return;
 
 $env:BBAUTOEXPORT = 'true'; 
 Get-ChildItem *bbmodel | foreach { 
