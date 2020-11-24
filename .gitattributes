@@ -4,6 +4,7 @@
 src/generated/**/.cache/cache text eol=lf
 src/generated/**/*.json text eol=lf
 src/main/resources/**/*.json text eol=lf
+*.java text eol=lf
 *.vox filter=lfs diff=lfs merge=lfs -text
 *.png filter=lfs diff=lfs merge=lfs -text
 *.xlsx filter=lfs diff=lfs merge=lfs -text
