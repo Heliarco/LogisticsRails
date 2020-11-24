@@ -17,6 +17,16 @@ $ErrorActionPreference = "Stop"
 $PSDefaultParameterValues['*:ErrorAction']='Stop'
 
 
+ while($true){
+    
+    $x = Get-Process BlockBench* -ErrorAction SilentlyContinue
+    if (!$x){
+        break;
+    }
+    Write-Host "Waiting for all blockbench instances to close. Auto export needs them gone to work. No Exceptions!"
+    Start-Sleep -s 2
+}
+
 
 
 #Remove models and textures
