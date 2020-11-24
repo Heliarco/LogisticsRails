@@ -211,16 +211,21 @@
     });
 
 	var autoexportMaster = function() {
-		setTimeout(() => {
-			//exportMaster();
-			exportMaster(
-				() => {
-					setTimeout(() => {
-						ElecDialogs.showMessageBox = () => true;
-						app.quit()
-					}, 1000);
-				})
-		}, 5000);
+
+		var oldLoad =  loadModelFile;
+		loadModelFile = (file) => {
+
+			oldLoad(file);
+			setTimeout(() =>  {
+				exportMaster(
+					() => {
+						setTimeout(() => {
+							ElecDialogs.showMessageBox = () => true;
+							app.quit()
+						}, 200);
+					});
+			}, 500 );
+		}
 	}
 
 
@@ -236,7 +241,6 @@
 			if(process.env.BBAUTOEXPORT) {
 				autoexportMaster();
 			}
-			console.log(process.env);
 		},
 		onunload() {
 			multiExportAction.delete();
@@ -334,5 +338,9 @@ public class ${cfg.shapeclass} {
 	}
 
 
+
+
+
+	
 
 })();
