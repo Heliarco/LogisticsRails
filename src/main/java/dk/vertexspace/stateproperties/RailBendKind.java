@@ -7,7 +7,7 @@ import org.apache.commons.lang3.ArrayUtils;
 import java.util.Arrays;
 import java.util.stream.Stream;
 
-public enum RailBendUpKind implements IStringSerializable {
+public enum RailBendKind implements IStringSerializable {
 
     UP_EAST(Direction.UP, Direction.EAST),
     UP_WEST(Direction.UP, Direction.WEST),
@@ -28,7 +28,7 @@ public enum RailBendUpKind implements IStringSerializable {
     private final String name;
     private final Direction [] directions;
 
-    RailBendUpKind(Direction item1, Direction item2){
+    RailBendKind(Direction item1, Direction item2){
         this.directions = new Direction[2];
         directions[0] = item1;
         directions[1] = item2;
@@ -47,9 +47,9 @@ public enum RailBendUpKind implements IStringSerializable {
 
     }
 
-    public RailBendUpKind next(){
+    public RailBendKind next(){
 
-        RailBendUpKind[] values = RailBendUpKind.values();
+        RailBendKind[] values = RailBendKind.values();
         int i = ArrayUtils.indexOf(values,this);
         i++;
         if(i >= values.length){

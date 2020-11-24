@@ -1,0 +1,18 @@
+{
+  "variants": {
+    "orientation=up_east":    { "model": "vertexspace_logisticsrails:block/rail_bend_down_ue"    },
+    "orientation=up_west":    { "model": "vertexspace_logisticsrails:block/rail_bend_down_uw"    },
+    "orientation=up_north":    { "model": "vertexspace_logisticsrails:block/rail_bend_down_un"    },
+    "orientation=up_south":    { "model": "vertexspace_logisticsrails:block/rail_bend_down_us"    },
+
+    "orientation=down_east":    { "model": "vertexspace_logisticsrails:block/rail_bend_down_de"    },
+    "orientation=down_west":    { "model": "vertexspace_logisticsrails:block/rail_bend_down_dw"    },
+    "orientation=down_south":    { "model": "vertexspace_logisticsrails:block/rail_bend_down_ds"    },
+    "orientation=down_north":    { "model": "vertexspace_logisticsrails:block/rail_bend_down_dn"    },
+
+    "orientation=north_east":    { "model": "vertexspace_logisticsrails:block/rail_bend_down_ne"    },
+    "orientation=north_west":    { "model": "vertexspace_logisticsrails:block/rail_bend_down_nw"    },
+    "orientation=south_east":    { "model": "vertexspace_logisticsrails:block/rail_bend_down_se"    },
+    "orientation=south_west":    { "model": "vertexspace_logisticsrails:block/rail_bend_down_sw"    }
+  }
+}

@@ -1,7 +1,7 @@
 package dk.vertexspace.rails;
 
-import dk.vertexspace.stateproperties.RailBendUpKind;
-import dk.vertexspace.stateproperties.RailBendUpKindProperty;
+import dk.vertexspace.stateproperties.RailBendKind;
+import dk.vertexspace.stateproperties.RailBendKindProperty;
 import dk.vertexspace.voxelshapes.RailBendUpShapes;
 import dk.vertexspace.voxelshapes.ShapeBase;
 import net.minecraft.block.Block;
@@ -27,7 +27,7 @@ import java.util.Optional;
 
 @SuppressWarnings("java:S110") // We can't really control the inheritance depth here.
 public class RailBendUp extends RailBase {
-    public static final RailBendUpKindProperty ORIENTATION = RailBendUpKindProperty.create("orientation");
+    public static final RailBendKindProperty ORIENTATION = RailBendKindProperty.create("orientation");
 
 
 
@@ -40,7 +40,7 @@ public class RailBendUp extends RailBase {
     protected BlockState rotateOnRightClick(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
 
         int timeout = 0;
-        RailBendUpKind orientation = state.get(ORIENTATION);
+        RailBendKind orientation = state.get(ORIENTATION);
         while (timeout < 11){
 
             orientation = orientation.next();
@@ -58,7 +58,7 @@ public class RailBendUp extends RailBase {
     @SuppressWarnings("deprecation")
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context){
 
-        RailBendUpKind orientation = state.get(ORIENTATION);
+        RailBendKind orientation = state.get(ORIENTATION);
 
         switch(orientation) {
             case DOWN_EAST:
@@ -100,7 +100,7 @@ public class RailBendUp extends RailBase {
         Direction primaryPlacementDirection = context.getNearestLookingDirections()[0];
 
         // Filter only valid orientations based on world geometry
-        Optional<RailBendUpKind> kind = Arrays.stream(RailBendUpKind.values())
+        Optional<RailBendKind> kind = Arrays.stream(RailBendKind.values())
             .filter(bendKind -> isValidPosition(bendKind, worldIn, pos))
 
         // Filter those that match orientation
@@ -128,13 +128,13 @@ public class RailBendUp extends RailBase {
     @SuppressWarnings("deprecation")
     public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
         // Basically copied from wall torch.
-        RailBendUpKind orientation = state.get(ORIENTATION);
+        RailBendKind orientation = state.get(ORIENTATION);
         return isValidPosition(orientation, worldIn, pos);
 
     }
 
-    public boolean isValidPosition(RailBendUpKind orientation, IWorldReader worldIn, BlockPos pos) {
-        return orientation.getElements().allMatch(side -> {
+    public boolean isValidPosition(RailBendKind orientation, IWorldReader worldIn, BlockPos pos) {
+        return orientation.getElements().anyMatch(side -> {
             BlockPos attachedToPos = pos.offset(side.getOpposite());
             BlockState blockstate = worldIn.getBlockState(attachedToPos);
             return blockstate.isSolidSide(worldIn, attachedToPos, side);

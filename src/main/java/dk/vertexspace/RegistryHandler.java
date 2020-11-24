@@ -40,6 +40,7 @@ public class RegistryHandler {
     public static final RegistryObject<Block> RAIL_TSECTION = BLOCKS.register("rail_tsection", RailTSection::new);
     public static final RegistryObject<Block> RAIL_XSECTION = BLOCKS.register("rail_xsection", RailXSection::new);
     public static final RegistryObject<Block> RAIL_BEND_UP = BLOCKS.register("rail_bend_up", RailBendUp::new);
+    public static final RegistryObject<Block> RAIL_BEND_DOWN = BLOCKS.register("rail_bend_down", RailBendDown::new);
 
 
     // Block Items
@@ -48,6 +49,7 @@ public class RegistryHandler {
     public static final RegistryObject<Item> RAIL_TSECTION_ITEM = ITEMS.register("rail_tsection", () -> new BlockItemBase(RAIL_TSECTION.get()));
     public static final RegistryObject<Item> RAIL_XSECTION_ITEM = ITEMS.register("rail_xsection", () -> new BlockItemBase(RAIL_XSECTION.get()));
     public static final RegistryObject<Item> RAIL_BEND_UP_ITEM = ITEMS.register("rail_bend_up", () -> new BlockItemBase(RAIL_BEND_UP.get()));
+    public static final RegistryObject<Item> RAIL_BEND_DOWN_ITEM = ITEMS.register("rail_bend_down", () -> new BlockItemBase(RAIL_BEND_DOWN.get()));
 
 
 }

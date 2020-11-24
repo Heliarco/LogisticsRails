@@ -12,5 +12,6 @@
   "block.vertexspace_logisticsrails.rail_turn" : "Rail (Turn)",
   "block.vertexspace_logisticsrails.rail_tsection" : "Rail (T Section)",
   "block.vertexspace_logisticsrails.rail_xsection" : "Rail (X Section)",
-  "block.vertexspace_logisticsrails.rail_bend_up" : "Rail (Up)"
+  "block.vertexspace_logisticsrails.rail_bend_up" : "Rail (Up)",
+  "block.vertexspace_logisticsrails.rail_bend_down" : "Rail (Down)"
 }
