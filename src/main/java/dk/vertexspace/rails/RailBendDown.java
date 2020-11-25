@@ -1,5 +1,6 @@
 package dk.vertexspace.rails;
 
+import dk.vertexspace.models.RailConnection;
 import dk.vertexspace.stateproperties.RailBendKind;
 import dk.vertexspace.stateproperties.RailBendKindProperty;
 import dk.vertexspace.voxelshapes.RailBendDownShapes;
@@ -46,6 +47,14 @@ public class RailBendDown extends RailBase {
         }
         return null;
     }
+
+    @Override
+    public RailConnection[] GetConnectionPoints(BlockState state) {
+        RailBendKind orientation = state.get(ORIENTATION);
+
+        orientation.getElements()
+    }
+
 
 
     @Override

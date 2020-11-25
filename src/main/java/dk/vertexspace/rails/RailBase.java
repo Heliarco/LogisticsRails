@@ -1,5 +1,6 @@
 package dk.vertexspace.rails;
 
+import dk.vertexspace.models.RailConnection;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerEntity;
@@ -87,6 +88,7 @@ public abstract class RailBase extends DirectionalBlock {
 
     protected abstract BlockState rotateOnRightClick(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit);
 
+    protected abstract RailConnection[] GetConnectionPoints(BlockState state);
 
     @Override
     @SuppressWarnings("deprecation")
