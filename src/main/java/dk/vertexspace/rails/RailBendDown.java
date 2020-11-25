@@ -126,7 +126,7 @@ public class RailBendDown extends RailBase {
         return orientation.getElements().anyMatch(side -> {     // We need to also accept other rails here
             BlockPos attachedToPos = pos.offset(side.getOpposite());
             BlockState blockstate = worldIn.getBlockState(attachedToPos);
-            return blockstate.isSolidSide(worldIn, attachedToPos, side);
+            return blockstate.isSolidSide(worldIn, attachedToPos, side) || blockstate.getBlock() instanceof RailBase;
         });
     }
 
