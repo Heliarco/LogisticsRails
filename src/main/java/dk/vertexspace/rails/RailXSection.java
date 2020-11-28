@@ -1,7 +1,9 @@
 package dk.vertexspace.rails;
 
+import dk.vertexspace.models.RailConnection;
 import dk.vertexspace.voxelshapes.RailXSectionShape;
 import dk.vertexspace.voxelshapes.ShapeBase;
+import mcp.MethodsReturnNonnullByDefault;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Direction;
@@ -13,11 +15,31 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 
+import java.util.Arrays;
+
 @SuppressWarnings("java:S110") // We can't really control the inheritance depth here.
 public class RailXSection extends RailBase{
     @Override
     protected BlockState rotateOnRightClick(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
         return null;
+    }
+
+    @Override
+    protected RailConnection[] GetConnectionPoints(BlockState state) {
+        RailConnection[] r = new RailConnection[4];
+        int i = 0;
+        int j = 0;
+        Direction facing = state.get(FACING);
+        while (j < 6){
+            Direction cDir = Direction.values()[j];
+            j++;
+
+            if(cDir != facing && cDir != facing.getOpposite()){
+                r[i] = new RailConnection(facing, cDir);
+                i++;
+            }
+        }
+        return r;
     }
 
     @Override

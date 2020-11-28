@@ -4,7 +4,6 @@ import dk.vertexspace.models.RailConnection;
 import dk.vertexspace.stateproperties.RailBendKind;
 import dk.vertexspace.stateproperties.RailBendKindProperty;
 import dk.vertexspace.voxelshapes.RailBendDownShapes;
-import dk.vertexspace.voxelshapes.RailBendUpShapes;
 import dk.vertexspace.voxelshapes.ShapeBase;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -22,6 +21,7 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
+import org.javatuples.Pair;
 
 import javax.annotation.Nonnull;
 import java.util.Arrays;
@@ -51,8 +51,12 @@ public class RailBendDown extends RailBase {
     @Override
     public RailConnection[] GetConnectionPoints(BlockState state) {
         RailBendKind orientation = state.get(ORIENTATION);
+        RailConnection[] r = new RailConnection[2];
+        Pair<Direction,Direction> ds = orientation.getDirections();
 
-        orientation.getElements()
+        r[0] = new RailConnection(ds.getValue0(), ds.getValue1().getOpposite());
+        r[1] = new RailConnection(ds.getValue1(), ds.getValue0().getOpposite());
+        return r;
     }
 
 
@@ -109,7 +113,7 @@ public class RailBendDown extends RailBase {
                 .filter(bendKind -> {
                     Direction neededFace = primaryPlacementDirection.getOpposite();
 
-                    return bendKind.getElements().anyMatch(side -> side == neededFace);
+                    return bendKind.getDirections().anyMatch(side -> side == neededFace);
                 }).findAny();
 
         if (!kind.isPresent()) {
@@ -132,7 +136,7 @@ public class RailBendDown extends RailBase {
     }
 
     public boolean isValidPosition(RailBendKind orientation, IWorldReader worldIn, BlockPos pos) {
-        return orientation.getElements().anyMatch(side -> {     // We need to also accept other rails here
+        return orientation.getDirections()    .anyMatch(side -> {     // We need to also accept other rails here
             BlockPos attachedToPos = pos.offset(side.getOpposite());
             BlockState blockstate = worldIn.getBlockState(attachedToPos);
             return blockstate.isSolidSide(worldIn, attachedToPos, side) || blockstate.getBlock() instanceof RailBase;

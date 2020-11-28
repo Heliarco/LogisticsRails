@@ -1,5 +1,6 @@
 package dk.vertexspace.rails;
 
+import dk.vertexspace.models.RailConnection;
 import dk.vertexspace.stateproperties.RailBendKind;
 import dk.vertexspace.stateproperties.RailBendKindProperty;
 import dk.vertexspace.voxelshapes.RailBendUpShapes;
@@ -20,6 +21,7 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
+import org.javatuples.Pair;
 
 import javax.annotation.Nonnull;
 import java.util.Arrays;
@@ -31,6 +33,16 @@ public class RailBendUp extends RailBase {
 
 
 
+    @Override
+    public RailConnection[] GetConnectionPoints(BlockState state) {
+        RailBendKind orientation = state.get(ORIENTATION);
+        RailConnection[] r = new RailConnection[2];
+        Pair<Direction,Direction> ds = orientation.getDirections();
+
+        r[0] = new RailConnection(ds.getValue0(), ds.getValue1());
+        r[1] = new RailConnection(ds.getValue1(), ds.getValue0());
+        return r;
+    }
     // Be carefull, while we inherit the base property "FACING" from the parent DirectionalBlock,
     // we skip registering the facing property. We need our own as we are a "Bi-directional" block.
     // This Specifically means we must not call super methods of getStateForPlacement and populateStateContainer
@@ -107,7 +119,16 @@ public class RailBendUp extends RailBase {
             .filter(bendKind -> {
                 Direction neededFace = primaryPlacementDirection.getOpposite();
 
-                return bendKind.getElements().anyMatch(side -> side == neededFace);
+
+                for (Object o : bendKind.getDirections()){
+                    if ((Direction) o == neededFace){
+                        return true;
+                    }
+                }
+                return false;
+                //return bendKind.getDirections().anyMatch(side -> side == neededFace);
+
+
             }).findAny();
 
         if (!kind.isPresent()) {
@@ -133,12 +154,20 @@ public class RailBendUp extends RailBase {
 
     }
 
+    // If one "attached" side is solid. The rail can be placed. Otherwise not
     public boolean isValidPosition(RailBendKind orientation, IWorldReader worldIn, BlockPos pos) {
-        return orientation.getElements().anyMatch(side -> {
+        Pair<Direction, Direction> dirs = orientation.getDirections();
+
+        for (Object sideO : orientation.getDirections()){
+            Direction side = (Direction) sideO;  // Can't believe this is needed -.-
+
             BlockPos attachedToPos = pos.offset(side.getOpposite());
             BlockState blockstate = worldIn.getBlockState(attachedToPos);
-            return blockstate.isSolidSide(worldIn, attachedToPos, side);
-        });
+            if (blockstate.isSolidSide(worldIn, attachedToPos, side)){
+                return true;
+            }
+        }
+        return false;
     }
 
 

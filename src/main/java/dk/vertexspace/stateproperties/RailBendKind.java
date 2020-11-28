@@ -3,6 +3,7 @@ package dk.vertexspace.stateproperties;
 import net.minecraft.util.Direction;
 import net.minecraft.util.IStringSerializable;
 import org.apache.commons.lang3.ArrayUtils;
+import org.javatuples.Pair;
 
 import java.util.Arrays;
 import java.util.stream.Stream;
@@ -26,25 +27,21 @@ public enum RailBendKind implements IStringSerializable {
     SOUTH_WEST(Direction.SOUTH, Direction.WEST);
 
     private final String name;
-    private final Direction [] directions;
+    private final Pair<Direction,Direction> directions;
 
     RailBendKind(Direction item1, Direction item2){
-        this.directions = new Direction[2];
-        directions[0] = item1;
-        directions[1] = item2;
-
+        this.directions = new Pair(item1, item2);
         this.name = String.format("%s_%s", item1.func_176610_l(), item2.func_176610_l());
     }
 
-    public Stream<Direction> getElements(){
-        return Arrays.stream(this.directions);
+
+    public Pair<Direction,Direction> getDirections(){
+        return directions;
     }
 
     @Override
     public String func_176610_l() {
         return this.name;
-
-
     }
 
     public RailBendKind next(){
