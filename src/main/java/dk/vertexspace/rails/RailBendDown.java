@@ -136,11 +136,18 @@ public class RailBendDown extends RailBase {
     }
 
     public boolean isValidPosition(RailBendKind orientation, IWorldReader worldIn, BlockPos pos) {
-        return orientation.getDirections()    .anyMatch(side -> {     // We need to also accept other rails here
+        Pair<Direction, Direction> dirs = orientation.getDirections();
+
+        for(Object sideO: dirs) {
+            Direction side = (Direction) sideO;  // Can't believe this is needed -.-
+
             BlockPos attachedToPos = pos.offset(side.getOpposite());
             BlockState blockstate = worldIn.getBlockState(attachedToPos);
-            return blockstate.isSolidSide(worldIn, attachedToPos, side) || blockstate.getBlock() instanceof RailBase;
-        });
+            if (blockstate.isSolidSide(worldIn, attachedToPos, side) || blockstate.getBlock() instanceof RailBase){
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override

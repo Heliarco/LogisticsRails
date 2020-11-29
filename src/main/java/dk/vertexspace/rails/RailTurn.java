@@ -1,5 +1,6 @@
 package dk.vertexspace.rails;
 
+import dk.vertexspace.models.RailConnection;
 import dk.vertexspace.stateproperties.RailRotation;
 import dk.vertexspace.stateproperties.RailRotationProperty;
 import dk.vertexspace.voxelshapes.RailTurnShapes;
@@ -22,6 +23,15 @@ public class RailTurn extends RailBase {
     @Override
     protected BlockState rotateOnRightClick(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
         return state.with(ROTATION, state.get(ROTATION).next());
+    }
+
+    @Override
+    protected RailConnection[] GetConnectionPoints(BlockState state) {
+        RailConnection[] r = new RailConnection[2];
+
+
+        x
+        return r;
     }
 
     public static final RailRotationProperty ROTATION = RailRotationProperty.create("rotation");

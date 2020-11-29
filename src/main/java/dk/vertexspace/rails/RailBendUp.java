@@ -158,7 +158,7 @@ public class RailBendUp extends RailBase {
     public boolean isValidPosition(RailBendKind orientation, IWorldReader worldIn, BlockPos pos) {
         Pair<Direction, Direction> dirs = orientation.getDirections();
 
-        for (Object sideO : orientation.getDirections()){
+        for (Object sideO : dirs){
             Direction side = (Direction) sideO;  // Can't believe this is needed -.-
 
             BlockPos attachedToPos = pos.offset(side.getOpposite());
