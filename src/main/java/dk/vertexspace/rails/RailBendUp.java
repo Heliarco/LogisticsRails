@@ -34,7 +34,7 @@ public class RailBendUp extends RailBase {
 
 
     @Override
-    public RailConnection[] GetConnectionPoints(BlockState state) {
+    public RailConnection[] getConnectionPoints(BlockState state) {
         RailBendKind orientation = state.get(ORIENTATION);
         RailConnection[] r = new RailConnection[2];
         Pair<Direction,Direction> ds = orientation.getDirections();

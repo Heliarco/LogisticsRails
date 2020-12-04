@@ -105,7 +105,7 @@ public class RailStraight extends RailBase {
     }
 
     @Override
-    protected RailConnection[] GetConnectionPoints(BlockState state) {
+    protected RailConnection[] getConnectionPoints(BlockState state) {
         Direction facing = state.get(FACING);
         boolean rotated = state.get(ROTATED);
         RailConnection[] r = new RailConnection[2];

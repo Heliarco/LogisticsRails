@@ -26,7 +26,7 @@ public class RailTurn extends RailBase {
     }
 
     @Override
-    protected RailConnection[] GetConnectionPoints(BlockState state) {
+    protected RailConnection[] getConnectionPoints(BlockState state) {
         RailConnection[] r = new RailConnection[2];
 
 

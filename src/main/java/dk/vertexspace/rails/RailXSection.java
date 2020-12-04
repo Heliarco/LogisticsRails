@@ -25,7 +25,7 @@ public class RailXSection extends RailBase{
     }
 
     @Override
-    protected RailConnection[] GetConnectionPoints(BlockState state) {
+    protected RailConnection[] getConnectionPoints(BlockState state) {
         RailConnection[] r = new RailConnection[4];
         int i = 0;
         int j = 0;

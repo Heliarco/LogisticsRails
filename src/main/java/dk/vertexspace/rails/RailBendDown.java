@@ -49,7 +49,7 @@ public class RailBendDown extends RailBase {
     }
 
     @Override
-    public RailConnection[] GetConnectionPoints(BlockState state) {
+    public RailConnection[] getConnectionPoints(BlockState state) {
         RailBendKind orientation = state.get(ORIENTATION);
         RailConnection[] r = new RailConnection[2];
         Pair<Direction,Direction> ds = orientation.getDirections();
@@ -136,14 +136,50 @@ public class RailBendDown extends RailBase {
     }
 
     public boolean isValidPosition(RailBendKind orientation, IWorldReader worldIn, BlockPos pos) {
-        Pair<Direction, Direction> dirs = orientation.getDirections();
+        Pair<Direction, Direction> facings = orientation.getDirections();
 
-        for(Object sideO: dirs) {
-            Direction side = (Direction) sideO;  // Can't believe this is needed -.-
+        for(Object facingO: facings) {
+            
+            // We have two facings
+            Direction facing = (Direction) facingO;  // Can't believe this is needed -.-
 
-            BlockPos attachedToPos = pos.offset(side.getOpposite());
+
+            BlockPos attachedToPos = pos.offset(facing.getOpposite());
             BlockState blockstate = worldIn.getBlockState(attachedToPos);
-            if (blockstate.isSolidSide(worldIn, attachedToPos, side) || blockstate.getBlock() instanceof RailBase){
+
+            if (blockstate.isSolidSide(worldIn, attachedToPos, facing))  {
+                return true;
+            }
+            if (blockstate.getBlock() instanceof RailBase)
+            {
+                RailBase rail = (RailBase)blockstate.getBlock();
+
+                RailConnection[] ourConnections = this.getConnectionPoints(this.getDefaultState().with(ORIENTATION, orientation));
+                RailConnection[] otherConnections = rail.getConnectionPoints(blockstate);
+
+                // We want the connection pointing towards this block. We do not yet care about the plane
+                RailConnection attachment = Arrays.stream(otherConnections).filter()
+
+
+
+                GET THE "OTHER CONNECTION" THAT POINTS IN OUR DIRECTION, NOT JUST ANY!
+
+
+
+
+                // First we have to find the connection pointing in this direction.
+                // That would be in the direction of "side"
+                Arrays.stream(otherConnections).filter(otherConnectionPoint -> {
+                    otherConnectionPoint.CanConnectWith()
+                })
+
+
+                // Okay, so there is an adjacent rail. And we have its connection points.
+                // So we check if our given orientation matches the b
+
+
+
+
                 return true;
             }
         }
