@@ -27,10 +27,136 @@ public class RailTurn extends RailBase {
 
     @Override
     protected RailConnection[] getConnectionPoints(BlockState state) {
+        Direction facing = state.get(FACING);
+        RailRotation rotation = state.get(ROTATION);
         RailConnection[] r = new RailConnection[2];
+        Direction side1 = Direction.NORTH;
+        Direction side2 = Direction.NORTH;
 
-
-        x
+        switch(facing) {
+            case UP:
+                switch (rotation){
+                    case ROT_0:
+                        side1 = Direction.NORTH;
+                        side2 = Direction.EAST;
+                        break;
+                    case ROT_1:
+                        side1 = Direction.SOUTH;
+                        side2 = Direction.EAST;
+                        break;
+                    case ROT_2:
+                        side1 = Direction.SOUTH;
+                        side2 = Direction.WEST;
+                        break;
+                    case ROT_3:
+                        side1 = Direction.NORTH;
+                        side2 = Direction.WEST;
+                        break;
+                }
+                break;
+            case DOWN:
+                switch (rotation){
+                    case ROT_0:
+                        side1 = Direction.SOUTH;
+                        side2 = Direction.WEST;
+                        break;
+                    case ROT_1:
+                        side1 = Direction.SOUTH;
+                        side2 = Direction.EAST;
+                        break;
+                    case ROT_2:
+                        side1 = Direction.NORTH;
+                        side2 = Direction.WEST;
+                        break;
+                    case ROT_3:
+                        side1 = Direction.NORTH;
+                        side2 = Direction.EAST;
+                        break;
+                }
+                break;
+            case EAST:
+                switch (rotation){
+                    case ROT_0:
+                        side1 = Direction.DOWN;
+                        side2 = Direction.SOUTH;
+                        break;
+                    case ROT_1:
+                        side1 = Direction.UP;
+                        side2 = Direction.SOUTH;
+                        break;
+                    case ROT_2:
+                        side1 = Direction.UP;
+                        side2 = Direction.NORTH;
+                        break;
+                    case ROT_3:
+                        side1 = Direction.DOWN;
+                        side2 = Direction.NORTH;
+                        break;
+                }
+                break;
+            case WEST:
+                switch (rotation){
+                    case ROT_0:
+                        side1 = Direction.DOWN;
+                        side2 = Direction.SOUTH;
+                        break;
+                    case ROT_1:
+                        side1 = Direction.DOWN;
+                        side2 = Direction.NORTH;
+                        break;
+                    case ROT_2:
+                        side1 = Direction.UP;
+                        side2 = Direction.NORTH;
+                        break;
+                    case ROT_3:
+                        side1 = Direction.UP;
+                        side2 = Direction.SOUTH;
+                        break;
+                }
+                break;
+            case NORTH:
+                switch (rotation){
+                    case ROT_0:
+                        side1 = Direction.DOWN;
+                        side2 = Direction.EAST;
+                        break;
+                    case ROT_1:
+                        side1 = Direction.UP;
+                        side2 = Direction.EAST;
+                        break;
+                    case ROT_2:
+                        side1 = Direction.UP;
+                        side2 = Direction.WEST;
+                        break;
+                    case ROT_3:
+                        side1 = Direction.DOWN;
+                        side2 = Direction.WEST;
+                        break;
+                }
+                break;
+            case SOUTH:
+                switch (rotation){
+                    case ROT_0:
+                        side1 = Direction.DOWN;
+                        side2 = Direction.WEST;
+                        break;
+                    case ROT_1:
+                        side1 = Direction.UP;
+                        side2 = Direction.WEST;
+                        break;
+                    case ROT_2:
+                        side1 = Direction.UP;
+                        side2 = Direction.EAST;
+                        break;
+                    case ROT_3:
+                        side1 = Direction.DOWN;
+                        side2 = Direction.EAST;
+                        break;
+                }
+                break;
+        }
+        r[0] = new RailConnection(facing, side1);
+        r[1] = new RailConnection(facing, side2);
         return r;
     }
 

@@ -107,14 +107,16 @@ public class RailBendDown extends RailBase {
 
         // Filter only valid orientations based on world geometry
         Optional<RailBendKind> kind = Arrays.stream(RailBendKind.values())
+
                 .filter(bendKind -> isValidPosition(bendKind, worldIn, pos))
 
                 // Filter those that match orientation
-                .filter(bendKind -> {
+                /*.filter(bendKind -> {
                     Direction neededFace = primaryPlacementDirection.getOpposite();
 
                     return bendKind.getDirections().anyMatch(side -> side == neededFace);
-                }).findAny();
+                })*/
+                .findAny();
 
         if (!kind.isPresent()) {
             return null;
@@ -136,51 +138,35 @@ public class RailBendDown extends RailBase {
     }
 
     public boolean isValidPosition(RailBendKind orientation, IWorldReader worldIn, BlockPos pos) {
-        Pair<Direction, Direction> facings = orientation.getDirections();
+        Pair<Direction, Direction> ourFacings = orientation.getDirections();
+        RailConnection[] ourConnections = this.getConnectionPoints(this.getDefaultState().with(ORIENTATION, orientation));
 
-        for(Object facingO: facings) {
+        for(Object facingO: ourFacings) {
             
             // We have two facings
-            Direction facing = (Direction) facingO;  // Can't believe this is needed -.-
+            Direction ourFacing = (Direction) facingO;  // Can't believe this is needed -.-
+            RailConnection ourConnection = Arrays.stream(ourConnections).filter(c -> c.getFacing() == ourFacing).findAny().get();
 
+            BlockPos attachedToPos = pos.offset(ourFacing.getOpposite());
+            BlockState otherBlock = worldIn.getBlockState(attachedToPos);
 
-            BlockPos attachedToPos = pos.offset(facing.getOpposite());
-            BlockState blockstate = worldIn.getBlockState(attachedToPos);
-
-            if (blockstate.isSolidSide(worldIn, attachedToPos, facing))  {
+            if (otherBlock.isSolidSide(worldIn, attachedToPos, ourFacing))  {
                 return true;
             }
-            if (blockstate.getBlock() instanceof RailBase)
+            if (otherBlock.getBlock() instanceof RailBase)
             {
-                RailBase rail = (RailBase)blockstate.getBlock();
+                RailBase rail = (RailBase)otherBlock.getBlock();
 
-                RailConnection[] ourConnections = this.getConnectionPoints(this.getDefaultState().with(ORIENTATION, orientation));
-                RailConnection[] otherConnections = rail.getConnectionPoints(blockstate);
+                RailConnection[] otherConnections = rail.getConnectionPoints(otherBlock);
 
                 // We want the connection pointing towards this block. We do not yet care about the plane
-                RailConnection attachment = Arrays.stream(otherConnections).filter()
+                Optional<RailConnection> success = Arrays.stream(otherConnections)
+                        .filter(c -> c.getFacing() == ourConnection.getFacing())
+                        .filter(c -> c.getSide().getOpposite() == ourConnection.getSide())
+                        .findAny();
 
+                return success.isPresent();
 
-
-                GET THE "OTHER CONNECTION" THAT POINTS IN OUR DIRECTION, NOT JUST ANY!
-
-
-
-
-                // First we have to find the connection pointing in this direction.
-                // That would be in the direction of "side"
-                Arrays.stream(otherConnections).filter(otherConnectionPoint -> {
-                    otherConnectionPoint.CanConnectWith()
-                })
-
-
-                // Okay, so there is an adjacent rail. And we have its connection points.
-                // So we check if our given orientation matches the b
-
-
-
-
-                return true;
             }
         }
         return false;
