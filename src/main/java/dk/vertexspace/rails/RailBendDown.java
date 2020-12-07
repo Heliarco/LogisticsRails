@@ -3,6 +3,7 @@ package dk.vertexspace.rails;
 import dk.vertexspace.models.RailConnection;
 import dk.vertexspace.stateproperties.RailBendKind;
 import dk.vertexspace.stateproperties.RailBendKindProperty;
+import dk.vertexspace.util.RailConnectionsHelper;
 import dk.vertexspace.voxelshapes.RailBendDownShapes;
 import dk.vertexspace.voxelshapes.ShapeBase;
 import net.minecraft.block.Block;
@@ -48,16 +49,7 @@ public class RailBendDown extends RailBase {
         return null;
     }
 
-    @Override
-    public RailConnection[] getConnectionPoints(BlockState state) {
-        RailBendKind orientation = state.get(ORIENTATION);
-        RailConnection[] r = new RailConnection[2];
-        Pair<Direction,Direction> ds = orientation.getDirections();
 
-        r[0] = new RailConnection(ds.getValue0(), ds.getValue1().getOpposite());
-        r[1] = new RailConnection(ds.getValue1(), ds.getValue0().getOpposite());
-        return r;
-    }
 
 
 
@@ -139,7 +131,8 @@ public class RailBendDown extends RailBase {
 
     public boolean isValidPosition(RailBendKind orientation, IWorldReader worldIn, BlockPos pos) {
         Pair<Direction, Direction> ourFacings = orientation.getDirections();
-        RailConnection[] ourConnections = this.getConnectionPoints(this.getDefaultState().with(ORIENTATION, orientation));
+
+        RailConnection[] ourConnections = RailConnectionsHelper.getConnectionsFromState(this.getDefaultState().with(ORIENTATION, orientation));
 
         for(Object facingO: ourFacings) {
             
@@ -157,7 +150,7 @@ public class RailBendDown extends RailBase {
             {
                 RailBase rail = (RailBase)otherBlock.getBlock();
 
-                RailConnection[] otherConnections = rail.getConnectionPoints(otherBlock);
+                RailConnection[] otherConnections = RailConnectionsHelper.getConnectionsFromState(otherBlock);
 
                 // We want the connection pointing towards this block. We do not yet care about the plane
                 Optional<RailConnection> success = Arrays.stream(otherConnections)

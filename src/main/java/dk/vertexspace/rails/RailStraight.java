@@ -104,58 +104,6 @@ public class RailStraight extends RailBase {
         return state.with(ROTATED, !state.get(ROTATED));
     }
 
-    @Override
-    protected RailConnection[] getConnectionPoints(BlockState state) {
-        Direction facing = state.get(FACING);
-        boolean rotated = state.get(ROTATED);
-        RailConnection[] r = new RailConnection[2];
-        Direction side1;
-        Direction side2;
-        switch(facing){
-            case UP:
-            case DOWN:
-                if (rotated) {
-                    side1 = Direction.EAST;
-                    side2 = Direction.WEST;
-                }
-                else {
-                    side1 = Direction.NORTH;
-                    side2 = Direction.EAST;
-                }
-                break;
-
-            case EAST:
-            case WEST:
-                if (rotated) {
-                    side1 = Direction.NORTH;
-                    side2 = Direction.SOUTH;
-                }
-                else{
-                    side1 = Direction.UP;
-                    side2 = Direction.DOWN;
-                }
-                break;
-
-            default: // North south
-                //case NORTH:
-                //case SOUTH:
-                if (rotated){
-                    side1 = Direction.EAST;
-                    side2 = Direction.WEST;
-                }
-                else {
-                    side1 = Direction.UP;
-                    side2 = Direction.DOWN;
-                }
-                break;
-        }
-
-        r[0] = new RailConnection(facing, side1);
-        r[1] = new RailConnection(facing, side2);
-
-        return r;
-
-    }
 
     @Override
     public void fillStateContainer(StateContainer.Builder<Block, BlockState> builder)

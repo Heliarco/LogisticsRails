@@ -88,8 +88,6 @@ public abstract class RailBase extends DirectionalBlock {
 
     protected abstract BlockState rotateOnRightClick(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit);
 
-    protected abstract RailConnection[] getConnectionPoints(BlockState state);
-
     @Override
     @SuppressWarnings("deprecation")
     public boolean isTransparent(BlockState state) {

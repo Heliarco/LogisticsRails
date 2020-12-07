@@ -32,17 +32,6 @@ public class RailBendUp extends RailBase {
     public static final RailBendKindProperty ORIENTATION = RailBendKindProperty.create("orientation");
 
 
-
-    @Override
-    public RailConnection[] getConnectionPoints(BlockState state) {
-        RailBendKind orientation = state.get(ORIENTATION);
-        RailConnection[] r = new RailConnection[2];
-        Pair<Direction,Direction> ds = orientation.getDirections();
-
-        r[0] = new RailConnection(ds.getValue0(), ds.getValue1());
-        r[1] = new RailConnection(ds.getValue1(), ds.getValue0());
-        return r;
-    }
     // Be carefull, while we inherit the base property "FACING" from the parent DirectionalBlock,
     // we skip registering the facing property. We need our own as we are a "Bi-directional" block.
     // This Specifically means we must not call super methods of getStateForPlacement and populateStateContainer

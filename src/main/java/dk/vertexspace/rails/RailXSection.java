@@ -24,23 +24,7 @@ public class RailXSection extends RailBase{
         return null;
     }
 
-    @Override
-    protected RailConnection[] getConnectionPoints(BlockState state) {
-        RailConnection[] r = new RailConnection[4];
-        int i = 0;
-        int j = 0;
-        Direction facing = state.get(FACING);
-        while (j < 6){
-            Direction cDir = Direction.values()[j];
-            j++;
 
-            if(cDir != facing && cDir != facing.getOpposite()){
-                r[i] = new RailConnection(facing, cDir);
-                i++;
-            }
-        }
-        return r;
-    }
 
     @Override
     @SuppressWarnings("deprecation")
