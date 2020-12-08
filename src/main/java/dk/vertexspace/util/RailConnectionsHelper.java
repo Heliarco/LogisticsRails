@@ -238,7 +238,7 @@ public class RailConnectionsHelper {
 
 
         // Bend up //
-        bendUpConnections = new EnumMap<Direction, EnumMap<RailBendKind, RailConnection[]>>(Direction.class);
+        bendUpConnections = new EnumMap<>>(Direction.class);
         for (RailBendKind orientation: RailBendKind.values()) {
 
         }
@@ -257,7 +257,7 @@ public class RailConnectionsHelper {
 
 
         // Bend down //
-        bendDownConnections = new EnumMap<Direction, EnumMap<RailBendKind, RailConnection[]>>(Direction.class);
+        bendDownConnections = new EnumMap<>>(Direction.class);
         for (RailBendKind orientation: RailBendKind.values()) {
 
         }
