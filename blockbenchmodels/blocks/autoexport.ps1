@@ -34,8 +34,8 @@ $blockmodelspath =  "..\..\src\main\resources\assets\vertexspace_logisticsrails\
 $blocktexturespath = "..\..\src\main\resources\assets\vertexspace_logisticsrails\textures\blocks"
 
 
-Remove-Item -Path ($blockmodelspath+ "\*")  -Verbose
-Remove-Item -Path ($blocktexturespath+ "\*")  -Verbose
+Remove-Item -Path ($blockmodelspath+ "\*")  -Verbose -ErrorAction SilentlyContinue
+Remove-Item -Path ($blocktexturespath+ "\*")  -Verbose -ErrorAction SilentlyContinue
 
 #Copy textures
 Get-ChildItem *.png | foreach {
