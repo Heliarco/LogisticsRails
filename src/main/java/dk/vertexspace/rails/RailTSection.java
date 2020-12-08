@@ -1,6 +1,5 @@
 package dk.vertexspace.rails;
 
-import dk.vertexspace.models.RailConnection;
 import dk.vertexspace.stateproperties.RailRotation;
 import dk.vertexspace.stateproperties.RailRotationProperty;
 import dk.vertexspace.voxelshapes.RailTSectionShapes;

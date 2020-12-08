@@ -95,8 +95,6 @@ public class RailBendDown extends RailBase {
         IWorldReader worldIn = context.getWorld();
         BlockPos pos = context.getPos();
 
-        Direction primaryPlacementDirection = context.getNearestLookingDirections()[0];
-
         // Filter only valid orientations based on world geometry
         Optional<RailBendKind> kind = Arrays.stream(RailBendKind.values())
 
@@ -123,6 +121,9 @@ public class RailBendDown extends RailBase {
     {
         builder.add(ORIENTATION);
     }
+
+    @Override
+    @SuppressWarnings("deprecation")
     public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
         // Basically copied from wall torch.
         RailBendKind orientation = state.get(ORIENTATION);
@@ -148,8 +149,6 @@ public class RailBendDown extends RailBase {
             }
             if (otherBlock.getBlock() instanceof RailBase)
             {
-                RailBase rail = (RailBase)otherBlock.getBlock();
-
                 RailConnection[] otherConnections = RailConnectionsHelper.getConnectionsFromState(otherBlock);
 
                 // We want the connection pointing towards this block. We do not yet care about the plane

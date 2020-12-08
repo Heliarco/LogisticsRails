@@ -22,7 +22,7 @@ public class RailConnection {
         this.side = side;
     }
 
-    public boolean CanConnectWith(RailConnection connection){
+    public boolean canConnectWith(RailConnection connection){
         return this.facing == connection.facing || this.side.getOpposite() == connection.side;
     }
 }

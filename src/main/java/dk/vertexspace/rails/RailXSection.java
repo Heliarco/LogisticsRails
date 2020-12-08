@@ -1,9 +1,7 @@
 package dk.vertexspace.rails;
 
-import dk.vertexspace.models.RailConnection;
 import dk.vertexspace.voxelshapes.RailXSectionShape;
 import dk.vertexspace.voxelshapes.ShapeBase;
-import mcp.MethodsReturnNonnullByDefault;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Direction;
@@ -14,8 +12,6 @@ import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
-
-import java.util.Arrays;
 
 @SuppressWarnings("java:S110") // We can't really control the inheritance depth here.
 public class RailXSection extends RailBase{

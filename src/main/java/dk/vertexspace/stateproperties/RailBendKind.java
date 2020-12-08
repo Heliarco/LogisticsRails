@@ -5,9 +5,6 @@ import net.minecraft.util.IStringSerializable;
 import org.apache.commons.lang3.ArrayUtils;
 import org.javatuples.Pair;
 
-import java.util.Arrays;
-import java.util.stream.Stream;
-
 public enum RailBendKind implements IStringSerializable {
 
     UP_EAST(Direction.UP, Direction.EAST),
@@ -30,7 +27,7 @@ public enum RailBendKind implements IStringSerializable {
     private final Pair<Direction,Direction> directions;
 
     RailBendKind(Direction item1, Direction item2){
-        this.directions = new Pair(item1, item2);
+        this.directions = new Pair<>(item1, item2);
         this.name = String.format("%s_%s", item1.func_176610_l(), item2.func_176610_l());
     }
 

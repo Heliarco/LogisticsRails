@@ -6,19 +6,18 @@ import dk.vertexspace.stateproperties.RailBendKind;
 import dk.vertexspace.stateproperties.RailRotation;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.DirectionalBlock;
 import net.minecraft.util.Direction;
 import org.apache.commons.lang3.NotImplementedException;
 import org.javatuples.Pair;
 
 import java.util.Arrays;
 import java.util.EnumMap;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
-import static java.util.stream.Collectors.toList;
 
 public class RailConnectionsHelper {
+
+    private RailConnectionsHelper() { }
+
     private static String enumErrorText = "Non existing enum value?";
 
     private static EnumMap<Direction, RailConnection[]> xSectionConnections;
@@ -198,7 +197,7 @@ public class RailConnectionsHelper {
         }
 
         // Straight section //
-        straightConnection = new EnumMap<Direction, RailConnection[][]>(Direction.class);
+        straightConnection = new EnumMap<>(Direction.class);
         for (Direction facing: Direction.values()){
             // 0 is non rotated, 1 is rotated
 
@@ -395,16 +394,16 @@ public class RailConnectionsHelper {
 
 
         if (block instanceof RailXSection) {
-            Direction facing = blockstate.get(RailBase.FACING);
+            Direction facing = blockstate.get(DirectionalBlock.FACING);
             return xSectionConnections.get(facing);
         }
         else if(block instanceof RailTurn) {
-            Direction facing = blockstate.get(RailBase.FACING);
+            Direction facing = blockstate.get(DirectionalBlock.FACING);
             RailRotation rotation = blockstate.get(RailTurn.ROTATION);
             return turnConnections.get(facing).get(rotation);
         }
         else if(block instanceof RailStraight) {
-            Direction facing = blockstate.get(RailBase.FACING);
+            Direction facing = blockstate.get(DirectionalBlock.FACING);
             boolean rotated = blockstate.get(RailStraight.ROTATED);
             return straightConnection.get(facing)[rotated ? 1 : 0];
         }
@@ -417,7 +416,7 @@ public class RailConnectionsHelper {
             return bendUpConnections.get(orientation);
         }
         else if(block instanceof RailTSection){
-            Direction facing = blockstate.get(RailBase.FACING);
+            Direction facing = blockstate.get(DirectionalBlock.FACING);
             RailRotation rotation = blockstate.get(RailTurn.ROTATION);
             return tSectionConnection.get(facing).get(rotation);
         }

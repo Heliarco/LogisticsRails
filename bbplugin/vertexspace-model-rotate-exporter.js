@@ -213,7 +213,8 @@
 	var autoexportMaster = function() {
 
 		var oldLoad =  loadModelFile;
-		loadModelFile = (file) => {
+
+		loadModelFile = (file) => { // NOSONAR
 
 			oldLoad(file);
 			setTimeout(() =>  {

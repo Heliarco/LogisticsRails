@@ -1,6 +1,5 @@
 package dk.vertexspace.rails;
 
-import dk.vertexspace.models.RailConnection;
 import dk.vertexspace.stateproperties.RailBendKind;
 import dk.vertexspace.stateproperties.RailBendKindProperty;
 import dk.vertexspace.voxelshapes.RailBendUpShapes;
@@ -115,8 +114,6 @@ public class RailBendUp extends RailBase {
                     }
                 }
                 return false;
-                //return bendKind.getDirections().anyMatch(side -> side == neededFace);
-
 
             }).findAny();
 

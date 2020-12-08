@@ -1,6 +1,5 @@
 package dk.vertexspace.rails;
 
-import dk.vertexspace.models.RailConnection;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerEntity;

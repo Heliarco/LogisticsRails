@@ -1,6 +1,5 @@
 package dk.vertexspace.rails;
 
-import dk.vertexspace.models.RailConnection;
 import dk.vertexspace.util.PlayerEntityInteractions;
 import dk.vertexspace.voxelshapes.RailStraightShapes;
 import dk.vertexspace.voxelshapes.ShapeBase;
@@ -14,7 +13,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.util.math.vector.TransformationMatrix;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 
