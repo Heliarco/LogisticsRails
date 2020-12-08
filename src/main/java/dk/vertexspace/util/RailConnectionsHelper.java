@@ -1,10 +1,7 @@
 package dk.vertexspace.util;
 
 import dk.vertexspace.models.RailConnection;
-import dk.vertexspace.rails.RailBase;
-import dk.vertexspace.rails.RailStraight;
-import dk.vertexspace.rails.RailTurn;
-import dk.vertexspace.rails.RailXSection;
+import dk.vertexspace.rails.*;
 import dk.vertexspace.stateproperties.RailBendKind;
 import dk.vertexspace.stateproperties.RailRotation;
 import net.minecraft.block.Block;
@@ -26,6 +23,7 @@ public class RailConnectionsHelper {
 
     private static EnumMap<Direction, RailConnection[]> xSectionConnections;
     private static EnumMap<Direction, EnumMap<RailRotation, RailConnection[]>> turnConnections;
+    private static EnumMap<Direction, EnumMap<RailRotation, RailConnection[]>> tSectionConnection;
     private static EnumMap<Direction, RailConnection[][]> straightConnection;
     private static EnumMap<RailBendKind, RailConnection[]> bendUpConnections;
     private static EnumMap<RailBendKind, RailConnection[]> bendDownConnections;
@@ -236,44 +234,151 @@ public class RailConnectionsHelper {
             }
         }
 
-
         // Bend up //
-        bendUpConnections = new EnumMap<Direction, EnumMap<RailBendKind, RailConnection[]>>(Direction.class);
+        bendUpConnections = new EnumMap<>(RailBendKind.class);
         for (RailBendKind orientation: RailBendKind.values()) {
 
-        }
-
-        @Override
-        public RailConnection[] getConnectionPoints(BlockState state) {
-            RailBendKind orientation = state.get(ORIENTATION);
             RailConnection[] r = new RailConnection[2];
             Pair<Direction,Direction> ds = orientation.getDirections();
-
             r[0] = new RailConnection(ds.getValue0(), ds.getValue1());
             r[1] = new RailConnection(ds.getValue1(), ds.getValue0());
-            return r;
+            bendUpConnections.put(orientation, r);
         }
-
-
 
         // Bend down //
-        bendDownConnections = new EnumMap<Direction, EnumMap<RailBendKind, RailConnection[]>>(Direction.class);
+        bendDownConnections = new EnumMap<>(RailBendKind.class);
         for (RailBendKind orientation: RailBendKind.values()) {
-
-        }
-        @Override
-        public RailConnection[] getConnectionPoints(BlockState state) {
-            RailBendKind orientation = state.get(ORIENTATION);
             RailConnection[] r = new RailConnection[2];
             Pair<Direction,Direction> ds = orientation.getDirections();
 
             r[0] = new RailConnection(ds.getValue0(), ds.getValue1().getOpposite());
             r[1] = new RailConnection(ds.getValue1(), ds.getValue0().getOpposite());
-            return r;
+            bendDownConnections.put(orientation, r);
         }
 
         // T section //
+        tSectionConnection = new EnumMap<>(Direction.class);
+        for (Direction facing: Direction.values()) {
+            tSectionConnection.put(facing, new EnumMap<>(RailRotation.class));
+            for(RailRotation rotation: RailRotation.values()) {
 
+                Direction exSide;
+                switch(facing) {
+                    case UP:
+                        switch (rotation){
+                            case ROT_0:
+                                exSide = Direction.EAST;
+                                break;
+                            case ROT_1:
+                                exSide = Direction.SOUTH;
+                                break;
+                            case ROT_2:
+                                exSide = Direction.WEST;
+                                break;
+                            case ROT_3:
+                                exSide = Direction.NORTH;
+                                break;
+                            default:
+                                throw new NullPointerException(enumErrorText);
+                        }
+                        break;
+                    case DOWN:
+                        switch (rotation){
+                            case ROT_0:exSide = Direction.EAST;
+                                break;
+                            case ROT_1:exSide = Direction.NORTH;
+                                break;
+                            case ROT_2:exSide = Direction.WEST;
+                                break;
+                            case ROT_3:exSide = Direction.SOUTH;
+                                break;
+                            default:
+                                throw new NullPointerException(enumErrorText);
+                        }
+                        break;
+                    case EAST:
+                        switch (rotation){
+                            case ROT_0:exSide = Direction.DOWN;
+                                break;
+                            case ROT_1:exSide = Direction.SOUTH;
+                                break;
+                            case ROT_2:exSide = Direction.UP;
+                                break;
+                            case ROT_3:exSide = Direction.NORTH;
+                                break;
+                            default:
+                                throw new NullPointerException(enumErrorText);
+                        }
+                        break;
+                    case WEST:
+                        switch (rotation){
+                            case ROT_0:
+                                exSide = Direction.DOWN;
+                                break;
+                            case ROT_1:
+                                exSide = Direction.NORTH;
+                                break;
+                            case ROT_2:
+                                exSide = Direction.UP;
+                                break;
+                            case ROT_3:
+                                exSide = Direction.SOUTH;
+                                break;
+                            default:
+                                throw new NullPointerException(enumErrorText);
+                        }
+                        break;
+                    case NORTH:
+                        switch (rotation){
+                            case ROT_0:
+                                exSide = Direction.DOWN;
+                                break;
+                            case ROT_1:
+                                exSide = Direction.WEST;
+                                break;
+                            case ROT_2:
+                                exSide = Direction.UP;
+                                break;
+                            case ROT_3:
+                                exSide = Direction.EAST;
+                                break;
+                            default:
+                                throw new NullPointerException(enumErrorText);
+                        }
+                        break;
+                    case SOUTH:
+                        switch (rotation){
+                            case ROT_0:
+                                exSide = Direction.DOWN;
+                                break;
+                            case ROT_1:
+                                exSide = Direction.WEST;
+                                break;
+                            case ROT_2:
+                                exSide = Direction.UP;
+                                break;
+                            case ROT_3:
+                                exSide = Direction.EAST;
+                                break;
+                            default:
+                                throw new NullPointerException(enumErrorText);
+                        }
+                        break;
+                    default:
+                        throw new NullPointerException(enumErrorText);
+                }
+
+                RailConnection[] c = Arrays.stream(Direction.values()).filter(
+                        x -> x != facing &&
+                             x != facing.getOpposite() &&
+                             x != exSide)
+                        .map(x -> new RailConnection(facing, x))
+                        .toArray(RailConnection[]::new);
+
+                tSectionConnection.get(facing).put(rotation, c);
+
+            }
+        }
 
     }
 
@@ -283,31 +388,41 @@ public class RailConnectionsHelper {
     public static RailConnection[] getConnectionsFromState(BlockState blockstate){
         Block block = blockstate.getBlock();
 
-
         if (!(block instanceof RailBase)){
             return new RailConnection[0];
         }
 
-        Direction facing = blockstate.get(RailBase.FACING);
 
 
         if (block instanceof RailXSection) {
+            Direction facing = blockstate.get(RailBase.FACING);
             return xSectionConnections.get(facing);
         }
         else if(block instanceof RailTurn) {
+            Direction facing = blockstate.get(RailBase.FACING);
             RailRotation rotation = blockstate.get(RailTurn.ROTATION);
             return turnConnections.get(facing).get(rotation);
         }
         else if(block instanceof RailStraight) {
+            Direction facing = blockstate.get(RailBase.FACING);
             boolean rotated = blockstate.get(RailStraight.ROTATED);
             return straightConnection.get(facing)[rotated ? 1 : 0];
         }
-
+        else if(block instanceof RailBendDown){
+            RailBendKind orientation = blockstate.get(RailBendDown.ORIENTATION);
+            return bendDownConnections.get(orientation);
+        }
+        else if(block instanceof RailBendUp){
+            RailBendKind orientation = blockstate.get(RailBendUp.ORIENTATION);
+            return bendUpConnections.get(orientation);
+        }
+        else if(block instanceof RailTSection){
+            Direction facing = blockstate.get(RailBase.FACING);
+            RailRotation rotation = blockstate.get(RailTurn.ROTATION);
+            return tSectionConnection.get(facing).get(rotation);
+        }
         else {
             throw new NotImplementedException("Don't know how to parse " + blockstate.toString() + " yet");
         }
-
-
-
     }
 }
