@@ -1,5 +1,6 @@
 package dk.vertexspace;
 
+import dk.vertexspace.nodes.Console;
 import dk.vertexspace.rails.*;
 import dk.vertexspace.items.BlockItemBase;
 import dk.vertexspace.items.ItemBase;
@@ -41,7 +42,7 @@ public class RegistryHandler {
     public static final RegistryObject<Block> RAIL_XSECTION = BLOCKS.register("rail_xsection", RailXSection::new);
     public static final RegistryObject<Block> RAIL_BEND_UP = BLOCKS.register("rail_bend_up", RailBendUp::new);
     public static final RegistryObject<Block> RAIL_BEND_DOWN = BLOCKS.register("rail_bend_down", RailBendDown::new);
-
+    public static final RegistryObject<Block> NODE_CONSOLE = BLOCKS.register("node_console", Console::new);
 
     // Block Items
     public static final RegistryObject<Item> RAIL_STRAIGHT_ITEM = ITEMS.register("rail_straight", () -> new BlockItemBase(RAIL_STRAIGHT.get()));
@@ -50,6 +51,7 @@ public class RegistryHandler {
     public static final RegistryObject<Item> RAIL_XSECTION_ITEM = ITEMS.register("rail_xsection", () -> new BlockItemBase(RAIL_XSECTION.get()));
     public static final RegistryObject<Item> RAIL_BEND_UP_ITEM = ITEMS.register("rail_bend_up", () -> new BlockItemBase(RAIL_BEND_UP.get()));
     public static final RegistryObject<Item> RAIL_BEND_DOWN_ITEM = ITEMS.register("rail_bend_down", () -> new BlockItemBase(RAIL_BEND_DOWN.get()));
+    public static final RegistryObject<Item> NODE_CONSOLE_ITEM = ITEMS.register("node_console", () -> new BlockItemBase(NODE_CONSOLE.get()));
 
 
 }
