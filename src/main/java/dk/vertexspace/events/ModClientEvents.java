@@ -2,6 +2,7 @@ package dk.vertexspace.events;
 
 
 import dk.vertexspace.RegistryHandler;
+import net.minecraft.block.WallTorchBlock;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.Items;
 import net.minecraft.world.World;

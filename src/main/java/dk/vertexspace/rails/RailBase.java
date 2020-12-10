@@ -27,7 +27,7 @@ public abstract class RailBase extends DirectionalBlock {
                 .func_235861_h_() // setrequirestool
                 .harvestLevel(0) //
                 .harvestTool(ToolType.PICKAXE)
-                .notSolid() // doesn't stop grass growth. Presumably
+                .notSolid() // Wont reduce neighbor block vertices
         );
     }
 
