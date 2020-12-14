@@ -24,8 +24,8 @@ public abstract class RailBase extends DirectionalBlock {
         super(AbstractBlock.Properties.create(Material.MISCELLANEOUS)
                 .hardnessAndResistance(1.0f, 1.0f)
                 .sound(SoundType.METAL)
-                .func_235861_h_() // setrequirestool
-                .harvestLevel(0) //
+                .setRequiresTool()
+                .harvestLevel(1)
                 .harvestTool(ToolType.PICKAXE)
                 .notSolid() // Wont reduce neighbor block vertices
         );

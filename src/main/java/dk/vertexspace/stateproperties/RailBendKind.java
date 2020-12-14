@@ -28,7 +28,7 @@ public enum RailBendKind implements IStringSerializable {
 
     RailBendKind(Direction item1, Direction item2){
         this.directions = new Pair<>(item1, item2);
-        this.name = String.format("%s_%s", item1.func_176610_l(), item2.func_176610_l());
+        this.name = String.format("%s_%s", item1.getString(), item2.getString());
     }
 
 
@@ -36,10 +36,7 @@ public enum RailBendKind implements IStringSerializable {
         return directions;
     }
 
-    @Override
-    public String func_176610_l() {
-        return this.name;
-    }
+
 
     public RailBendKind next(){
 
@@ -52,4 +49,8 @@ public enum RailBendKind implements IStringSerializable {
         return values[i];
     }
 
+    @Override
+    public String getString() {
+        return this.name;
+    }
 }

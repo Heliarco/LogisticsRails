@@ -1,6 +1,8 @@
 package dk.vertexspace;
 
 import dk.vertexspace.constants.NameConstants;
+import dk.vertexspace.init.ModBlocks;
+import dk.vertexspace.init.ModItems;
 import net.minecraft.block.Blocks;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
@@ -21,10 +23,15 @@ public class LogisticsRails
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
 
-        RegistryHandler.init();
+        ModBlocks.BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
+        ModItems.ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
+
 
         MinecraftForge.EVENT_BUS.register(this);
     }
+
+
+
 
     private void setup(final FMLCommonSetupEvent event) {
         LOGGER.info("HELLO FROM PREINIT");
