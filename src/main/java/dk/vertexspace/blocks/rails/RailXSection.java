@@ -1,4 +1,4 @@
-package dk.vertexspace.rails;
+package dk.vertexspace.blocks.rails;
 
 import dk.vertexspace.voxelshapes.RailXSectionShape;
 import dk.vertexspace.voxelshapes.ShapeBase;

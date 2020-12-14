@@ -1,10 +1,8 @@
-package dk.vertexspace.rails;
+package dk.vertexspace.blocks.rails;
 
-import dk.vertexspace.models.RailConnection;
 import dk.vertexspace.stateproperties.RailBendKind;
 import dk.vertexspace.stateproperties.RailBendKindProperty;
-import dk.vertexspace.util.RailConnectionsHelper;
-import dk.vertexspace.voxelshapes.RailBendDownShapes;
+import dk.vertexspace.voxelshapes.RailBendUpShapes;
 import dk.vertexspace.voxelshapes.ShapeBase;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -29,12 +27,18 @@ import java.util.Arrays;
 import java.util.Optional;
 
 @SuppressWarnings("java:S110") // We can't really control the inheritance depth here.
-public class RailBendDown extends RailBase {
-
+public class RailBendUp extends RailBase {
     public static final RailBendKindProperty ORIENTATION = RailBendKindProperty.create("orientation");
+
+
+    // Be carefull, while we inherit the base property "FACING" from the parent DirectionalBlock,
+    // we skip registering the facing property. We need our own as we are a "Bi-directional" block.
+    // This Specifically means we must not call super methods of getStateForPlacement and populateStateContainer
+
 
     @Override
     protected BlockState rotateOnRightClick(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+
         int timeout = 0;
         RailBendKind orientation = state.get(ORIENTATION);
         while (timeout < 11){
@@ -47,11 +51,8 @@ public class RailBendDown extends RailBase {
             }
         }
         return null;
+
     }
-
-
-
-
 
     @Override
     @SuppressWarnings("deprecation")
@@ -61,33 +62,34 @@ public class RailBendDown extends RailBase {
 
         switch(orientation) {
             case DOWN_EAST:
-                return RailBendDownShapes.S_DE;
+                return RailBendUpShapes.S_DE;
             case DOWN_NORTH:
-                return RailBendDownShapes.S_DN;
+                return RailBendUpShapes.S_DN;
             case DOWN_SOUTH:
-                return RailBendDownShapes.S_DS;
+                return RailBendUpShapes.S_DS;
             case DOWN_WEST:
-                return RailBendDownShapes.S_DW;
+                return RailBendUpShapes.S_DW;
             case NORTH_EAST:
-                return RailBendDownShapes.S_NE;
+                return RailBendUpShapes.S_NE;
             case NORTH_WEST:
-                return RailBendDownShapes.S_NW;
+                return RailBendUpShapes.S_NW;
             case SOUTH_EAST:
-                return RailBendDownShapes.S_SE;
+                return RailBendUpShapes.S_SE;
             case SOUTH_WEST:
-                return RailBendDownShapes.S_SW;
+                return RailBendUpShapes.S_SW;
             case UP_EAST:
-                return RailBendDownShapes.S_UE;
+                return RailBendUpShapes.S_UE;
             case UP_NORTH:
-                return RailBendDownShapes.S_UN;
+                return RailBendUpShapes.S_UN;
             case UP_SOUTH:
-                return RailBendDownShapes.S_US;
+                return RailBendUpShapes.S_US;
             case UP_WEST:
-                return RailBendDownShapes.S_UW;
+                return RailBendUpShapes.S_UW;
             default:
                 return ShapeBase.PLACEHOLDER_SHAPE;
         }
     }
+
 
     @Override
     public BlockState getStateForPlacement(BlockItemUseContext context) {
@@ -95,18 +97,25 @@ public class RailBendDown extends RailBase {
         IWorldReader worldIn = context.getWorld();
         BlockPos pos = context.getPos();
 
+        Direction primaryPlacementDirection = context.getNearestLookingDirections()[0];
+
         // Filter only valid orientations based on world geometry
         Optional<RailBendKind> kind = Arrays.stream(RailBendKind.values())
+            .filter(bendKind -> isValidPosition(bendKind, worldIn, pos))
 
-                .filter(bendKind -> isValidPosition(bendKind, worldIn, pos))
+        // Filter those that match orientation
+            .filter(bendKind -> {
+                Direction neededFace = primaryPlacementDirection.getOpposite();
 
-                // Filter those that match orientation
-                /*.filter(bendKind -> {
-                    Direction neededFace = primaryPlacementDirection.getOpposite();
 
-                    return bendKind.getDirections().anyMatch(side -> side == neededFace);
-                })*/
-                .findAny();
+                for (Object o : bendKind.getDirections()){
+                    if ((Direction) o == neededFace){
+                        return true;
+                    }
+                }
+                return false;
+
+            }).findAny();
 
         if (!kind.isPresent()) {
             return null;
@@ -128,41 +137,26 @@ public class RailBendDown extends RailBase {
         // Basically copied from wall torch.
         RailBendKind orientation = state.get(ORIENTATION);
         return isValidPosition(orientation, worldIn, pos);
+
     }
 
+    // If one "attached" side is solid. The rail can be placed. Otherwise not
     public boolean isValidPosition(RailBendKind orientation, IWorldReader worldIn, BlockPos pos) {
-        Pair<Direction, Direction> ourFacings = orientation.getDirections();
+        Pair<Direction, Direction> dirs = orientation.getDirections();
 
-        RailConnection[] ourConnections = RailConnectionsHelper.getConnectionsFromState(this.getDefaultState().with(ORIENTATION, orientation));
+        for (Object sideO : dirs){
+            Direction side = (Direction) sideO;  // Can't believe this is needed -.-
 
-        for(Object facingO: ourFacings) {
-            
-            // We have two facings
-            Direction ourFacing = (Direction) facingO;  // Can't believe this is needed -.-
-            RailConnection ourConnection = Arrays.stream(ourConnections).filter(c -> c.getFacing() == ourFacing).findAny().get();
-
-            BlockPos attachedToPos = pos.offset(ourFacing.getOpposite());
-            BlockState otherBlock = worldIn.getBlockState(attachedToPos);
-
-            if (otherBlock.isSolidSide(worldIn, attachedToPos, ourFacing))  {
+            BlockPos attachedToPos = pos.offset(side.getOpposite());
+            BlockState blockstate = worldIn.getBlockState(attachedToPos);
+            if (blockstate.isSolidSide(worldIn, attachedToPos, side)){
                 return true;
-            }
-            if (otherBlock.getBlock() instanceof RailBase)
-            {
-                RailConnection[] otherConnections = RailConnectionsHelper.getConnectionsFromState(otherBlock);
-
-                // We want the connection pointing towards this block. We do not yet care about the plane
-                Optional<RailConnection> success = Arrays.stream(otherConnections)
-                        .filter(c -> c.getFacing() == ourConnection.getFacing())
-                        .filter(c -> c.getSide().getOpposite() == ourConnection.getSide())
-                        .findAny();
-
-                return success.isPresent();
-
             }
         }
         return false;
     }
+
+
 
     @Override
     @SuppressWarnings("deprecation")
@@ -170,6 +164,7 @@ public class RailBendDown extends RailBase {
     public BlockState rotate(BlockState state, Rotation rot) {
         return state.with(ORIENTATION, state.get(ORIENTATION).next());
     }
+
 
     @Override
     @SuppressWarnings("deprecation")

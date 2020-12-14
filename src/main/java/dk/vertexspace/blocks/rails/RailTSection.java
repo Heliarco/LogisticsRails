@@ -1,8 +1,8 @@
-package dk.vertexspace.rails;
+package dk.vertexspace.blocks.rails;
 
 import dk.vertexspace.stateproperties.RailRotation;
 import dk.vertexspace.stateproperties.RailRotationProperty;
-import dk.vertexspace.voxelshapes.RailTurnShapes;
+import dk.vertexspace.voxelshapes.RailTSectionShapes;
 import dk.vertexspace.voxelshapes.ShapeBase;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -18,15 +18,15 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 
 @SuppressWarnings("java:S110") // We can't really control the inheritance depth here.
-public class RailTurn extends RailBase {
+public class RailTSection extends RailBase {
+    public static final RailRotationProperty ROTATION = RailRotationProperty.create("rotation");
+
     @Override
     protected BlockState rotateOnRightClick(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
         return state.with(ROTATION, state.get(ROTATION).next());
     }
 
 
-
-    public static final RailRotationProperty ROTATION = RailRotationProperty.create("rotation");
 
 
     @Override
@@ -46,77 +46,79 @@ public class RailTurn extends RailBase {
             case UP:
                 switch (rotation){
                     case ROT_0:
-                        return RailTurnShapes.S_UP_NE;
+                        return RailTSectionShapes.S_UP_E;
                     case ROT_1:
-                        return RailTurnShapes.S_UP_SE;
+                        return RailTSectionShapes.S_UP_S;
                     case ROT_2:
-                        return RailTurnShapes.S_UP_SW;
+                        return RailTSectionShapes.S_UP_W;
                     case ROT_3:
-                        return RailTurnShapes.S_UP_NW;
+                        return RailTSectionShapes.S_UP_N;
                 }
                 break;
             case DOWN:
                 switch (rotation){
                     case ROT_0:
-                        return RailTurnShapes.S_DOWN_SW;
+                        return RailTSectionShapes.S_DOWN_E;
                     case ROT_1:
-                        return RailTurnShapes.S_DOWN_SE;
+                        return RailTSectionShapes.S_DOWN_N;
                     case ROT_2:
-                        return RailTurnShapes.S_DOWN_NW;
+                        return RailTSectionShapes.S_DOWN_W;
                     case ROT_3:
-                        return RailTurnShapes.S_DOWN_NE;
+                        return RailTSectionShapes.S_DOWN_S;
                 }
                 break;
             case EAST:
                 switch (rotation){
                     case ROT_0:
-                        return RailTurnShapes.S_EAST_DS;
+                        return RailTSectionShapes.S_EAST_D;
                     case ROT_1:
-                        return RailTurnShapes.S_EAST_US;
+                        return RailTSectionShapes.S_EAST_S;
                     case ROT_2:
-                        return RailTurnShapes.S_EAST_UN;
+                        return RailTSectionShapes.S_EAST_U;
                     case ROT_3:
-                        return RailTurnShapes.S_EAST_DN;
+                        return RailTSectionShapes.S_EAST_N;
                 }
                 break;
             case WEST:
                 switch (rotation){
                     case ROT_0:
-                        return RailTurnShapes.S_WEST_DS;
+                        return RailTSectionShapes.S_WEST_D;
                     case ROT_1:
-                        return RailTurnShapes.S_WEST_DN;
+                        return RailTSectionShapes.S_WEST_N;
                     case ROT_2:
-                        return RailTurnShapes.S_WEST_UN;
+                        return RailTSectionShapes.S_WEST_U;
                     case ROT_3:
-                        return RailTurnShapes.S_WEST_US;
+                        return RailTSectionShapes.S_WEST_S;
                 }
                 break;
             case NORTH:
                 switch (rotation){
                     case ROT_0:
-                        return RailTurnShapes.S_NORTH_DE;
+                        return RailTSectionShapes.S_NORTH_D;
                     case ROT_1:
-                        return RailTurnShapes.S_NORTH_UE;
+                        return RailTSectionShapes.S_NORTH_W;
                     case ROT_2:
-                        return RailTurnShapes.S_NORTH_UW;
+                        return RailTSectionShapes.S_NORTH_U;
                     case ROT_3:
-                        return RailTurnShapes.S_NORTH_DW;
+                        return RailTSectionShapes.S_NORTH_E;
                 }
                 break;
             case SOUTH:
                 switch (rotation){
                     case ROT_0:
-                        return RailTurnShapes.S_SOUTH_DW;
+                        return RailTSectionShapes.S_SOUTH_D;
                     case ROT_1:
-                        return RailTurnShapes.S_SOUTH_UW;
+                        return RailTSectionShapes.S_SOUTH_W;
                     case ROT_2:
-                        return RailTurnShapes.S_SOUTH_UE;
+                        return RailTSectionShapes.S_SOUTH_U;
                     case ROT_3:
-                        return RailTurnShapes.S_SOUTH_DE;
+                        return RailTSectionShapes.S_SOUTH_E;
                 }
                 break;
 
         }
         return ShapeBase.PLACEHOLDER_SHAPE;
     }
+
+
 }

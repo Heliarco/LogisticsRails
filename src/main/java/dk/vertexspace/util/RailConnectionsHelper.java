@@ -1,7 +1,7 @@
 package dk.vertexspace.util;
 
 import dk.vertexspace.models.RailConnection;
-import dk.vertexspace.rails.*;
+import dk.vertexspace.blocks.rails.*;
 import dk.vertexspace.stateproperties.RailBendKind;
 import dk.vertexspace.stateproperties.RailRotation;
 import net.minecraft.block.Block;

@@ -1,7 +1,7 @@
 package dk.vertexspace.init;
 
-import dk.vertexspace.nodes.Console;
-import dk.vertexspace.rails.*;
+import dk.vertexspace.blocks.nodes.Console;
+import dk.vertexspace.blocks.rails.*;
 import net.minecraft.block.Block;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;

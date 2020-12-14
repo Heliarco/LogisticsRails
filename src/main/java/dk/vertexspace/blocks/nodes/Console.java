@@ -1,18 +1,15 @@
-package dk.vertexspace.nodes;
+package dk.vertexspace.blocks.nodes;
 
-import dk.vertexspace.init.ModTileEntities;
+import dk.vertexspace.init.ModTileEntityTypes;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.Direction;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IWorldReader;
 import net.minecraftforge.common.ToolType;
 
 import javax.annotation.Nonnull;
@@ -73,7 +70,7 @@ public class Console extends Block {
 
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-        ModTileEntities.CONSOLE_TILE_ENTITY.get().create();
+        ModTileEntityTypes.CONSOLE_TILE_ENTITY.get().create();
     }
 
 }

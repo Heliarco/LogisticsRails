@@ -1,4 +1,4 @@
-package dk.vertexspace.rails;
+package dk.vertexspace.blocks.rails;
 
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
