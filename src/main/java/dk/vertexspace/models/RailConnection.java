@@ -8,6 +8,9 @@ public class RailConnection {
     private final Direction side;
     private final Direction facing;
 
+    public String getName2(){
+        return "facing: " + this.facing.getName2() + " side: " + this.side.getName2();
+    }
 
     public Direction getFacing(){
         return this.facing;
@@ -25,4 +28,5 @@ public class RailConnection {
     public boolean canConnectWith(RailConnection connection){
         return this.facing == connection.facing || this.side.getOpposite() == connection.side;
     }
+
 }
