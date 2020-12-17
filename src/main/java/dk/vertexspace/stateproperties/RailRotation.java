@@ -16,7 +16,7 @@ public enum RailRotation implements IStringSerializable {
     }
 
     @Override  // A WILD guess would be that this method should be "getName"
-    public String func_176610_l() {
+    public String getString() {
         return this.name;
     }
     public RailRotation next(){

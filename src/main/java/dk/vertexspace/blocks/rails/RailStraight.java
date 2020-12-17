@@ -1,4 +1,4 @@
-package dk.vertexspace.rails;
+package dk.vertexspace.blocks.rails;
 
 import dk.vertexspace.util.PlayerEntityInteractions;
 import dk.vertexspace.voxelshapes.RailStraightShapes;

@@ -1,15 +1,15 @@
-package dk.vertexspace.nodes;
+package dk.vertexspace.blocks.nodes;
 
+import dk.vertexspace.init.ModTileEntityTypes;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
-import net.minecraft.util.Direction;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IWorldReader;
+import net.minecraft.world.IBlockReader;
 import net.minecraftforge.common.ToolType;
 
 import javax.annotation.Nonnull;
@@ -21,13 +21,14 @@ public class Console extends Block {
     public Console() {
         super(AbstractBlock.Properties.create(Material.MISCELLANEOUS)
                 .hardnessAndResistance(1.0f, 1.0f)
+                .setRequiresTool()
                 .sound(SoundType.METAL)
-                .func_235861_h_() // setrequirestool
-                .harvestLevel(0) //
+                .harvestLevel(1) //
                 .harvestTool(ToolType.PICKAXE)
                 .notSolid() // Wont reduce neighbor block vertices
         );
     }
+
     @Nullable
     @Override
     // Called when block is placed.
@@ -41,7 +42,6 @@ public class Console extends Block {
     public boolean isTransparent(BlockState state) {
         return true;
     }
-
 
     @Override
     @SuppressWarnings("deprecation")
@@ -62,4 +62,16 @@ public class Console extends Block {
     public BlockState rotate(BlockState state, Rotation rot) {
         return state.with(HORIZONTAL_FACING, rot.rotate(state.get(HORIZONTAL_FACING)));
     }
+
+    @Override
+    public boolean hasTileEntity(BlockState state) {
+        return true;
+    }
+
+    @Override
+    public TileEntity createTileEntity(BlockState state, IBlockReader world) {
+        return ModTileEntityTypes.CONSOLE.get().create();
+
+    }
+
 }

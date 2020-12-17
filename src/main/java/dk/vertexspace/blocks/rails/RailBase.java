@@ -1,5 +1,8 @@
-package dk.vertexspace.rails;
+package dk.vertexspace.blocks.rails;
 
+import dk.vertexspace.constants.Log;
+import dk.vertexspace.models.RailConnection;
+import dk.vertexspace.util.RailConnectionsHelper;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerEntity;
@@ -24,8 +27,8 @@ public abstract class RailBase extends DirectionalBlock {
         super(AbstractBlock.Properties.create(Material.MISCELLANEOUS)
                 .hardnessAndResistance(1.0f, 1.0f)
                 .sound(SoundType.METAL)
-                .func_235861_h_() // setrequirestool
-                .harvestLevel(0) //
+                .setRequiresTool()
+                .harvestLevel(1)
                 .harvestTool(ToolType.PICKAXE)
                 .notSolid() // Wont reduce neighbor block vertices
         );
@@ -72,6 +75,18 @@ public abstract class RailBase extends DirectionalBlock {
         if (!player.getHeldItemMainhand().isEmpty()){
             return ActionResultType.PASS;
         }
+
+        if(player.isSneaking()){
+
+            RailConnection[] c = RailConnectionsHelper.getConnectionsFromState(state);
+            for(RailConnection r : c) {
+                Log.info(player, r.getName2());
+            }
+
+
+            return ActionResultType.func_233537_a_(worldIn.isRemote);
+        }
+
 
         BlockState newState = this.rotateOnRightClick(state, worldIn, pos, player, handIn, hit);
 
