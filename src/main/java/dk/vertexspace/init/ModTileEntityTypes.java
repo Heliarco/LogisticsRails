@@ -1,7 +1,6 @@
 package dk.vertexspace.init;
 
-import net.minecraft.item.Item;
-import net.minecraft.tileentity.TileEntity;
+import dk.vertexspace.tileentities.ConsoleTileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -13,6 +12,6 @@ public class ModTileEntityTypes {
     public static final DeferredRegister<TileEntityType<?>> TILE_ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.TILE_ENTITIES, MOD_ID);
 
     //https://www.youtube.com/watch?v=bUxuf8wKvPE&list=PLaevjqy3XufYmltqo0eQusnkKVN7MpTUe&index=19
-    public static final RegistryObject<TileEntityType<ConsoleTileEntity>> CONSOLE = TILE_ENTITY_TYPES.register("node_console", () -> TileEntityType.Builder.create(ConsoleTileEntity::new, ModBlocks.NODE_CONSOLE).build(null));
+    public static final RegistryObject<TileEntityType<ConsoleTileEntity>> CONSOLE = TILE_ENTITY_TYPES.register("node_console", () -> TileEntityType.Builder.create(ConsoleTileEntity::new, ModBlocks.NODE_CONSOLE.get()).build(null));
 
 }

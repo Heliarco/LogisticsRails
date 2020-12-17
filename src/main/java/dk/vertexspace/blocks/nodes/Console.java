@@ -70,7 +70,8 @@ public class Console extends Block {
 
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-        ModTileEntityTypes.CONSOLE_TILE_ENTITY.get().create();
+        return ModTileEntityTypes.CONSOLE.get().create();
+
     }
 
 }

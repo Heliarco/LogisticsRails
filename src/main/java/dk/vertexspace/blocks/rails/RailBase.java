@@ -1,5 +1,8 @@
 package dk.vertexspace.blocks.rails;
 
+import dk.vertexspace.constants.Log;
+import dk.vertexspace.models.RailConnection;
+import dk.vertexspace.util.RailConnectionsHelper;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerEntity;
@@ -72,6 +75,16 @@ public abstract class RailBase extends DirectionalBlock {
         if (!player.getHeldItemMainhand().isEmpty()){
             return ActionResultType.PASS;
         }
+
+        if(player.isSneaking()){
+
+            RailConnection[] c = RailConnectionsHelper.getConnectionsFromState(state);
+
+            Log.info(c);
+
+            return ActionResultType.func_233537_a_(worldIn.isRemote);
+        }
+
 
         BlockState newState = this.rotateOnRightClick(state, worldIn, pos, player, handIn, hit);
 
