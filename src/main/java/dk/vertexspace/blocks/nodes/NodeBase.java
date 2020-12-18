@@ -2,8 +2,8 @@ package dk.vertexspace.blocks.nodes;
 
 import net.minecraft.block.Block;
 
-public class Requester extends Block {
-    public Requester(Properties properties) {
+public class NodeBase extends Block {
+    public NodeBase(Properties properties) {
         super(properties);
     }
 }
