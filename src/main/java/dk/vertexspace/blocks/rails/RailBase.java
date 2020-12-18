@@ -79,6 +79,7 @@ public abstract class RailBase extends DirectionalBlock {
         if(player.isSneaking()){
 
             RailConnection[] c = RailConnectionsHelper.getConnectionsFromState(state);
+            Log.info(player, state);
             for(RailConnection r : c) {
                 Log.info(player, r.getName2());
             }

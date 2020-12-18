@@ -30,14 +30,27 @@ public class Log {
         for(int i = 0; i < logObjects.length; i++){
             args[i] = logObjects[i].toString();
         }
+
         Logger logger = LogManager.getLogger(MOD_ID);
 
-        final Gson gson = new GsonBuilder().disableHtmlEscaping().setPrettyPrinting().create();
-
-        String json = gson.toJson(args);
+        String json;
+        if ( logObjects.length == 1){
+            json = asString(logObjects[0]);
+        }
+        else {
+            json = asString(args);
+        }
         logger.info(json);
         return json;
+    }
+    private static String asString(Object o){
+        final Gson gson = new GsonBuilder().disableHtmlEscaping().setPrettyPrinting().create();
 
-
+        try {
+            return gson.toJson(o);
+        }
+        catch (Exception e) {
+            return o.toString();
+        }
     }
 }

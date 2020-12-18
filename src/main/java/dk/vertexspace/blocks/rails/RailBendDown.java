@@ -131,17 +131,13 @@ public class RailBendDown extends RailBase {
     }
 
     public boolean isValidPosition(RailBendKind orientation, IWorldReader worldIn, BlockPos pos) {
-        Pair<Direction, Direction> ourFacings = orientation.getDirections();
-
         RailConnection[] ourConnections = RailConnectionsHelper.getConnectionsFromState(this.getDefaultState().with(ORIENTATION, orientation));
 
-        for(Object facingO: ourFacings) {
+        for(RailConnection ourConnection: ourConnections) {
             
             // We have two facings
-            Direction ourFacing = (Direction) facingO;  // Can't believe this is needed -.-
-            RailConnection ourConnection = Arrays.stream(ourConnections).filter(c -> c.getFacing() == ourFacing).findAny().get();
-
-            BlockPos attachedToPos = pos.offset(ourFacing.getOpposite());
+            Direction ourFacing = ourConnection.getFacing();
+            BlockPos attachedToPos = pos.offset(ourConnection.getSide());
             BlockState otherBlock = worldIn.getBlockState(attachedToPos);
 
             if (otherBlock.isSolidSide(worldIn, attachedToPos, ourFacing))  {
@@ -153,6 +149,7 @@ public class RailBendDown extends RailBase {
 
                 // We want the connection pointing towards this block. We do not yet care about the plane
                 Optional<RailConnection> success = Arrays.stream(otherConnections)
+
                         .filter(c -> c.getFacing() == ourConnection.getFacing())
                         .filter(c -> c.getSide().getOpposite() == ourConnection.getSide())
                         .findAny();
