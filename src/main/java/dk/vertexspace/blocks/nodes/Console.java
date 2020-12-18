@@ -15,19 +15,10 @@ import net.minecraftforge.common.ToolType;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class Console extends Block {
+public class Console extends NodeBase {
 
     public static final DirectionProperty HORIZONTAL_FACING = HorizontalBlock.HORIZONTAL_FACING;
-    public Console() {
-        super(AbstractBlock.Properties.create(Material.MISCELLANEOUS)
-                .hardnessAndResistance(1.0f, 1.0f)
-                .setRequiresTool()
-                .sound(SoundType.METAL)
-                .harvestLevel(1) //
-                .harvestTool(ToolType.PICKAXE)
-                .notSolid() // Wont reduce neighbor block vertices
-        );
-    }
+
 
     @Nullable
     @Override
