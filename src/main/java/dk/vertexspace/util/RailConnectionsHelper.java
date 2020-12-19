@@ -1,5 +1,6 @@
 package dk.vertexspace.util;
 
+import dk.vertexspace.blocks.RailConnected;
 import dk.vertexspace.models.RailConnection;
 import dk.vertexspace.blocks.rails.*;
 import dk.vertexspace.stateproperties.RailBendKind;
@@ -387,11 +388,9 @@ public class RailConnectionsHelper {
     public static RailConnection[] getConnectionsFromState(BlockState blockstate){
         Block block = blockstate.getBlock();
 
-        if (!(block instanceof RailBase)){
+        if (!(block instanceof RailConnected)){
             return new RailConnection[0];
         }
-
-
 
         if (block instanceof RailXSection) {
             Direction facing = blockstate.get(DirectionalBlock.FACING);

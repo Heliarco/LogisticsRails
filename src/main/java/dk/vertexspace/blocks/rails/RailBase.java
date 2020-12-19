@@ -1,5 +1,6 @@
 package dk.vertexspace.blocks.rails;
 
+import dk.vertexspace.blocks.RailConnected;
 import dk.vertexspace.constants.Log;
 import dk.vertexspace.models.RailConnection;
 import dk.vertexspace.util.RailConnectionsHelper;
@@ -21,7 +22,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 
-public abstract class RailBase extends DirectionalBlock {
+public abstract class RailBase extends DirectionalBlock implements RailConnected {
 
     protected RailBase() {
         super(AbstractBlock.Properties.create(Material.MISCELLANEOUS)

@@ -154,7 +154,10 @@ public class RailBendDown extends RailBase {
                         .filter(c -> c.getSide().getOpposite() == ourConnection.getSide())
                         .findAny();
 
-                return success.isPresent();
+                if (success.isPresent()){
+                    return true;
+                }
+
 
             }
         }
