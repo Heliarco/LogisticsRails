@@ -33,7 +33,10 @@ public class ConsoleTileEntity extends TileEntity implements ITickableTileEntity
 
 
 
-    private enum ConsoleLogicState {
+    private enum ConsoleLogicState {    // Two modes, canning mode and update mode. Scanning is the stable mode and update means a change was detected. So needs an update. Update mode means "in flux"
+
+
+
         SCANNING,   // Starting with the console block. Iterate the network. to build a new graph
         COMPARING,   // Comparing current network with an updated version
         SYNCHRONIZING, // Distributing network info to connected nodes and bots

@@ -6,6 +6,8 @@ import dk.vertexspace.util.RailConnectionsHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.Direction;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IWorldReader;
 
 import java.util.Arrays;
 import java.util.Optional;
@@ -15,26 +17,44 @@ public interface RailConnected {
         return RailConnectionsHelper.getConnectionsFromState(state);
     }
 
-    default boolean canConnectTo(BlockState me, Direction direction, BlockState other){
-        Block otherBlock = other.getBlock();
-        RailConnection[] ourConnections = RailConnectionsHelper.getConnectionsFromState(me);
 
-        for(RailConnection ourConnection: ourConnections) {
 
-            if (otherBlock instanceof RailConnected) {
-                RailConnection[] otherConnections = RailConnectionsHelper.getConnectionsFromState(other);
+    default boolean canConnectTo(BlockPos me, Direction direction, IWorldReader worldIn) {
+        return canConnectTo(worldIn.getBlockState(me), me, direction, worldIn);
+    }
 
-                // We want the connection pointing towards this block. We do not yet care about the plane
-                Optional<RailConnection> success = Arrays.stream(otherConnections)
+    default boolean canConnectTo(BlockState ourState, BlockPos me, Direction direction, IWorldReader worldIn){
 
-                        .filter(c -> c.getFacing() == ourConnection.getFacing())
-                        .filter(c -> c.getSide().getOpposite() == ourConnection.getSide())
-                        .findAny();
-                if (success.isPresent()){
-                    return true;
-                }
-            }
+        Block ourBlock = ourState.getBlock();
+
+        BlockPos otherPos = me.offset(direction);
+        BlockState otherState = worldIn.getBlockState(otherPos);
+        Block otherBlock = otherState.getBlock();
+
+        RailConnection[] ourConnections = RailConnectionsHelper.getConnectionsFromState(ourState);
+
+        if ( !(otherBlock instanceof RailConnected) || !(ourBlock instanceof RailConnected)) {
+            return false;
         }
-        return false;
+
+        // We have the two blocks, and we know they are both rails.
+        Optional<RailConnection> ourConnection$ = Arrays.stream(ourConnections).filter(c -> c.getSide() == direction).findAny();
+        if (!ourConnection$.isPresent()) {
+            return false;
+        }
+
+        // Now we know our connection points in the direction of the other block
+        else {
+            RailConnection ourConnection = ourConnection$.get();
+            RailConnection[] otherConnections = RailConnectionsHelper.getConnectionsFromState(otherState);
+
+            // We want the connection pointing towards this block. We do not yet care about the plane
+            Optional<RailConnection> success = Arrays.stream(otherConnections)
+                    .filter(c -> c.getFacing() == ourConnection.getFacing())
+                    .filter(c -> c.getSide().getOpposite() == ourConnection.getSide())
+                    .findAny();
+
+            return success.isPresent();
+        }
     }
 }
