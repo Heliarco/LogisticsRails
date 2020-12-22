@@ -1,6 +1,6 @@
 package dk.vertexspace.blocks.rails;
 
-import dk.vertexspace.util.PlayerEntityInteractions;
+import dk.vertexspace.util.PlacementHelpers;
 import dk.vertexspace.voxelshapes.RailStraightShapes;
 import dk.vertexspace.voxelshapes.ShapeBase;
 import net.minecraft.block.*;
@@ -68,7 +68,7 @@ public class RailStraight extends RailBase {
         switch (facing) {
             case UP:
             case DOWN:
-                d = PlayerEntityInteractions.getFirstLookDirExcept(player, Direction.UP, Direction.DOWN);
+                d = PlacementHelpers.getPrimaryLookDirectionExcept(player, Direction.UP, Direction.DOWN);
                 if ( d == Direction.EAST || d == Direction.WEST)
                 {
                     rotated = true;
@@ -76,7 +76,7 @@ public class RailStraight extends RailBase {
                 break;
             case EAST:
             case WEST:
-                d = PlayerEntityInteractions.getFirstLookDirExcept(player, Direction.WEST, Direction.EAST);
+                d = PlacementHelpers.getPrimaryLookDirectionExcept(player, Direction.WEST, Direction.EAST);
                 if ( d == Direction.NORTH || d == Direction.SOUTH )
                 {
                     rotated = true;
@@ -85,7 +85,7 @@ public class RailStraight extends RailBase {
             default: // North south
             //case NORTH:
             //case SOUTH:
-                d = PlayerEntityInteractions.getFirstLookDirExcept(player, Direction.NORTH, Direction.SOUTH);
+                d = PlacementHelpers.getPrimaryLookDirectionExcept(player, Direction.NORTH, Direction.SOUTH);
                 if ( d == Direction.EAST || d == Direction.WEST )
                 {
                     rotated = true;

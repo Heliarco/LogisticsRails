@@ -1,14 +1,19 @@
 package dk.vertexspace.blocks.nodes;
 
 import dk.vertexspace.init.ModTileEntityTypes;
+import dk.vertexspace.voxelshapes.SolidShape;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.Direction;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.shapes.ISelectionContext;
+import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraftforge.common.ToolType;
 
@@ -26,12 +31,6 @@ public class Console extends NodeBase {
     // Here we can calculate the state of the block before ultimate placement
     public BlockState getStateForPlacement(BlockItemUseContext context) {
         return this.getDefaultState().with(HORIZONTAL_FACING, context.getPlacementHorizontalFacing().getOpposite());
-    }
-
-    @Override
-    @SuppressWarnings("deprecation")
-    public boolean isTransparent(BlockState state) {
-        return true;
     }
 
     @Override
@@ -55,14 +54,7 @@ public class Console extends NodeBase {
     }
 
     @Override
-    public boolean hasTileEntity(BlockState state) {
-        return true;
-    }
-
-    @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world) {
         return ModTileEntityTypes.CONSOLE.get().create();
-
     }
-
 }

@@ -1,7 +1,6 @@
 {
   "targetfolder": "../../src/main/resources/assets/vertexspace_logisticsrails/models/block",
   "name" :"node_console",
-  "shapefile": "../../src/main/java/dk/vertexspace/voxelshapes/ConsoleShapes.java",
   "shapenamespace": "dk.vertexspace.voxelshapes",
   "combinations": [
     {

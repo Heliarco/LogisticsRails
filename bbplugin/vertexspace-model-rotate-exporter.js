@@ -38,7 +38,13 @@
 	}
 
 	var exportMaster = function(callback) {
-		var job = readconfig();
+		var job = "";
+		try {
+		    var job = readconfig();
+		}
+		catch(e){
+		    callback();
+		}
 		
 		let shapesnippets = [];
 
@@ -69,6 +75,7 @@
 
 			jobqueue.push(() => { rewindTransformations(combination.transformations);});
 		});
+
 
 		jobqueue.push(() => {
 			writeShapes(shapesnippets,job);
@@ -257,7 +264,10 @@
 	//---- voxelshape
 
 	function writeShapes(shapesnippets,cfg){
-		
+		if(!cfg.shapefile) {
+		    return;
+		}
+
 		var header = `package ${cfg.shapenamespace};
 import net.minecraft.block.Block;
 import net.minecraft.util.math.shapes.IBooleanFunction;

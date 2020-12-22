@@ -104,26 +104,7 @@ public abstract class RailBase extends DirectionalBlock implements RailConnected
 
     protected abstract BlockState rotateOnRightClick(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit);
 
-    @Override
-    @SuppressWarnings("deprecation")
-    public boolean isTransparent(BlockState state) {
-        return true;
-    }
 
-    @Override
-    @SuppressWarnings("deprecation")
-    @Nonnull
-    public BlockState rotate(BlockState state, Rotation rot) {
-         return state.with(FACING, rot.rotate(state.get(FACING)));
-    }
-
-
-    @Override
-    @SuppressWarnings("deprecation")
-    @Nonnull
-    public BlockState mirror(BlockState state, Mirror mirrorIn) {
-        return state.rotate(mirrorIn.toRotation(state.get(FACING)));
-    }
 
     @Override
     @SuppressWarnings("deprecation")
