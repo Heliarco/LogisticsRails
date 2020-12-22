@@ -1,16 +1,21 @@
 package dk.vertexspace.blocks;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.DirectionalBlock;
+import net.minecraft.state.DirectionProperty;
+import net.minecraft.state.StateContainer;
+import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
 
 import javax.annotation.Nonnull;
 
-public class FaceAttached  extends DirectionalBlock {
+public class FaceAttached  extends Block {
     protected FaceAttached(Properties builder) {
         super(builder);
     }
+    public static final DirectionProperty FACING = BlockStateProperties.FACING;
 
     @Override
     @SuppressWarnings("deprecation")
@@ -34,5 +39,10 @@ public class FaceAttached  extends DirectionalBlock {
     }
 
 
+    @Override
+    public void fillStateContainer(StateContainer.Builder<Block, BlockState> builder)
+    {
+        builder.add(FACING);
+    }
 
 }

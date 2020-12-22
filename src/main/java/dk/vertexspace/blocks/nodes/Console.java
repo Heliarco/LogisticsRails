@@ -24,6 +24,7 @@ public class Console extends NodeBase {
 
     public static final DirectionProperty HORIZONTAL_FACING = HorizontalBlock.HORIZONTAL_FACING;
 
+    // Console is unique. It needs to face the floor, so only horizontal facing.
 
     @Nullable
     @Override
@@ -33,24 +34,11 @@ public class Console extends NodeBase {
         return this.getDefaultState().with(HORIZONTAL_FACING, context.getPlacementHorizontalFacing().getOpposite());
     }
 
-    @Override
-    @SuppressWarnings("deprecation")
-    @Nonnull
-    public BlockState mirror(BlockState state, Mirror mirrorIn) {
-        return state.rotate(mirrorIn.toRotation(state.get(HORIZONTAL_FACING)));
-    }
 
     @Override
     public void fillStateContainer(StateContainer.Builder<Block, BlockState> builder)
     {
         builder.add(HORIZONTAL_FACING);
-    }
-
-    @Override
-    @SuppressWarnings("deprecation")
-    @Nonnull
-    public BlockState rotate(BlockState state, Rotation rot) {
-        return state.with(HORIZONTAL_FACING, rot.rotate(state.get(HORIZONTAL_FACING)));
     }
 
     @Override
