@@ -18,41 +18,8 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public class Supplier extends NodeBase {
-    public static final DirectionProperty FACING = BlockStateProperties.FACING;
-    public static final RailRotationProperty ROTATION = RailRotationProperty.create("rotation");
-
-    @Override
-    public void fillStateContainer(StateContainer.Builder<Block, BlockState> builder)
-    {
-        builder.add(FACING);
-        builder.add(ROTATION);
-    }
-
-    @Override
-    @SuppressWarnings("deprecation")
-    @Nonnull
-    public BlockState rotate(BlockState state, Rotation rot) {
-        return state.with(HORIZONTAL_FACING, rot.rotate(state.get(HORIZONTAL_FACING)));
-    }
-
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world) {
         return ModTileEntityTypes.SUPPLIER.get().create();
-
-    }    @Nullable
-    @Override
-    // Called when block is placed.
-    // Here we can calculate the state of the block before ultimate placement
-    public BlockState getStateForPlacement(BlockItemUseContext context) {
-        return this.getDefaultState().with(HORIZONTAL_FACING, context.getPlacementHorizontalFacing().getOpposite());
-    }
-
-
-
-    @Override
-    @SuppressWarnings("deprecation")
-    @Nonnull
-    public BlockState mirror(BlockState state, Mirror mirrorIn) {
-        return state.rotate(mirrorIn.toRotation(state.get(HORIZONTAL_FACING)));
     }
 }

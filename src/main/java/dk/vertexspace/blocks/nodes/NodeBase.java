@@ -8,8 +8,11 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.StateContainer;
 import net.minecraftforge.common.ToolType;
+
+import javax.annotation.Nullable;
 
 public abstract class NodeBase extends FaceAttached implements RailConnected {
     public NodeBase() {
@@ -28,10 +31,16 @@ public abstract class NodeBase extends FaceAttached implements RailConnected {
     public void fillStateContainer(StateContainer.Builder<Block, BlockState> builder)
     {
         super.fillStateContainer(builder);
-        builder.add(FACING);
-        get state for placement here ? Most nodes will be exact copies in state logic
+        builder.add(ROTATION);
     }
 
+    @Nullable
+    @Override
+    // Called when block is placed.
+    // Here we can calculate the state of the block before ultimate placement
+    public BlockState getStateForPlacement(BlockItemUseContext context) {
+        return this.getDefaultState().with(HORIZONTAL_FACING, context.getPlacementHorizontalFacing().getOpposite());
+    }
 
     @Override
     public boolean hasTileEntity(BlockState state) {

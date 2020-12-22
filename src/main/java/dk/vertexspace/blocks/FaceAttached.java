@@ -3,6 +3,7 @@ package dk.vertexspace.blocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.DirectionalBlock;
+import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
@@ -10,6 +11,7 @@ import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 public class FaceAttached  extends Block {
     protected FaceAttached(Properties builder) {
@@ -37,6 +39,18 @@ public class FaceAttached  extends Block {
     public BlockState mirror(BlockState state, Mirror mirrorIn) {
         return state;
     }
+
+    @Nullable
+    @Override
+    // Called when block is placed.
+    // Here we can calculate the state of the block before ultimate placement
+    public BlockState getStateForPlacement(BlockItemUseContext context) {
+        return this.getDefaultState().with(HORIZONTAL_FACING, context.getPlacementHorizontalFacing().getOpposite());
+    }
+
+
+
+
 
 
     @Override
