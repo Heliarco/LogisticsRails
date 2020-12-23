@@ -1,5 +1,6 @@
 package dk.vertexspace.blocks.rails;
 
+import dk.vertexspace.blocks.FaceAttached;
 import dk.vertexspace.blocks.RailConnected;
 import dk.vertexspace.constants.Log;
 import dk.vertexspace.models.RailConnection;
@@ -22,7 +23,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 
-public abstract class RailBase extends DirectionalBlock implements RailConnected {
+public abstract class RailBase extends FaceAttached implements RailConnected {
 
     protected RailBase() {
         super(AbstractBlock.Properties.create(Material.MISCELLANEOUS)
@@ -32,40 +33,10 @@ public abstract class RailBase extends DirectionalBlock implements RailConnected
                 .harvestLevel(1)
                 .harvestTool(ToolType.PICKAXE)
                 .notSolid() // Wont reduce neighbor block vertices
-        );
+        , true);
     }
 
-    @Override
-    @SuppressWarnings("deprecation")
-    public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
-        // Basically copied from wall torch.
-        Direction currentFacing = state.get(FACING);
-        BlockPos attachedToPos = pos.offset(currentFacing.getOpposite());
-        BlockState blockstate = worldIn.getBlockState(attachedToPos);
-        return blockstate.isSolidSide(worldIn, attachedToPos, currentFacing);
-    }
 
-    @Nullable
-    @Override
-    // Called when block is placed.
-    // Here we can calculate the state of the block before ultimate placement
-    public BlockState getStateForPlacement(BlockItemUseContext context) {
-
-        BlockState blockstate = this.getDefaultState();
-        IWorldReader iworldreader = context.getWorld();
-        BlockPos blockpos = context.getPos();
-        Direction[] adirection = context.getNearestLookingDirections();
-
-        for(Direction direction : adirection) {
-                Direction direction1 = direction.getOpposite();
-                blockstate = blockstate.with(FACING, direction1);
-                if (blockstate.isValidPosition(iworldreader, blockpos)) {
-                    return blockstate;
-                }
-        }
-
-        return null;
-    }
 
 
     // Right click basically
@@ -84,7 +55,6 @@ public abstract class RailBase extends DirectionalBlock implements RailConnected
             for(RailConnection r : c) {
                 Log.info(player, r.getName2());
             }
-
 
             return ActionResultType.func_233537_a_(worldIn.isRemote);
         }
@@ -106,23 +76,11 @@ public abstract class RailBase extends DirectionalBlock implements RailConnected
 
 
 
-    @Override
-    @SuppressWarnings("deprecation")
-    // Makes the rail "pop" off if a neighboring attachment point disappears
-    public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
-        return !this.isValidPosition(stateIn, worldIn, currentPos) ? Blocks.AIR.getDefaultState() : super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
-    }
+
 
     @Override
     @SuppressWarnings("deprecation")
     public float getAmbientOcclusionLightValue(BlockState state, IBlockReader worldIn, BlockPos pos) {
         return 1f; // No shadows really its a tiny model
-    }
-
-
-    @Override
-    public void fillStateContainer(StateContainer.Builder<Block, BlockState> builder)
-    {
-        builder.add(FACING);
     }
 }
