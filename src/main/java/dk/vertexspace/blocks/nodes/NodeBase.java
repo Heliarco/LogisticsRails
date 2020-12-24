@@ -2,6 +2,7 @@ package dk.vertexspace.blocks.nodes;
 
 import dk.vertexspace.blocks.FaceAttached;
 import dk.vertexspace.blocks.RailConnected;
+import dk.vertexspace.stateproperties.RailRotation;
 import dk.vertexspace.stateproperties.RailRotationProperty;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
@@ -15,7 +16,7 @@ import net.minecraftforge.common.ToolType;
 import javax.annotation.Nullable;
 
 public abstract class NodeBase extends FaceAttached implements RailConnected {
-    public NodeBase() {
+    protected NodeBase() {
         super(AbstractBlock.Properties.create(Material.MISCELLANEOUS)
                 .hardnessAndResistance(1.0f, 1.0f)
                 .setRequiresTool()
@@ -23,7 +24,7 @@ public abstract class NodeBase extends FaceAttached implements RailConnected {
                 .harvestLevel(1) //
                 .harvestTool(ToolType.PICKAXE)
                 .notSolid() // Wont reduce neighbor block vertices
-        );
+        , false);
     }
     public static final RailRotationProperty ROTATION = RailRotationProperty.create("rotation");
 
@@ -39,7 +40,13 @@ public abstract class NodeBase extends FaceAttached implements RailConnected {
     // Called when block is placed.
     // Here we can calculate the state of the block before ultimate placement
     public BlockState getStateForPlacement(BlockItemUseContext context) {
-        return this.getDefaultState().with(HORIZONTAL_FACING, context.getPlacementHorizontalFacing().getOpposite());
+        BlockState baseState = super.getStateForPlacement(context);
+
+        RailRotation rotation = RailRotation.ROT_0;
+        //get rotation here.
+
+
+        return baseState.with(ROTATION, rotation);
     }
 
     @Override

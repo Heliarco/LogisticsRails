@@ -1,6 +1,8 @@
 package dk.vertexspace.init;
 
 import dk.vertexspace.blocks.nodes.Console;
+import dk.vertexspace.blocks.nodes.Requester;
+import dk.vertexspace.blocks.nodes.Supplier;
 import dk.vertexspace.blocks.rails.*;
 import dk.vertexspace.constants.NameConstants;
 import net.minecraft.block.Block;
@@ -23,8 +25,8 @@ public class ModBlocks {
     public static final RegistryObject<Block> RAIL_BEND_DOWN = BLOCKS.register(NameConstants.RAIL_BEND_DOWN, RailBendDown::new);
 
     public static final RegistryObject<Block> NODE_CONSOLE = BLOCKS.register(NameConstants.NODE_CONSOLE, Console::new);
-    public static final RegistryObject<Block> NODE_SUPPLIER = BLOCKS.register(NameConstants.NODE_SUPPLIER, Console::new);
-    public static final RegistryObject<Block> NODE_REQUESTER = BLOCKS.register(NameConstants.NODE_REQUESTER, Console::new);
+    public static final RegistryObject<Block> NODE_SUPPLIER = BLOCKS.register(NameConstants.NODE_SUPPLIER, Supplier::new);
+    public static final RegistryObject<Block> NODE_REQUESTER = BLOCKS.register(NameConstants.NODE_REQUESTER, Requester::new);
 
 
 

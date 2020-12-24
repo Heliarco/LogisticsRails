@@ -153,19 +153,4 @@ public class RailBendDown extends RailBase {
         }
         return false;
     }
-
-    @Override
-    @SuppressWarnings("deprecation")
-    @Nonnull
-    public BlockState rotate(BlockState state, Rotation rot) {
-        return state.with(ORIENTATION, state.get(ORIENTATION).next());
-    }
-
-    @Override
-    @SuppressWarnings("deprecation")
-    @Nonnull
-    public BlockState mirror(BlockState state, Mirror mirrorIn) {
-        return state.with(ORIENTATION, state.get(ORIENTATION).next().next().next().next().next().next());
-    }
-
 }
