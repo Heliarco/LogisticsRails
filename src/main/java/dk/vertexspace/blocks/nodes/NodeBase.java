@@ -81,13 +81,13 @@ public abstract class NodeBase extends FaceAttached implements RailConnected {
             case NORTH:
                 look = PlacementHelpers.getPrimaryLookDirectionExcept(context.getPlayer(), Direction.NORTH, Direction.SOUTH);
                 switch (look) {
-                    case WEST:
+                    case EAST:
                         rotation = RailRotation.ROT_1;
                         break;
                     case UP:
                         rotation = RailRotation.ROT_2;
                         break;
-                    case EAST:
+                    case WEST:
                         rotation = RailRotation.ROT_3;
                         break;
                 }

@@ -152,8 +152,9 @@ public class RailBendDown extends RailBase {
             }
 
             // Or if a block in the direction of the connection can connect here. We return true.
-            return canConnectTo(ourState, pos, ourConnection.getSide(), worldIn);
-
+            if (canConnectTo(ourState, pos, ourConnection.getSide(), worldIn)) {
+                return true;
+            }
         }
         return false;
     }

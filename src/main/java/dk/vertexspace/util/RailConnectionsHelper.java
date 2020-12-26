@@ -420,6 +420,8 @@ public class RailConnectionsHelper {
             return tSectionConnection.get(facing).get(rotation);
         }
         else {
+            
+
             throw new NotImplementedException("Don't know how to parse " + blockstate.toString() + " yet");
         }
     }
