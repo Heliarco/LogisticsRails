@@ -19,6 +19,9 @@ public class NameConstants {
     public static final String LAPIS_ALLOY_INGOT = "lapis_alloy_ingot";
     public static final String LAPIS_ALLOY_BLEND = "lapis_alloy_blend";
 
+    // Tools
+    public static final String CLAWBAR = "clawbar";
+
     // Block Items
     public static final String RAIL_STRAIGHT = "rail_straight";
     public static final String RAIL_TURN = "rail_turn";

@@ -25,6 +25,9 @@ public class ModItems {
     public static final RegistryObject<Item> LAPIS_ALLOY_INGOT = ITEMS.register(NameConstants.LAPIS_ALLOY_INGOT, ItemBase::new);
     public static final RegistryObject<Item> LAPIS_ALLOY_BLEND = ITEMS.register(NameConstants.LAPIS_ALLOY_BLEND, ItemBase::new);
 
+    public static final RegistryObject<Item> CLAWBAR = ITEMS.register(NameConstants.CLAWBAR, ItemBase::new);
+
+
     // Block Items
     public static final RegistryObject<Item> RAIL_STRAIGHT = ITEMS.register(NameConstants.RAIL_STRAIGHT,
             () -> new BlockItemBase(ModBlocks.RAIL_STRAIGHT.get()));

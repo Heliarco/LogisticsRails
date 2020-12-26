@@ -3,6 +3,7 @@ package dk.vertexspace.blocks.rails;
 import dk.vertexspace.blocks.FaceAttached;
 import dk.vertexspace.blocks.RailConnected;
 import dk.vertexspace.constants.Log;
+import dk.vertexspace.init.ModItems;
 import dk.vertexspace.models.RailConnection;
 import dk.vertexspace.util.RailConnectionsHelper;
 import net.minecraft.block.*;
@@ -44,7 +45,7 @@ public abstract class RailBase extends FaceAttached implements RailConnected {
     @SuppressWarnings("deprecation")
     public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit)
     {
-        if (!player.getHeldItemMainhand().isEmpty()){
+        if (!(player.getHeldItemMainhand().getItem() == ModItems.CLAWBAR.get())){
             return ActionResultType.PASS;
         }
 

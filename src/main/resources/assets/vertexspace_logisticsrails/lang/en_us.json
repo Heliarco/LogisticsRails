@@ -1,11 +1,11 @@
 {
   "item.vertexspace_logisticsrails.claycrete": "Claycrete",
-
   "item.vertexspace_logisticsrails.redstone_alloy_ingot": "Redstone Alloy Ingot",
   "item.vertexspace_logisticsrails.redstone_alloy_blend": "Redstone Alloy Blend",
   "item.vertexspace_logisticsrails.lapis_alloy_ingot": "Lapis Alloy Ingot",
   "item.vertexspace_logisticsrails.lapis_alloy_blend": "Lapis Alloy Blend",
 
+  "item.vertexspace_logisticsrails.clawbar" : "Clawbar",
 
   "itemGroup.vertexspace_logisticsrails_tab"  : "Logistics Rails",
   "block.vertexspace_logisticsrails.rail_straight" : "Rail",

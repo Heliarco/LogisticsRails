@@ -67,7 +67,7 @@ public class FaceAttached  extends Block {
             }
         }
         else {
-            return blockstate.with(FACING,adirection[0]);
+            return blockstate.with(FACING,adirection[0].getOpposite());
         }
         return null;
     }

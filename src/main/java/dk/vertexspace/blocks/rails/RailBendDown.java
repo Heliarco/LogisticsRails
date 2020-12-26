@@ -1,5 +1,6 @@
 package dk.vertexspace.blocks.rails;
 
+import dk.vertexspace.blocks.RailConnected;
 import dk.vertexspace.models.RailConnection;
 import dk.vertexspace.stateproperties.RailBendKind;
 import dk.vertexspace.stateproperties.RailBendKindProperty;
@@ -143,10 +144,13 @@ public class RailBendDown extends RailBase {
             BlockPos attachedToPos = pos.offset(ourConnection.getSide());
             BlockState otherBlock = worldIn.getBlockState(attachedToPos);
 
-            // If a block in the direction of the connection is solid, we return true
-            if (otherBlock.isSolidSide(worldIn, attachedToPos, ourFacing))  {
-                return true;
+            if (! (otherBlock.getBlock() instanceof RailConnected)){
+                // If a block in the direction of the connection is solid, we return true
+                if (otherBlock.isSolidSide(worldIn, attachedToPos, ourConnection.getSide().getOpposite()))  {
+                    return true;
+                }
             }
+
             // Or if a block in the direction of the connection can connect here. We return true.
             return canConnectTo(ourState, pos, ourConnection.getSide(), worldIn);
 
