@@ -3,6 +3,7 @@ package dk.vertexspace.init;
 import dk.vertexspace.blocks.nodes.Console;
 import dk.vertexspace.constants.NameConstants;
 import dk.vertexspace.items.BlockItemBase;
+import dk.vertexspace.items.Clawbar;
 import dk.vertexspace.items.ItemBase;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -25,7 +26,7 @@ public class ModItems {
     public static final RegistryObject<Item> LAPIS_ALLOY_INGOT = ITEMS.register(NameConstants.LAPIS_ALLOY_INGOT, ItemBase::new);
     public static final RegistryObject<Item> LAPIS_ALLOY_BLEND = ITEMS.register(NameConstants.LAPIS_ALLOY_BLEND, ItemBase::new);
 
-    public static final RegistryObject<Item> CLAWBAR = ITEMS.register(NameConstants.CLAWBAR, ItemBase::new);
+    public static final RegistryObject<Item> CLAWBAR = ITEMS.register(NameConstants.CLAWBAR, Clawbar::new);
 
 
     // Block Items
