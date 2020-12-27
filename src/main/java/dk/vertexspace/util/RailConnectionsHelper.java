@@ -1,6 +1,8 @@
 package dk.vertexspace.util;
 
 import dk.vertexspace.blocks.RailConnected;
+import dk.vertexspace.blocks.nodes.Console;
+import dk.vertexspace.blocks.nodes.NodeBase;
 import dk.vertexspace.models.RailConnection;
 import dk.vertexspace.blocks.rails.*;
 import dk.vertexspace.stateproperties.RailBendKind;
@@ -14,6 +16,9 @@ import org.javatuples.Pair;
 
 import java.util.Arrays;
 import java.util.EnumMap;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class RailConnectionsHelper {
 
@@ -23,10 +28,14 @@ public class RailConnectionsHelper {
 
     private static EnumMap<Direction, RailConnection[]> xSectionConnections;
     private static EnumMap<Direction, EnumMap<RailRotation, RailConnection[]>> turnConnections;
-    private static EnumMap<Direction, EnumMap<RailRotation, RailConnection[]>> tSectionConnection;
+    private static EnumMap<Direction, EnumMap<RailRotation, RailConnection[]>> tSectionConnections;
     private static EnumMap<Direction, RailConnection[][]> straightConnection;
     private static EnumMap<RailBendKind, RailConnection[]> bendUpConnections;
     private static EnumMap<RailBendKind, RailConnection[]> bendDownConnections;
+
+    private static EnumMap<Direction, RailConnection[]> consoleConnections;
+    private static EnumMap<Direction, EnumMap<RailRotation, RailConnection[]>> nodeConnections;
+
 
 
     static {
@@ -257,9 +266,9 @@ public class RailConnectionsHelper {
         }
 
         // T section //
-        tSectionConnection = new EnumMap<>(Direction.class);
+        tSectionConnections = new EnumMap<>(Direction.class);
         for (Direction facing: Direction.values()) {
-            tSectionConnection.put(facing, new EnumMap<>(RailRotation.class));
+            tSectionConnections.put(facing, new EnumMap<>(RailRotation.class));
             for(RailRotation rotation: RailRotation.values()) {
 
                 Direction exSide;
@@ -375,11 +384,37 @@ public class RailConnectionsHelper {
                         .map(x -> new RailConnection(facing, x))
                         .toArray(RailConnection[]::new);
 
-                tSectionConnection.get(facing).put(rotation, c);
+                tSectionConnections.get(facing).put(rotation, c);
 
             }
         }
 
+        // Node console //
+        consoleConnections = new EnumMap<>(Direction.class);
+        consoleConnections.put(Direction.WEST, new RailConnection[]{new RailConnection(Direction.UP, Direction.EAST)});
+        consoleConnections.put(Direction.EAST, new RailConnection[]{new RailConnection(Direction.UP, Direction.WEST)});
+        consoleConnections.put(Direction.NORTH, new RailConnection[]{new RailConnection(Direction.UP, Direction.SOUTH)});
+        consoleConnections.put(Direction.SOUTH, new RailConnection[]{new RailConnection(Direction.UP, Direction.NORTH)});
+
+
+        nodeConnections = new EnumMap<>(Direction.class);
+        for(Direction facing: Direction.values()) {
+            nodeConnections.put(facing, new EnumMap<>(RailRotation.class));
+            // We cheat a bit here and rely on the fact that the T-Section lacks a connection in the REVERSE direction of the connection we allow.
+            for(RailRotation rot: RailRotation.values()) {
+                RailConnection[] tSet = tSectionConnections.get(facing).get(rot);
+
+
+                List<Direction> exclusions = Stream.concat(
+                        Arrays.stream(new Direction[] {facing, facing.getOpposite()}),
+                        Arrays.stream(tSet).map(c -> c.getSide()))
+                    .collect(Collectors.toList());
+
+                Direction side = Arrays.stream(Direction.values()).filter(c -> !exclusions.contains(c))
+                        .findAny().orElseThrow(IllegalArgumentException::new);
+                nodeConnections.get(facing).put(rot, new RailConnection[]{new RailConnection(facing, side.getOpposite())});
+            }
+        }
     }
 
 
@@ -417,11 +452,22 @@ public class RailConnectionsHelper {
         else if(block instanceof RailTSection){
             Direction facing = blockstate.get(DirectionalBlock.FACING);
             RailRotation rotation = blockstate.get(RailTurn.ROTATION);
-            return tSectionConnection.get(facing).get(rotation);
+            return tSectionConnections.get(facing).get(rotation);
+        }
+        else if(block instanceof NodeBase){
+
+
+            if (block instanceof Console){
+                Direction facing = blockstate.get(Console.HORIZONTAL_FACING);
+                return consoleConnections.get(facing);
+            }
+            else{
+                Direction facing = blockstate.get(NodeBase.FACING);
+                RailRotation rotation = blockstate.get(NodeBase.ROTATION);
+                return nodeConnections.get(facing).get(rotation);
+            }
         }
         else {
-            
-
             throw new NotImplementedException("Don't know how to parse " + blockstate.toString() + " yet");
         }
     }

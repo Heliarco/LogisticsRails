@@ -49,16 +49,16 @@ public abstract class RailBase extends FaceAttached implements RailConnected {
             return ActionResultType.PASS;
         }
 
-        if(player.isSneaking()){
-
-            RailConnection[] c = RailConnectionsHelper.getConnectionsFromState(state);
-            Log.info(player, state);
-            for(RailConnection r : c) {
-                Log.info(player, r.getName2());
-            }
-
-            return ActionResultType.func_233537_a_(worldIn.isRemote);
-        }
+//        if(player.isSneaking()){
+//
+//            RailConnection[] c = RailConnectionsHelper.getConnectionsFromState(state);
+//            Log.info(player, state);
+//            for(RailConnection r : c) {
+//                Log.info(player, r.getName2());
+//            }
+//
+//            return ActionResultType.func_233537_a_(worldIn.isRemote);
+//        }
 
 
         BlockState newState = this.rotateOnRightClick(state, worldIn, pos, player, handIn, hit);
