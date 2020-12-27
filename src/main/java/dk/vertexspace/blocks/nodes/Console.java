@@ -1,25 +1,18 @@
 package dk.vertexspace.blocks.nodes;
 
 import dk.vertexspace.init.ModTileEntityTypes;
-import dk.vertexspace.voxelshapes.SolidShape;
-import net.minecraft.block.*;
-import net.minecraft.block.material.Material;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.HorizontalBlock;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.Direction;
-import net.minecraft.util.Mirror;
-import net.minecraft.util.Rotation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
-import net.minecraftforge.common.ToolType;
 
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+@SuppressWarnings("java:S110") // We can't really control the inheritance depth here.
 public class Console extends NodeBase {
 
     public static final DirectionProperty HORIZONTAL_FACING = HorizontalBlock.HORIZONTAL_FACING;
