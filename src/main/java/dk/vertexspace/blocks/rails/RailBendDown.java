@@ -12,10 +12,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.StateContainer;
-import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
-import net.minecraft.util.Mirror;
-import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
@@ -23,9 +20,6 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
-import org.javatuples.Pair;
-
-import javax.annotation.Nonnull;
 import java.util.Arrays;
 import java.util.Optional;
 
@@ -100,13 +94,6 @@ public class RailBendDown extends RailBase {
         Optional<RailBendKind> kind = Arrays.stream(RailBendKind.values())
 
                 .filter(bendKind -> isValidPosition(bendKind, worldIn, pos))
-
-                // Filter those that match orientation
-                /*.filter(bendKind -> {
-                    Direction neededFace = primaryPlacementDirection.getOpposite();
-
-                    return bendKind.getDirections().anyMatch(side -> side == neededFace);
-                })*/
                 .findAny();
 
         if (!kind.isPresent()) {
@@ -140,7 +127,6 @@ public class RailBendDown extends RailBase {
         for(RailConnection ourConnection: ourConnections) {
             
             // We have two facings
-            Direction ourFacing = ourConnection.getFacing();
             BlockPos attachedToPos = pos.offset(ourConnection.getSide());
             BlockState otherBlock = worldIn.getBlockState(attachedToPos);
 
