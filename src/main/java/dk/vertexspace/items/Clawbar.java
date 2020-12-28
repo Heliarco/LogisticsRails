@@ -14,11 +14,7 @@ public class Clawbar extends ToolItem {
                 new Item.Properties().group(
                 TabGroups.TAB
         ));
-<<<<<<< HEAD
 
-
-=======
->>>>>>> 80c8d314fc6e3b58295bba7f930fb00f6cdc07d2
     }
 }
 
