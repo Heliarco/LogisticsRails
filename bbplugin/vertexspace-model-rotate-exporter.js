@@ -13,13 +13,24 @@
 		var cfgPath = ModelMeta.save_path.split('.').slice(0, -1).join('.') + '_multiexport.json';
 		let rawdata = fs.readFileSync(cfgPath);
 		let cfg = JSON.parse(rawdata);
+
+
+		let shapefilePath = "";
+		let shapeClassName = "";
+		try {
+		    shapefilePath = path.join(path.dirname(ModelMeta.save_path),cfg.shapefile);
+		    shapeClassName = path.parse(shapefilePath).name;
+		}
+		catch(e) {}
+
 		return  {
 			
 			originalFile : ModelMeta.save_path,
 			projectName : cfg.name,
 
-			shapefile: path.join(path.dirname(ModelMeta.save_path),cfg.shapefile),
-			shapeclass: path.parse(cfg.shapefile).name,
+
+			shapefile: shapefilePath,
+			shapeclass: shapeClassName,
 			shapenamespace: cfg.shapenamespace,
 
 			combinations : cfg.combinations.map(mutDef => {
@@ -43,6 +54,7 @@
 		    job = readconfig();
 		}
 		catch(e){
+		    debugger;
 		    callback();
 		}
 		

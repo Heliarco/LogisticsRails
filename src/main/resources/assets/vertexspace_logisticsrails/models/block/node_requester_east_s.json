@@ -1,0 +1,108 @@
+{
+	"credit": "Made with Blockbench",
+	"texture_size": [64, 64],
+	"textures": {
+		"2": "blocks/logic_requester",
+		"particle": "blocks/texture"
+	},
+	"elements": [
+		{
+			"name": "Body",
+			"from": [0, 0, 0],
+			"to": [12, 16, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [6, 8, 8]},
+			"faces": {
+				"north": {"uv": [4, 7, 8, 10], "rotation": 270, "texture": "#2"},
+				"east": {"uv": [4, 4, 0, 0], "rotation": 270, "texture": "#2"},
+				"south": {"uv": [4, 0, 8, 3], "rotation": 90, "texture": "#2"},
+				"west": {"uv": [4, 4, 0, 8], "rotation": 270, "texture": "#missing"},
+				"up": {"uv": [4, 4, 8, 7], "rotation": 90, "texture": "#2"},
+				"down": {"uv": [4, 4, 8, 7], "rotation": 90, "texture": "#2"}
+			}
+		},
+		{
+			"name": "Topop",
+			"from": [12, 1, 5],
+			"to": [16, 15, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [20, 22, 8]},
+			"faces": {
+				"north": {"uv": [0, 8.5, 3.5, 9.5], "rotation": 270, "texture": "#2"},
+				"east": {"uv": [4, 12.5, 7.5, 15.25], "rotation": 270, "texture": "#2"},
+				"south": {"uv": [11.5, 7.5, 15, 8.5], "rotation": 90, "texture": "#2"},
+				"west": {"uv": [0, 0, 3.5, 1], "rotation": 270, "texture": "#missing"},
+				"up": {"uv": [11.5, 4.75, 14.25, 5.75], "rotation": 90, "texture": "#2"},
+				"down": {"uv": [11.5, 4.75, 14.25, 5.75], "rotation": 90, "texture": "#2"}
+			}
+		},
+		{
+			"from": [12, 8, 3],
+			"to": [14, 14, 12],
+			"rotation": {"angle": 0, "axis": "y", "origin": [20, 16, 4]},
+			"faces": {
+				"north": {"uv": [11.5, 4.25, 13, 4.75], "rotation": 270, "texture": "#2"},
+				"east": {"uv": [10.75, 12.25, 12.25, 14.5], "rotation": 270, "texture": "#2"},
+				"south": {"uv": [0, 0, 1.5, 0.5], "rotation": 90, "texture": "#missing"},
+				"west": {"uv": [0, 0, 1.5, 2.25], "rotation": 270, "texture": "#missing"},
+				"up": {"uv": [0, 0, 2.25, 0.5], "rotation": 90, "texture": "#2"},
+				"down": {"uv": [1.25, 12.25, 3.5, 12.75], "rotation": 90, "texture": "#2"}
+			}
+		},
+		{
+			"from": [0, 0, 0],
+			"to": [16, 16, 16],
+			"faces": {
+				"west": {"uv": [0, 0, 4, 4], "rotation": 270, "texture": "#2"}
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [10, 169, -18],
+			"translation": [0, -0.5, -1.75],
+			"scale": [0.35, 0.35, 0.35]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [0, 164, 0],
+			"translation": [1, 1, -1.25],
+			"scale": [0.35, 0.35, 0.35]
+		},
+		"firstperson_righthand": {
+			"rotation": [14, 142, -3],
+			"translation": [12, -4.5, -13],
+			"scale": [0.6, 0.6, 0.6]
+		},
+		"firstperson_lefthand": {
+			"rotation": [18, 139, 3],
+			"translation": [4.5, -0.5, -6.25],
+			"scale": [0.6, 0.6, 0.6]
+		},
+		"ground": {
+			"translation": [0, 3.75, 0],
+			"scale": [0.4, 0.4, 0.4]
+		},
+		"gui": {
+			"rotation": [27, -135, 0],
+			"translation": [0, 0.75, 0],
+			"scale": [0.69, 0.69, 0.69]
+		},
+		"head": {
+			"translation": [0, 2.75, 0]
+		},
+		"fixed": {
+			"rotation": [-90, 0, 0],
+			"translation": [0, 0, 2.75]
+		}
+	},
+	"groups": [
+		{
+			"name": "Console",
+			"origin": [7, 9, 8],
+			"children": [0, 1, 2]
+		},
+		{
+			"name": "VoxelShapes",
+			"origin": [8, 8, 8],
+			"children": [3]
+		}
+	]
+}
