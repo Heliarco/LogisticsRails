@@ -1,7 +1,5 @@
 package dk.vertexspace.constants;
 import com.google.gson.*;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.entity.player.ClientPlayerEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.text.StringTextComponent;
 import org.apache.logging.log4j.LogManager;

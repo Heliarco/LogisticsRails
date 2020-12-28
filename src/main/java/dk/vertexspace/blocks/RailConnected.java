@@ -1,6 +1,5 @@
 package dk.vertexspace.blocks;
 
-import dk.vertexspace.blocks.rails.RailBase;
 import dk.vertexspace.models.RailConnection;
 import dk.vertexspace.util.RailConnectionsHelper;
 import net.minecraft.block.Block;
@@ -38,14 +37,14 @@ public interface RailConnected {
         }
 
         // We have the two blocks, and we know they are both rails.
-        Optional<RailConnection> ourConnection$ = Arrays.stream(ourConnections).filter(c -> c.getSide() == direction).findAny();
-        if (!ourConnection$.isPresent()) {
+        Optional<RailConnection> ourConnectionStream = Arrays.stream(ourConnections).filter(c -> c.getSide() == direction).findAny();
+        if (!ourConnectionStream.isPresent()) {
             return false;
         }
 
         // Now we know our connection points in the direction of the other block
         else {
-            RailConnection ourConnection = ourConnection$.get();
+            RailConnection ourConnection = ourConnectionStream.get();
             RailConnection[] otherConnections = RailConnectionsHelper.getConnectionsFromState(otherState);
 
             // We want the connection pointing towards this block. We do not yet care about the plane

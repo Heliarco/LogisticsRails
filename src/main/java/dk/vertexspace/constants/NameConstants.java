@@ -1,11 +1,5 @@
 package dk.vertexspace.constants;
 
-import dk.vertexspace.init.ModBlocks;
-import dk.vertexspace.items.BlockItemBase;
-import dk.vertexspace.items.ItemBase;
-import net.minecraft.item.Item;
-import net.minecraftforge.fml.RegistryObject;
-
 public class NameConstants {
     private NameConstants(){}
     public static final String MOD_ID = "vertexspace_logisticsrails";
