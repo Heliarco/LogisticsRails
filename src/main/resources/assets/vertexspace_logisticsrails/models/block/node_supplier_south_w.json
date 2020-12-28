@@ -2,8 +2,8 @@
 	"credit": "Made with Blockbench",
 	"texture_size": [64, 64],
 	"textures": {
-		"2": "blocks/logic_supplier",
-		"particle": "blocks/texture"
+		"2": "vertexspace_logisticsrails:blocks/logic_supplier",
+		"particle": "vertexspace_logisticsrails:blocks/texture"
 	},
 	"elements": [
 		{
@@ -26,7 +26,7 @@
 			"to": [11, 15, 16],
 			"rotation": {"angle": 0, "axis": "y", "origin": [8, 22, 20]},
 			"faces": {
-				"north": {"uv": [0, 0, 3.5, 1], "rotation": 270, "texture": "#missing"},
+				"north": {"uv": [0, 0, 3.5, 1], "rotation": 270, "texture": "#2"},
 				"east": {"uv": [0, 8.5, 3.5, 9.5], "rotation": 270, "texture": "#2"},
 				"south": {"uv": [4, 12.5, 7.5, 15.25], "rotation": 270, "texture": "#2"},
 				"west": {"uv": [11.5, 7.5, 15, 8.5], "rotation": 90, "texture": "#2"},
@@ -39,7 +39,7 @@
 			"to": [13, 8, 14],
 			"rotation": {"angle": 0, "axis": "y", "origin": [12, 10, 20]},
 			"faces": {
-				"north": {"uv": [0, 0, 1.5, 2.25], "rotation": 270, "texture": "#missing"},
+				"north": {"uv": [0, 0, 1.5, 2.25], "rotation": 270, "texture": "#2"},
 				"east": {"uv": [12.25, 12.25, 13.75, 12.75], "rotation": 270, "texture": "#2"},
 				"south": {"uv": [12.25, 12.25, 13.75, 14.5], "rotation": 270, "texture": "#2"},
 				"west": {"uv": [0, 0, 1.5, 0.5], "rotation": 90, "texture": "#2"},
