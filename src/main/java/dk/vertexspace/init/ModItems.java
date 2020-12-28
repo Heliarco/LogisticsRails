@@ -1,11 +1,10 @@
 package dk.vertexspace.init;
 
-import dk.vertexspace.blocks.nodes.Console;
 import dk.vertexspace.constants.NameConstants;
 import dk.vertexspace.items.BlockItemBase;
 import dk.vertexspace.items.Clawbar;
 import dk.vertexspace.items.ItemBase;
-import net.minecraft.block.Block;
+import dk.vertexspace.items.Railometer;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -13,6 +12,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 import static dk.vertexspace.constants.NameConstants.MOD_ID;
 
+@SuppressWarnings("unused")
 public class ModItems {
 
     private ModItems(){}
@@ -27,6 +27,7 @@ public class ModItems {
     public static final RegistryObject<Item> LAPIS_ALLOY_BLEND = ITEMS.register(NameConstants.LAPIS_ALLOY_BLEND, ItemBase::new);
 
     public static final RegistryObject<Item> CLAWBAR = ITEMS.register(NameConstants.CLAWBAR, Clawbar::new);
+    public static final RegistryObject<Item> RAILOMETER = ITEMS.register(NameConstants.RAILOMETER, Railometer::new);
 
 
     // Block Items

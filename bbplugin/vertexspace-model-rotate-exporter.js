@@ -40,7 +40,7 @@
 	var exportMaster = function(callback) {
 		var job = "";
 		try {
-		    var job = readconfig();
+		    job = readconfig();
 		}
 		catch(e){
 		    callback();

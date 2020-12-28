@@ -3,7 +3,6 @@ package dk.vertexspace.tileentities;
 import dk.vertexspace.init.ModTileEntityTypes;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityType;
 
 public class RequesterTileEntity extends TileEntity implements ITickableTileEntity {
     public RequesterTileEntity() {
@@ -12,6 +11,6 @@ public class RequesterTileEntity extends TileEntity implements ITickableTileEnti
 
     @Override
     public void tick() {
-
+        // Fill this bad boy in later <#
     }
 }

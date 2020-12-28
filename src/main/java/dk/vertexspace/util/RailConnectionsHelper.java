@@ -1,5 +1,6 @@
 package dk.vertexspace.util;
 
+import dk.vertexspace.blocks.FaceAttached;
 import dk.vertexspace.blocks.RailConnected;
 import dk.vertexspace.blocks.nodes.Console;
 import dk.vertexspace.blocks.nodes.NodeBase;
@@ -407,7 +408,7 @@ public class RailConnectionsHelper {
 
                 List<Direction> exclusions = Stream.concat(
                         Arrays.stream(new Direction[] {facing, facing.getOpposite()}),
-                        Arrays.stream(tSet).map(c -> c.getSide()))
+                        Arrays.stream(tSet).map(RailConnection::getSide))
                     .collect(Collectors.toList());
 
                 Direction side = Arrays.stream(Direction.values()).filter(c -> !exclusions.contains(c))
@@ -462,7 +463,7 @@ public class RailConnectionsHelper {
                 return consoleConnections.get(facing);
             }
             else{
-                Direction facing = blockstate.get(NodeBase.FACING);
+                Direction facing = blockstate.get(FaceAttached.FACING);
                 RailRotation rotation = blockstate.get(NodeBase.ROTATION);
                 return nodeConnections.get(facing).get(rotation);
             }

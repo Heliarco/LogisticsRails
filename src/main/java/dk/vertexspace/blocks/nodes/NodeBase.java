@@ -62,6 +62,9 @@ public abstract class NodeBase extends FaceAttached implements RailConnected {
                     case NORTH:
                         rotation = RailRotation.ROT_3;
                         break;
+                    default:
+                        rotation = RailRotation.ROT_0;
+                        break;
                 }
                 break;
             case DOWN:
@@ -75,6 +78,9 @@ public abstract class NodeBase extends FaceAttached implements RailConnected {
                         break;
                     case SOUTH:
                         rotation = RailRotation.ROT_3;
+                        break;
+                    default:
+                        rotation = RailRotation.ROT_0;
                         break;
                 }
                 break;
@@ -90,6 +96,9 @@ public abstract class NodeBase extends FaceAttached implements RailConnected {
                     case WEST:
                         rotation = RailRotation.ROT_3;
                         break;
+                    default:
+                        rotation = RailRotation.ROT_0;
+                        break;
                 }
                 break;
             case SOUTH:
@@ -103,6 +112,9 @@ public abstract class NodeBase extends FaceAttached implements RailConnected {
                         break;
                     case EAST:
                         rotation = RailRotation.ROT_3;
+                        break;
+                    default:
+                        rotation = RailRotation.ROT_0;
                         break;
                 }
                 break;
@@ -118,6 +130,9 @@ public abstract class NodeBase extends FaceAttached implements RailConnected {
                     case NORTH:
                         rotation = RailRotation.ROT_3;
                         break;
+                    default:
+                        rotation = RailRotation.ROT_0;
+                        break;
                 }
                 break;
             case WEST:
@@ -131,6 +146,9 @@ public abstract class NodeBase extends FaceAttached implements RailConnected {
                         break;
                     case SOUTH:
                         rotation = RailRotation.ROT_3;
+                        break;
+                    default:
+                        rotation = RailRotation.ROT_0;
                         break;
                 }
                 break;

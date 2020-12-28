@@ -15,6 +15,7 @@ public class NameConstants {
 
     // Tools
     public static final String CLAWBAR = "clawbar";
+    public static final String RAILOMETER = "railometer";
 
     // Block Items
     public static final String RAIL_STRAIGHT = "rail_straight";

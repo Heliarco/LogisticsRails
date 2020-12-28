@@ -12,6 +12,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 import static dk.vertexspace.constants.NameConstants.MOD_ID;
 
+@SuppressWarnings("unused")
 public class ModBlocks {
 
     private ModBlocks(){}

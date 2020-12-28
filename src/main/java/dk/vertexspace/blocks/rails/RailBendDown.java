@@ -125,16 +125,16 @@ public class RailBendDown extends RailBase {
         RailConnection[] ourConnections = RailConnectionsHelper.getConnectionsFromState(ourState);
 
         for(RailConnection ourConnection: ourConnections) {
-            
+
             // We have two facings
             BlockPos attachedToPos = pos.offset(ourConnection.getSide());
             BlockState otherBlock = worldIn.getBlockState(attachedToPos);
 
-            if (! (otherBlock.getBlock() instanceof RailConnected)){
-                // If a block in the direction of the connection is solid, we return true
-                if (otherBlock.isSolidSide(worldIn, attachedToPos, ourConnection.getSide().getOpposite()))  {
-                    return true;
-                }
+
+            // If a block in the direction of the connection is solid, we return true, as long as it isn't a rail connected block
+            if (!(otherBlock.getBlock() instanceof RailConnected) &&
+                    otherBlock.isSolidSide(worldIn, attachedToPos, ourConnection.getSide().getOpposite())) {
+                return true;
             }
 
             // Or if a block in the direction of the connection can connect here. We return true.
@@ -142,6 +142,7 @@ public class RailBendDown extends RailBase {
                 return true;
             }
         }
+        // After trying both connection points, and not finding an anchor point, we return false.
         return false;
     }
 }

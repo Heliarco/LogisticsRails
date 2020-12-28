@@ -11,7 +11,10 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 import static dk.vertexspace.constants.NameConstants.MOD_ID;
 
+@SuppressWarnings("unused")
 public class ModTileEntityTypes {
+
+    private ModTileEntityTypes() {}
     public static final DeferredRegister<TileEntityType<?>> TILE_ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.TILE_ENTITIES, MOD_ID);
 
     //https://www.youtube.com/watch?v=bUxuf8wKvPE&list=PLaevjqy3XufYmltqo0eQusnkKVN7MpTUe&index=19

@@ -15,8 +15,8 @@ import net.minecraft.world.World;
 
 import java.util.HashSet;
 
-public class DebugInspector extends ToolItem {
-    public DebugInspector() {
+public class Railometer extends ToolItem {
+    public Railometer() {
         super(-2f, -1, ItemTier.IRON, new HashSet<Block>(),
                 new Item.Properties().group(TabGroups.TAB));
     }
