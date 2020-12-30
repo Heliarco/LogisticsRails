@@ -1,8 +1,11 @@
 package dk.vertexspace.items;
 
+import dk.vertexspace.LogisticsRails;
+import dk.vertexspace.constants.Log;
 import dk.vertexspace.constants.TabGroups;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.client.gui.IngameGui;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.command.arguments.NBTCompoundTagArgument;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -76,6 +79,7 @@ public class Railometer extends ToolItem {
         RailometerMode mode = getModeFromItemStack(context.getItem());
         switch (mode) {
             case CONNECTION_LIST:
+                Log.info("CONNECTION_LIST");
                 break;
             default:
 
@@ -126,10 +130,7 @@ public class Railometer extends ToolItem {
             itemstack.setTag(tag);
         }
 
-
         return ActionResult.func_233538_a_(itemstack, worldIn.isRemote());
     }
-
-
 }
 
