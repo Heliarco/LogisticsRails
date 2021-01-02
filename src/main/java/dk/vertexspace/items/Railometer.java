@@ -79,19 +79,13 @@ public class Railometer extends ToolItem {
         RailometerMode mode = getModeFromItemStack(context.getItem());
         switch (mode) {
             case CONNECTION_LIST:
-                Log.info("CONNECTION_LIST");
+                showConnections(ItemUseContext context);
                 break;
             default:
 
                 break;
         }
-
-
-
-
         return ActionResultType.func_233537_a_(worldIn.isRemote);
-
-
     }
 
     private RailometerMode getModeFromItemStack(ItemStack stack){

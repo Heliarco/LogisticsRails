@@ -12,9 +12,11 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.DirectionalBlock;
 import net.minecraft.util.Direction;
+import net.minecraft.util.math.BlockPos;
 import org.apache.commons.lang3.NotImplementedException;
 import org.javatuples.Pair;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.List;
@@ -418,9 +420,6 @@ public class RailConnectionsHelper {
         }
     }
 
-
-
-
     public static RailConnection[] getConnectionsFromState(BlockState blockstate){
         Block block = blockstate.getBlock();
 
@@ -471,5 +470,24 @@ public class RailConnectionsHelper {
         else {
             throw new NotImplementedException("Don't know how to parse " + blockstate.toString() + " yet");
         }
+    }
+
+    public static RailConnection[] getConnectedConnections(BlockState blockstate, BlockPos blockPos) {
+        Block block = blockstate.getBlock();
+        if (! (block instanceof RailConnected)) {
+            return new RailConnection[0];
+        }
+        RailConnection[] potentialConnections = getConnectionsFromState(blockstate);
+
+        List<RailConnection> r = new ArrayList<>(potentialConnections.length);
+
+        for (RailConnection c : potentialConnections) {
+            
+        }
+
+
+
+
+
     }
 }
