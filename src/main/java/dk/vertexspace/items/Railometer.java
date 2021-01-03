@@ -3,6 +3,8 @@ package dk.vertexspace.items;
 import dk.vertexspace.LogisticsRails;
 import dk.vertexspace.constants.Log;
 import dk.vertexspace.constants.TabGroups;
+import dk.vertexspace.models.RailConnection;
+import dk.vertexspace.util.RailConnectionsHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.gui.IngameGui;
@@ -79,7 +81,7 @@ public class Railometer extends ToolItem {
         RailometerMode mode = getModeFromItemStack(context.getItem());
         switch (mode) {
             case CONNECTION_LIST:
-                showConnections(ItemUseContext context);
+                showConnections(context);
                 break;
             default:
 
@@ -87,6 +89,25 @@ public class Railometer extends ToolItem {
         }
         return ActionResultType.func_233537_a_(worldIn.isRemote);
     }
+
+
+    private void showConnections(ItemUseContext context) {
+
+        BlockState state = context.getWorld().getBlockState(context.getPos());
+        RailConnection[] possibleConnections = RailConnectionsHelper.getConnectedConnections(state);
+        RailConnection[] connections = RailConnectionsHelper.getConnectedConnections(state, context.getPos(),context.getWorld());
+
+        PlayerEntity p = context.getPlayer();
+        Log.chat(p, "Connections");
+        for (RailConnection c : possibleConnections) {
+            if (connections.)
+
+            Log.chat(p,c.getName2());
+        }
+
+    }
+
+
 
     private RailometerMode getModeFromItemStack(ItemStack stack){
         CompoundNBT tag = stack.getOrCreateTag();

@@ -13,6 +13,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.DirectionalBlock;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IWorldReader;
 import org.apache.commons.lang3.NotImplementedException;
 import org.javatuples.Pair;
 
@@ -29,15 +30,15 @@ public class RailConnectionsHelper {
 
     private static String enumErrorText = "Non existing enum value?";
 
-    private static EnumMap<Direction, RailConnection[]> xSectionConnections;
-    private static EnumMap<Direction, EnumMap<RailRotation, RailConnection[]>> turnConnections;
-    private static EnumMap<Direction, EnumMap<RailRotation, RailConnection[]>> tSectionConnections;
-    private static EnumMap<Direction, RailConnection[][]> straightConnection;
-    private static EnumMap<RailBendKind, RailConnection[]> bendUpConnections;
-    private static EnumMap<RailBendKind, RailConnection[]> bendDownConnections;
+    private static EnumMap<Direction, List<RailConnection>> xSectionConnections;
+    private static EnumMap<Direction, EnumMap<RailRotation, List<RailConnection>>> turnConnections;
+    private static EnumMap<Direction, EnumMap<RailRotation, List<RailConnection>>> tSectionConnections;
+    private static EnumMap<Direction, List<List<RailConnection>>> straightConnection;
+    private static EnumMap<RailBendKind, List<RailConnection>> bendUpConnections;
+    private static EnumMap<RailBendKind, List<RailConnection>> bendDownConnections;
 
-    private static EnumMap<Direction, RailConnection[]> consoleConnections;
-    private static EnumMap<Direction, EnumMap<RailRotation, RailConnection[]>> nodeConnections;
+    private static EnumMap<Direction, List<RailConnection>> consoleConnections;
+    private static EnumMap<Direction, EnumMap<RailRotation, List<RailConnection>>> nodeConnections;
 
 
 
@@ -46,10 +47,10 @@ public class RailConnectionsHelper {
         xSectionConnections = new EnumMap<>(Direction.class);
         for(Direction facing: Direction.values()) {
 
-            RailConnection[] c = Arrays.stream(Direction.values())
+            List<RailConnection> c = Arrays.stream(Direction.values())
                     .filter(d -> d != facing && d != facing.getOpposite())
                     .map(orientation ->  new RailConnection(facing, orientation))
-                    .toArray(RailConnection[]::new);
+                    .collect(Collectors.toList());
 
             xSectionConnections.put(facing, c);
         }
@@ -61,7 +62,6 @@ public class RailConnectionsHelper {
             turnConnections.put(facing, new EnumMap<>(RailRotation.class));
             for(RailRotation rotation: RailRotation.values()) {
 
-                RailConnection[] c = new RailConnection[2];
 
                 Direction side1;
                 Direction side2;
@@ -202,8 +202,10 @@ public class RailConnectionsHelper {
                         throw new NullPointerException(enumErrorText);
                 }
 
-                c[0] = new RailConnection(facing, side1);
-                c[1] = new RailConnection(facing, side2);
+                List<RailConnection> c = new ArrayList(2);
+
+                c.add(new RailConnection(facing, side1));
+                c.add(new RailConnection(facing, side2));
 
                 turnConnections.get(facing).put(rotation, c);
             }
@@ -420,7 +422,7 @@ public class RailConnectionsHelper {
         }
     }
 
-    public static RailConnection[] getConnectionsFromState(BlockState blockstate){
+    public static List<RailConnection> getConnectionsFromState(BlockState blockstate){
         Block block = blockstate.getBlock();
 
         if (!(block instanceof RailConnected)){
@@ -472,7 +474,7 @@ public class RailConnectionsHelper {
         }
     }
 
-    public static RailConnection[] getConnectedConnections(BlockState blockstate, BlockPos blockPos) {
+    public static RailConnection[] getConnectedConnections(BlockState blockstate, BlockPos blockPos, IWorldReader world) {
         Block block = blockstate.getBlock();
         if (! (block instanceof RailConnected)) {
             return new RailConnection[0];
@@ -482,12 +484,19 @@ public class RailConnectionsHelper {
         List<RailConnection> r = new ArrayList<>(potentialConnections.length);
 
         for (RailConnection c : potentialConnections) {
-            
+            Direction side = c.getSide();
+            boolean connected = false;
+            RailConnection[] otherConnections = getConnectionsFromState(world.getBlockState(blockPos.offset(side)));
+            for (RailConnection otherConnection : otherConnections) {
+                if (otherConnection.getSide().getOpposite() == side && otherConnection.getFacing() == c.getFacing())
+                {
+                    connected = true;
+                }
+            }
+            if (connected) {
+                r.add(c);
+            }
         }
-
-
-
-
-
+        return r.toArray(new RailConnection[0]);
     }
 }
