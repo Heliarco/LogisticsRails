@@ -94,6 +94,9 @@ public class Railometer extends ToolItem {
     private void showConnections(ItemUseContext context) {
 
         BlockState state = context.getWorld().getBlockState(context.getPos());
+
+        Log.info("debug");
+
         List<RailConnection> possibleConnections = RailConnectionsHelper.getConnectionsFromState(state);
         List<RailConnection> connections = RailConnectionsHelper.getConnectedConnections(state, context.getPos(),context.getWorld());
 

@@ -19,7 +19,7 @@ public class Log {
         String r = serialize(logObjects);
 
         // Log to chat
-        if(!p.getEntityWorld().isRemote) {
+        if(p.getEntityWorld().isRemote) {
             p.sendMessage(new StringTextComponent(r), p.getUniqueID());
         }
     }

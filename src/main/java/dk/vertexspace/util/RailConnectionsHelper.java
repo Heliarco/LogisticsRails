@@ -217,33 +217,34 @@ public class RailConnectionsHelper {
             // 0 is non rotated, 1 is rotated
 
             List<List<RailConnection>> a = new ArrayList<>(2);
-            a.set(0, new ArrayList<>(2));
-            a.set(1, new ArrayList<>(2));
+
+            a.add(new ArrayList<>(2));
+            a.add(new ArrayList<>(2));
 
             straightConnection.put(facing, a);
 
             switch(facing){
                 case UP:
                 case DOWN:
-                    a.get(0).set(0, new RailConnection(facing, Direction.NORTH));
-                    a.get(0).set(1, new RailConnection(facing, Direction.SOUTH));
-                    a.get(1).set(0, new RailConnection(facing, Direction.EAST));
-                    a.get(1).set(1, new RailConnection(facing, Direction.WEST));
+                    a.get(0).add(new RailConnection(facing, Direction.NORTH));
+                    a.get(0).add(new RailConnection(facing, Direction.SOUTH));
+                    a.get(1).add(new RailConnection(facing, Direction.EAST));
+                    a.get(1).add(new RailConnection(facing, Direction.WEST));
                     break;
 
                 case EAST:
                 case WEST:
-                    a.get(0).set(0, new RailConnection(facing, Direction.UP));
-                    a.get(0).set(1, new RailConnection(facing, Direction.DOWN));
-                    a.get(1).set(0, new RailConnection(facing, Direction.NORTH));
-                    a.get(1).set(1, new RailConnection(facing, Direction.SOUTH));
+                    a.get(0).add(new RailConnection(facing, Direction.UP));
+                    a.get(0).add(new RailConnection(facing, Direction.DOWN));
+                    a.get(1).add(new RailConnection(facing, Direction.NORTH));
+                    a.get(1).add(new RailConnection(facing, Direction.SOUTH));
                     break;
 
                 default: // North south
-                    a.get(0).set(0, new RailConnection(facing, Direction.UP));
-                    a.get(0).set(1, new RailConnection(facing, Direction.DOWN));
-                    a.get(1).set(0, new RailConnection(facing, Direction.EAST));
-                    a.get(1).set(1, new RailConnection(facing, Direction.WEST));
+                    a.get(0).add(new RailConnection(facing, Direction.UP));
+                    a.get(0).add(new RailConnection(facing, Direction.DOWN));
+                    a.get(1).add(new RailConnection(facing, Direction.EAST));
+                    a.get(1).add(new RailConnection(facing, Direction.WEST));
                     break;
             }
         }
