@@ -216,34 +216,34 @@ public class RailConnectionsHelper {
         for (Direction facing: Direction.values()){
             // 0 is non rotated, 1 is rotated
 
-            RailConnection[][] a = new RailConnection[2][];
-            a[0] = new RailConnection[2];
-            a[1] = new RailConnection[2];
+            List<List<RailConnection>> a = new ArrayList<>(2);
+            a.set(0, new ArrayList<>(2));
+            a.set(1, new ArrayList<>(2));
 
             straightConnection.put(facing, a);
 
             switch(facing){
                 case UP:
                 case DOWN:
-                    a[0][0] = new RailConnection(facing, Direction.NORTH);
-                    a[0][1] = new RailConnection(facing, Direction.SOUTH);
-                    a[1][0] = new RailConnection(facing, Direction.EAST);
-                    a[1][1] = new RailConnection(facing, Direction.WEST);
+                    a.get(0).set(0, new RailConnection(facing, Direction.NORTH));
+                    a.get(0).set(1, new RailConnection(facing, Direction.SOUTH));
+                    a.get(1).set(0, new RailConnection(facing, Direction.EAST));
+                    a.get(1).set(1, new RailConnection(facing, Direction.WEST));
                     break;
 
                 case EAST:
                 case WEST:
-                    a[0][0] = new RailConnection(facing, Direction.UP);
-                    a[0][1] = new RailConnection(facing, Direction.DOWN);
-                    a[1][0] = new RailConnection(facing, Direction.NORTH);
-                    a[1][1] = new RailConnection(facing, Direction.SOUTH);
+                    a.get(0).set(0, new RailConnection(facing, Direction.UP));
+                    a.get(0).set(1, new RailConnection(facing, Direction.DOWN));
+                    a.get(1).set(0, new RailConnection(facing, Direction.NORTH));
+                    a.get(1).set(1, new RailConnection(facing, Direction.SOUTH));
                     break;
 
                 default: // North south
-                    a[0][0] = new RailConnection(facing, Direction.UP);
-                    a[0][1] = new RailConnection(facing, Direction.DOWN);
-                    a[1][0] = new RailConnection(facing, Direction.EAST);
-                    a[1][1] = new RailConnection(facing, Direction.WEST);
+                    a.get(0).set(0, new RailConnection(facing, Direction.UP));
+                    a.get(0).set(1, new RailConnection(facing, Direction.DOWN));
+                    a.get(1).set(0, new RailConnection(facing, Direction.EAST));
+                    a.get(1).set(1, new RailConnection(facing, Direction.WEST));
                     break;
             }
         }
@@ -252,10 +252,10 @@ public class RailConnectionsHelper {
         bendUpConnections = new EnumMap<>(RailBendKind.class);
         for (RailBendKind orientation: RailBendKind.values()) {
 
-            RailConnection[] r = new RailConnection[2];
+            List<RailConnection> r = new ArrayList<>(2);
             Pair<Direction,Direction> ds = orientation.getDirections();
-            r[0] = new RailConnection(ds.getValue0(), ds.getValue1());
-            r[1] = new RailConnection(ds.getValue1(), ds.getValue0());
+            r.add(new RailConnection(ds.getValue0(), ds.getValue1()));
+            r.add(new RailConnection(ds.getValue1(), ds.getValue0()));
             bendUpConnections.put(orientation, r);
         }
 
