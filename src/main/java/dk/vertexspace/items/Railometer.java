@@ -35,6 +35,8 @@ public class Railometer extends ToolItem {
                 new Item.Properties().group(TabGroups.TAB));
     }
     private static final String MODE_TAG = "mode";
+    private static final String CHECKMARK = TextFormatting.GREEN + String.valueOf(Character.toChars(Integer.parseInt("2713", 16)));
+    private static final String CROSS =     TextFormatting.RED +   String.valueOf(Character.toChars(Integer.parseInt("2717", 16)));
 
     private enum RailometerMode {
         CONNECTION_LIST(0, "List connections"),
@@ -135,7 +137,6 @@ public class Railometer extends ToolItem {
                 showConnections(context);
                 break;
             default:
-
                 break;
         }
     }
@@ -149,15 +150,14 @@ public class Railometer extends ToolItem {
         PlayerEntity p = context.getPlayer();
         Log.chat(p, "Connections");
         for (RailConnection c : possibleConnections) {
+            String sideDesc =  " " + TextFormatting.WHITE+ c.getSide() + " - " + c.getFacing().getName2().toUpperCase().substring(0, 1);
             if (connections.contains(c)) {
-                Log.chat(p,TextFormatting.GREEN + "✓ " + TextFormatting.WHITE+ c.getName2());
+                Log.chat(p, CHECKMARK + sideDesc);
             }
             else {
-                Log.chat(p, TextFormatting.RED + "✗ " + TextFormatting.WHITE + c.getName2());
+                Log.chat(p, CROSS + sideDesc);
             }
-
         }
-
     }
 
     private RailometerMode getModeFromItemStack(ItemStack stack){
