@@ -71,7 +71,7 @@ public class Railometer extends ToolItem {
 
         World worldIn = context.getWorld();
         // We really only care about the logical client thread here. We just want to display data to the user
-        if (worldIn.isRemote()) {
+        if (!worldIn.isRemote()) {
             return ActionResultType.func_233537_a_(worldIn.isRemote);
         }
 
@@ -94,15 +94,19 @@ public class Railometer extends ToolItem {
     private void showConnections(ItemUseContext context) {
 
         BlockState state = context.getWorld().getBlockState(context.getPos());
-        RailConnection[] possibleConnections = RailConnectionsHelper.getConnectedConnections(state);
-        RailConnection[] connections = RailConnectionsHelper.getConnectedConnections(state, context.getPos(),context.getWorld());
+        List<RailConnection> possibleConnections = RailConnectionsHelper.getConnectionsFromState(state);
+        List<RailConnection> connections = RailConnectionsHelper.getConnectedConnections(state, context.getPos(),context.getWorld());
 
         PlayerEntity p = context.getPlayer();
         Log.chat(p, "Connections");
         for (RailConnection c : possibleConnections) {
-            if (connections.)
+            if (connections.contains(c)) {
+                Log.chat(p,c.getName2() + " connected");
+            }
+            else {
+                Log.chat(p,c.getName2() + " not connected");
+            }
 
-            Log.chat(p,c.getName2());
         }
 
     }

@@ -21,6 +21,7 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 @SuppressWarnings("java:S110") // We can't really control the inheritance depth here.
@@ -122,7 +123,7 @@ public class RailBendDown extends RailBase {
 
         BlockState ourState = this.getDefaultState().with(ORIENTATION, orientation);
 
-        RailConnection[] ourConnections = RailConnectionsHelper.getConnectionsFromState(ourState);
+        List<RailConnection> ourConnections = RailConnectionsHelper.getConnectionsFromState(ourState);
 
         for(RailConnection ourConnection: ourConnections) {
 
