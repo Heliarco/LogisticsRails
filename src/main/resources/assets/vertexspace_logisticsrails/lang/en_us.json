@@ -6,6 +6,7 @@
   "item.vertexspace_logisticsrails.lapis_alloy_blend": "Lapis Alloy Blend",
 
   "item.vertexspace_logisticsrails.clawbar" : "Clawbar",
+  "item.vertexspace_logisticsrails.railometer" : "Rail-o-meter",
 
   "itemGroup.vertexspace_logisticsrails_tab"  : "Logistics Rails",
   "block.vertexspace_logisticsrails.rail_straight" : "Rail",

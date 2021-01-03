@@ -11,36 +11,40 @@ import static dk.vertexspace.constants.NameConstants.MOD_ID;
 public class Log {
     private Log(){}
 
-    public static void info(PlayerEntity p, Object ... logObjects )
+
+
+
+    public static void chat(PlayerEntity p, Object ... logObjects )
     {
-        String r = info(logObjects);
+        String r = serialize(logObjects);
 
         // Log to chat
-        if(!p.getEntityWorld().isRemote) {
+        if(p.getEntityWorld().isRemote) {
             p.sendMessage(new StringTextComponent(r), p.getUniqueID());
         }
     }
 
-
-    public static String info(Object... logObjects) {
-        // Log to local log
+    private static String serialize(Object ... logObjects) {
         String [] args = new String[logObjects.length];
-        for(int i = 0; i < logObjects.length; i++){
+        for(int i = 0; i < logObjects.length; i++) {
             args[i] = logObjects[i].toString();
         }
-
-        Logger logger = LogManager.getLogger(MOD_ID);
-
-        String json;
         if ( logObjects.length == 1){
-            json = asString(logObjects[0]);
+            return asString(logObjects[0]);
         }
         else {
-            json = asString(args);
+            return asString(args);
         }
-        logger.info(json);
-        return json;
     }
+
+    public static void info(Object... logObjects) {
+
+        Logger logger = LogManager.getLogger(MOD_ID);
+        String r = serialize(logObjects);
+
+        logger.info(r);
+    }
+
     private static String asString(Object o){
         final Gson gson = new GsonBuilder().disableHtmlEscaping().setPrettyPrinting().create();
 
