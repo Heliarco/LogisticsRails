@@ -8,7 +8,6 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorldReader;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 

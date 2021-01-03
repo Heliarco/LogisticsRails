@@ -202,7 +202,7 @@ public class RailConnectionsHelper {
                         throw new NullPointerException(enumErrorText);
                 }
 
-                List<RailConnection> c = new ArrayList(2);
+                List<RailConnection> c = new ArrayList<>(2);
 
                 c.add(new RailConnection(facing, side1));
                 c.add(new RailConnection(facing, side2));

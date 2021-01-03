@@ -1,22 +1,15 @@
 package dk.vertexspace.items;
 
-import dk.vertexspace.LogisticsRails;
 import dk.vertexspace.blocks.RailConnected;
 import dk.vertexspace.constants.Log;
 import dk.vertexspace.constants.TabGroups;
 import dk.vertexspace.models.RailConnection;
 import dk.vertexspace.util.RailConnectionsHelper;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.client.gui.IngameGui;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.command.arguments.NBTCompoundTagArgument;
-import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.FishingBobberEntity;
 import net.minecraft.item.*;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.stats.Stats;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
@@ -25,13 +18,12 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
-import javax.xml.soap.Text;
 import java.util.HashSet;
 import java.util.List;
 
 public class Railometer extends ToolItem {
     public Railometer() {
-        super(-2f, -1, ItemTier.IRON, new HashSet<Block>(),
+        super(-2f, -1, ItemTier.IRON, new HashSet<>(),
                 new Item.Properties().group(TabGroups.TAB));
     }
     private static final String MODE_TAG = "mode";
@@ -57,11 +49,11 @@ public class Railometer extends ToolItem {
         }
         public static RailometerMode fromValue(int value)
         {
-            RailometerMode[] As = RailometerMode.values();
-            for(int i = 0; i < As.length; i++)
+            RailometerMode[] values = RailometerMode.values();
+            for(int i = 0; i < values.length; i++)
             {
-                if(As[i].getValue() == value)
-                    return As[i];
+                if(values[i].getValue() == value)
+                    return values[i];
             }
             return CONNECTION_LIST;
         }
@@ -176,4 +168,3 @@ public class Railometer extends ToolItem {
         super.addInformation(stack, worldIn, tooltip, flagIn);
     }
 }
-
