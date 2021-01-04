@@ -1,0 +1,10 @@
+@SubscribeEvent
+public void onItemPickup(ItemPickupEvent event) {
+  Item item = event.getStack().getItem();
+  if (item.isIn(Items.INGOTS_IRON)) {
+    PlayerEntity player = event.getPlayer();
+    ResourceLocation[] recipes = new ResourceLocation[1];
+    recipes[0] = new ResourceLocation("your_mod_id:mod_item_id");
+    player.unlockRecipes(recipes);
+  }
+}

@@ -4,7 +4,15 @@
   "item.vertexspace_logisticsrails.redstone_alloy_blend": "Redstone Alloy Blend",
   "item.vertexspace_logisticsrails.lapis_alloy_ingot": "Lapis Alloy Ingot",
   "item.vertexspace_logisticsrails.lapis_alloy_blend": "Lapis Alloy Blend",
-  "item.vertexspace_logisticsrails.diamond_nugget": "Diamond nugget",
+  "item.vertexspace_logisticsrails.diamond_nugget": "Diamond Nugget",
+
+  "item.vertexspace_logisticsrails.bot_core" :  "Bot Core",
+  "item.vertexspace_logisticsrails.bot_core_assembly" : "Bot Core Assembly",
+  "item.vertexspace_logisticsrails.console_core" :  "Console Core",
+  "item.vertexspace_logisticsrails.console_core_assembly",
+  "item.vertexspace_logisticsrails.machine_core",
+  "item.vertexspace_logisticsrails.machine_core_assembly"
+
 
   "item.vertexspace_logisticsrails.clawbar" : "Clawbar",
   "item.vertexspace_logisticsrails.railometer" : "Rail-o-meter",

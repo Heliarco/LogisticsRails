@@ -1,2 +1,0 @@
- Logger logger = LogManager.getLogger(MOD_ID);
-        logger.log(Level.DEBUG, slotIn);
