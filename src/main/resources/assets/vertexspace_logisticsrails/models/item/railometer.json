@@ -2,15 +2,7 @@
   "parent": "item/handheld",
   "textures": {
     "layer0": "vertexspace_logisticsrails:items/railometer"
-  },
-  "overrides": [
-    {
-      "predicate": {
-        "Damage": 0, "mode": 1
-      },
-      "model": "vertexspace_logisticsrails:item/clawbar"
-    }
-  ]
+  }
 }
 
 

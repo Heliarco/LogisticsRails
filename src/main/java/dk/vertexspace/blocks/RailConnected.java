@@ -8,11 +8,11 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorldReader;
 
-import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 public interface RailConnected {
-    default RailConnection[] getRailConnections(BlockState state){
+    default List<RailConnection> getRailConnections(BlockState state){
         return RailConnectionsHelper.getConnectionsFromState(state);
     }
 
@@ -30,14 +30,14 @@ public interface RailConnected {
         BlockState otherState = worldIn.getBlockState(otherPos);
         Block otherBlock = otherState.getBlock();
 
-        RailConnection[] ourConnections = RailConnectionsHelper.getConnectionsFromState(ourState);
+        List<RailConnection> ourConnections = RailConnectionsHelper.getConnectionsFromState(ourState);
 
         if ( !(otherBlock instanceof RailConnected) || !(ourBlock instanceof RailConnected)) {
             return false;
         }
 
         // We have the two blocks, and we know they are both rails.
-        Optional<RailConnection> ourConnectionStream = Arrays.stream(ourConnections).filter(c -> c.getSide() == direction).findAny();
+        Optional<RailConnection> ourConnectionStream = ourConnections.stream().filter(c -> c.getSide() == direction).findAny();
         if (!ourConnectionStream.isPresent()) {
             return false;
         }
@@ -45,10 +45,10 @@ public interface RailConnected {
         // Now we know our connection points in the direction of the other block
         else {
             RailConnection ourConnection = ourConnectionStream.get();
-            RailConnection[] otherConnections = RailConnectionsHelper.getConnectionsFromState(otherState);
+            List<RailConnection> otherConnections = RailConnectionsHelper.getConnectionsFromState(otherState);
 
             // We want the connection pointing towards this block. We do not yet care about the plane
-            Optional<RailConnection> success = Arrays.stream(otherConnections)
+            Optional<RailConnection> success = otherConnections.stream()
                     .filter(c -> c.getFacing() == ourConnection.getFacing())
                     .filter(c -> c.getSide().getOpposite() == ourConnection.getSide())
                     .findAny();

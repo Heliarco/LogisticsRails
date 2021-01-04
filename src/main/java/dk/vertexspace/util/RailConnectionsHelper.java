@@ -12,9 +12,12 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.DirectionalBlock;
 import net.minecraft.util.Direction;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IWorldReader;
 import org.apache.commons.lang3.NotImplementedException;
 import org.javatuples.Pair;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.List;
@@ -27,15 +30,15 @@ public class RailConnectionsHelper {
 
     private static String enumErrorText = "Non existing enum value?";
 
-    private static EnumMap<Direction, RailConnection[]> xSectionConnections;
-    private static EnumMap<Direction, EnumMap<RailRotation, RailConnection[]>> turnConnections;
-    private static EnumMap<Direction, EnumMap<RailRotation, RailConnection[]>> tSectionConnections;
-    private static EnumMap<Direction, RailConnection[][]> straightConnection;
-    private static EnumMap<RailBendKind, RailConnection[]> bendUpConnections;
-    private static EnumMap<RailBendKind, RailConnection[]> bendDownConnections;
+    private static EnumMap<Direction, List<RailConnection>> xSectionConnections;
+    private static EnumMap<Direction, EnumMap<RailRotation, List<RailConnection>>> turnConnections;
+    private static EnumMap<Direction, EnumMap<RailRotation, List<RailConnection>>> tSectionConnections;
+    private static EnumMap<Direction, List<List<RailConnection>>> straightConnection;
+    private static EnumMap<RailBendKind, List<RailConnection>> bendUpConnections;
+    private static EnumMap<RailBendKind, List<RailConnection>> bendDownConnections;
 
-    private static EnumMap<Direction, RailConnection[]> consoleConnections;
-    private static EnumMap<Direction, EnumMap<RailRotation, RailConnection[]>> nodeConnections;
+    private static EnumMap<Direction, List<RailConnection>> consoleConnections;
+    private static EnumMap<Direction, EnumMap<RailRotation, List<RailConnection>>> nodeConnections;
 
 
 
@@ -44,10 +47,10 @@ public class RailConnectionsHelper {
         xSectionConnections = new EnumMap<>(Direction.class);
         for(Direction facing: Direction.values()) {
 
-            RailConnection[] c = Arrays.stream(Direction.values())
+            List<RailConnection> c = Arrays.stream(Direction.values())
                     .filter(d -> d != facing && d != facing.getOpposite())
                     .map(orientation ->  new RailConnection(facing, orientation))
-                    .toArray(RailConnection[]::new);
+                    .collect(Collectors.toList());
 
             xSectionConnections.put(facing, c);
         }
@@ -59,7 +62,6 @@ public class RailConnectionsHelper {
             turnConnections.put(facing, new EnumMap<>(RailRotation.class));
             for(RailRotation rotation: RailRotation.values()) {
 
-                RailConnection[] c = new RailConnection[2];
 
                 Direction side1;
                 Direction side2;
@@ -200,8 +202,10 @@ public class RailConnectionsHelper {
                         throw new NullPointerException(enumErrorText);
                 }
 
-                c[0] = new RailConnection(facing, side1);
-                c[1] = new RailConnection(facing, side2);
+                List<RailConnection> c = new ArrayList<>(2);
+
+                c.add(new RailConnection(facing, side1));
+                c.add(new RailConnection(facing, side2));
 
                 turnConnections.get(facing).put(rotation, c);
             }
@@ -212,34 +216,35 @@ public class RailConnectionsHelper {
         for (Direction facing: Direction.values()){
             // 0 is non rotated, 1 is rotated
 
-            RailConnection[][] a = new RailConnection[2][];
-            a[0] = new RailConnection[2];
-            a[1] = new RailConnection[2];
+            List<List<RailConnection>> a = new ArrayList<>(2);
+
+            a.add(new ArrayList<>(2));
+            a.add(new ArrayList<>(2));
 
             straightConnection.put(facing, a);
 
             switch(facing){
                 case UP:
                 case DOWN:
-                    a[0][0] = new RailConnection(facing, Direction.NORTH);
-                    a[0][1] = new RailConnection(facing, Direction.SOUTH);
-                    a[1][0] = new RailConnection(facing, Direction.EAST);
-                    a[1][1] = new RailConnection(facing, Direction.WEST);
+                    a.get(0).add(new RailConnection(facing, Direction.NORTH));
+                    a.get(0).add(new RailConnection(facing, Direction.SOUTH));
+                    a.get(1).add(new RailConnection(facing, Direction.EAST));
+                    a.get(1).add(new RailConnection(facing, Direction.WEST));
                     break;
 
                 case EAST:
                 case WEST:
-                    a[0][0] = new RailConnection(facing, Direction.UP);
-                    a[0][1] = new RailConnection(facing, Direction.DOWN);
-                    a[1][0] = new RailConnection(facing, Direction.NORTH);
-                    a[1][1] = new RailConnection(facing, Direction.SOUTH);
+                    a.get(0).add(new RailConnection(facing, Direction.UP));
+                    a.get(0).add(new RailConnection(facing, Direction.DOWN));
+                    a.get(1).add(new RailConnection(facing, Direction.NORTH));
+                    a.get(1).add(new RailConnection(facing, Direction.SOUTH));
                     break;
 
                 default: // North south
-                    a[0][0] = new RailConnection(facing, Direction.UP);
-                    a[0][1] = new RailConnection(facing, Direction.DOWN);
-                    a[1][0] = new RailConnection(facing, Direction.EAST);
-                    a[1][1] = new RailConnection(facing, Direction.WEST);
+                    a.get(0).add(new RailConnection(facing, Direction.UP));
+                    a.get(0).add(new RailConnection(facing, Direction.DOWN));
+                    a.get(1).add(new RailConnection(facing, Direction.EAST));
+                    a.get(1).add(new RailConnection(facing, Direction.WEST));
                     break;
             }
         }
@@ -248,21 +253,22 @@ public class RailConnectionsHelper {
         bendUpConnections = new EnumMap<>(RailBendKind.class);
         for (RailBendKind orientation: RailBendKind.values()) {
 
-            RailConnection[] r = new RailConnection[2];
+            List<RailConnection> r = new ArrayList<>(2);
             Pair<Direction,Direction> ds = orientation.getDirections();
-            r[0] = new RailConnection(ds.getValue0(), ds.getValue1());
-            r[1] = new RailConnection(ds.getValue1(), ds.getValue0());
+            r.add(new RailConnection(ds.getValue0(), ds.getValue1()));
+            r.add(new RailConnection(ds.getValue1(), ds.getValue0()));
             bendUpConnections.put(orientation, r);
         }
 
         // Bend down //
         bendDownConnections = new EnumMap<>(RailBendKind.class);
         for (RailBendKind orientation: RailBendKind.values()) {
-            RailConnection[] r = new RailConnection[2];
+
+            List<RailConnection> r = new ArrayList<>(2);
             Pair<Direction,Direction> ds = orientation.getDirections();
 
-            r[0] = new RailConnection(ds.getValue0(), ds.getValue1().getOpposite());
-            r[1] = new RailConnection(ds.getValue1(), ds.getValue0().getOpposite());
+            r.add(new RailConnection(ds.getValue0(), ds.getValue1().getOpposite()));
+            r.add(new RailConnection(ds.getValue1(), ds.getValue0().getOpposite()));
             bendDownConnections.put(orientation, r);
         }
 
@@ -378,54 +384,49 @@ public class RailConnectionsHelper {
                         throw new NullPointerException(enumErrorText);
                 }
 
-                RailConnection[] c = Arrays.stream(Direction.values()).filter(
+                List<RailConnection> c = Arrays.stream(Direction.values()).filter(
                         x -> x != facing &&
                              x != facing.getOpposite() &&
                              x != exSide)
                         .map(x -> new RailConnection(facing, x))
-                        .toArray(RailConnection[]::new);
+                        .collect(Collectors.toList());
 
                 tSectionConnections.get(facing).put(rotation, c);
-
             }
         }
 
         // Node console //
         consoleConnections = new EnumMap<>(Direction.class);
-        consoleConnections.put(Direction.WEST, new RailConnection[]{new RailConnection(Direction.UP, Direction.EAST)});
-        consoleConnections.put(Direction.EAST, new RailConnection[]{new RailConnection(Direction.UP, Direction.WEST)});
-        consoleConnections.put(Direction.NORTH, new RailConnection[]{new RailConnection(Direction.UP, Direction.SOUTH)});
-        consoleConnections.put(Direction.SOUTH, new RailConnection[]{new RailConnection(Direction.UP, Direction.NORTH)});
+        consoleConnections.put(Direction.WEST, Arrays.asList(new RailConnection(Direction.UP, Direction.EAST)));
+        consoleConnections.put(Direction.EAST, Arrays.asList(new RailConnection(Direction.UP, Direction.WEST)));
+        consoleConnections.put(Direction.NORTH, Arrays.asList(new RailConnection(Direction.UP, Direction.SOUTH)));
+        consoleConnections.put(Direction.SOUTH, Arrays.asList(new RailConnection(Direction.UP, Direction.NORTH)));
 
-
+        // Other nodes //
         nodeConnections = new EnumMap<>(Direction.class);
         for(Direction facing: Direction.values()) {
             nodeConnections.put(facing, new EnumMap<>(RailRotation.class));
             // We cheat a bit here and rely on the fact that the T-Section lacks a connection in the REVERSE direction of the connection we allow.
             for(RailRotation rot: RailRotation.values()) {
-                RailConnection[] tSet = tSectionConnections.get(facing).get(rot);
-
+                List<RailConnection> tSet = tSectionConnections.get(facing).get(rot);
 
                 List<Direction> exclusions = Stream.concat(
                         Arrays.stream(new Direction[] {facing, facing.getOpposite()}),
-                        Arrays.stream(tSet).map(RailConnection::getSide))
+                        tSet.stream().map(RailConnection::getSide))
                     .collect(Collectors.toList());
 
                 Direction side = Arrays.stream(Direction.values()).filter(c -> !exclusions.contains(c))
                         .findAny().orElseThrow(IllegalArgumentException::new);
-                nodeConnections.get(facing).put(rot, new RailConnection[]{new RailConnection(facing, side.getOpposite())});
+                nodeConnections.get(facing).put(rot, Arrays.asList(new RailConnection(facing, side.getOpposite())));
             }
         }
     }
 
-
-
-
-    public static RailConnection[] getConnectionsFromState(BlockState blockstate){
+    public static List<RailConnection> getConnectionsFromState(BlockState blockstate){
         Block block = blockstate.getBlock();
 
         if (!(block instanceof RailConnected)){
-            return new RailConnection[0];
+            return new ArrayList<>(0);
         }
 
         if (block instanceof RailXSection) {
@@ -440,7 +441,7 @@ public class RailConnectionsHelper {
         else if(block instanceof RailStraight) {
             Direction facing = blockstate.get(DirectionalBlock.FACING);
             boolean rotated = blockstate.get(RailStraight.ROTATED);
-            return straightConnection.get(facing)[rotated ? 1 : 0];
+            return straightConnection.get(facing).get(rotated ? 1 : 0);
         }
         else if(block instanceof RailBendDown){
             RailBendKind orientation = blockstate.get(RailBendDown.ORIENTATION);
@@ -471,5 +472,31 @@ public class RailConnectionsHelper {
         else {
             throw new NotImplementedException("Don't know how to parse " + blockstate.toString() + " yet");
         }
+    }
+
+    public static List<RailConnection> getConnectedConnections(BlockState blockstate, BlockPos blockPos, IWorldReader world) {
+        Block block = blockstate.getBlock();
+        if (! (block instanceof RailConnected)) {
+            return new ArrayList<>(0);
+        }
+        List<RailConnection> potentialConnections = getConnectionsFromState(blockstate);
+
+        List<RailConnection> r = new ArrayList<>(potentialConnections.size());
+
+        for (RailConnection c : potentialConnections) {
+            Direction side = c.getSide();
+            boolean connected = false;
+            List<RailConnection> otherConnections = getConnectionsFromState(world.getBlockState(blockPos.offset(side)));
+            for (RailConnection otherConnection : otherConnections) {
+                if (otherConnection.getSide().getOpposite() == side && otherConnection.getFacing() == c.getFacing())
+                {
+                    connected = true;
+                }
+            }
+            if (connected) {
+                r.add(c);
+            }
+        }
+        return r;
     }
 }

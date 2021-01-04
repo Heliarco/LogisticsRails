@@ -3,5 +3,8 @@ package dk.vertexspace.models;
 import net.minecraft.util.math.BlockPos;
 
 public class RailNetwork {
-    public BlockPos controller;
+    private BlockPos controller;
+    public BlockPos getController() {
+        return this.controller;
+    }
 }
