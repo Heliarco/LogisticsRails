@@ -25,6 +25,7 @@ public class ModItems {
     public static final RegistryObject<Item> REDSTONE_ALLOY_BLEND = ITEMS.register(NameConstants.REDSTONE_ALLOY_BLEND, ItemBase::new);
     public static final RegistryObject<Item> LAPIS_ALLOY_INGOT = ITEMS.register(NameConstants.LAPIS_ALLOY_INGOT, ItemBase::new);
     public static final RegistryObject<Item> LAPIS_ALLOY_BLEND = ITEMS.register(NameConstants.LAPIS_ALLOY_BLEND, ItemBase::new);
+    public static final RegistryObject<Item> DIAMOND_NUGGET = ITEMS.register(NameConstants.DIAMOND_NUGGET, ItemBase::new);
 
     public static final RegistryObject<Item> CLAWBAR = ITEMS.register(NameConstants.CLAWBAR, Clawbar::new);
     public static final RegistryObject<Item> RAILOMETER = ITEMS.register(NameConstants.RAILOMETER, Railometer::new);

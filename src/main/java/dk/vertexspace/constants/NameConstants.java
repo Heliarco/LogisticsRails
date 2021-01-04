@@ -12,6 +12,7 @@ public class NameConstants {
     public static final String REDSTONE_ALLOY_BLEND = "redstone_alloy_blend";
     public static final String LAPIS_ALLOY_INGOT = "lapis_alloy_ingot";
     public static final String LAPIS_ALLOY_BLEND = "lapis_alloy_blend";
+    public static final String DIAMOND_NUGGET = "diamond_nugget";
 
     // Tools
     public static final String CLAWBAR = "clawbar";
