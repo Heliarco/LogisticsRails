@@ -9,9 +9,9 @@
   "item.vertexspace_logisticsrails.bot_core" :  "Bot Core",
   "item.vertexspace_logisticsrails.bot_core_assembly" : "Bot Core Assembly",
   "item.vertexspace_logisticsrails.console_core" :  "Console Core",
-  "item.vertexspace_logisticsrails.console_core_assembly",
-  "item.vertexspace_logisticsrails.machine_core",
-  "item.vertexspace_logisticsrails.machine_core_assembly"
+  "item.vertexspace_logisticsrails.console_core_assembly" :  "Console Core Assembly",
+  "item.vertexspace_logisticsrails.machine_core" :  "Machine Core",
+  "item.vertexspace_logisticsrails.machine_core_assembly" : "Machine Core Assembly",
 
 
   "item.vertexspace_logisticsrails.clawbar" : "Clawbar",
@@ -26,5 +26,19 @@
   "block.vertexspace_logisticsrails.rail_bend_down" : "Rail (Down)",
   "block.vertexspace_logisticsrails.node_console" : "Logistics Console",
   "block.vertexspace_logisticsrails.node_requester" : "Logistics Requester",
-  "block.vertexspace_logisticsrails.node_supplier" : "Logistics Supplier"
+  "block.vertexspace_logisticsrails.node_supplier" : "Logistics Supplier",
+
+
+
+  "advancement.vertexspace_logisticsrails.root": "Welcome to Logistics rails",
+  "advancement.vertexspace_logisticsrails.root.description" : "Transporting items, fluid and energy via robots on rails.",
+
+  "advancement.vertexspace_logisticsrails.claycrete": "Is it clay? Is it concrete?... Yes.",
+  "advancement.vertexspace_logisticsrails.claycrete.description" : "Craft a bit of claycrete. You are going to need it.",
+
+  "advancement.vertexspace_logisticsrails.claycrete": "Is it clay? Is it concrete?... Yes.",
+  "advancement.vertexspace_logisticsrails.claycrete.description" : "Craft a bit of claycrete. You are going to need it.",
+
+  "advancement.vertexspace_logisticsrails.claycrete": "Is it clay? Is it concrete?... Yes.",
+  "advancement.vertexspace_logisticsrails.claycrete.description" : "Craft a bit of claycrete. You are going to need it."
 }

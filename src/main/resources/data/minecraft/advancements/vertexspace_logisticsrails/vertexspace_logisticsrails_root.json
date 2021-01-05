@@ -1,0 +1,45 @@
+{
+  "display": {
+    "icon": {
+      "item": "vertexspace_logisticsrails:railometer"
+    },
+    "title": {
+      "translate": "advancement.vertexspace_logisticsrails.root"
+    },
+    "description": {
+      "translate": "advancement.vertexspace_logisticsrails.root.description"
+    },
+    "background": "vertexspace_logisticsrails:textures/gui/advancements/backgrounds/background.png",
+    "show_toast": true,
+    "announce_to_chat": false
+  },
+  "rewards": {
+    "recipes": [
+      "vertexspace_logisticsrails:redstone_alloy_blend",
+      "vertexspace_logisticsrails:redstone_alloy_ingot",
+      "vertexspace_logisticsrails:lapis_alloy_blend",
+      "vertexspace_logisticsrails:lapis_alloy_ingot",
+      "vertexspace_logisticsrails:claycrete",
+      "vertexspace_logisticsrails:diamond_nugget"
+    ]
+  },
+
+  "criteria": {
+    "crafting_table": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:crafting_table"
+          }
+        ]
+      }
+    }
+  },
+
+  "requirements": [
+    [
+      "crafting_table"
+    ]
+  ]
+}

@@ -1,0 +1,15 @@
+"rewards": {
+    "experience": 1000
+  },
+
+
+
+  "example": {
+        "trigger": "minecraft:location",
+        "conditions": {
+          "location": {
+            "dimension": "minecraft:overworld"
+
+          }
+        }
+      },
