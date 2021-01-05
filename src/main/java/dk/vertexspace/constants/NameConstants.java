@@ -30,5 +30,10 @@ public class NameConstants {
     public static final String NODE_SUPPLIER = "node_supplier";
     public static final String NODE_REQUESTER = "node_requester";
 
-
+    public static final String BOT_CORE = "bot_core";
+    public static final String BOT_CORE_ASSEMBLY = "bot_core_assembly";
+    public static final String MACHINE_CORE = "machine_core";
+    public static final String MACHINE_CORE_ASSEMBLY = "machine_core_assembly";
+    public static final String CONSOLE_CORE = "console_core";
+    public static final String CONSOLE_CORE_ASSEMBLY = "console_core_assembly";
 }

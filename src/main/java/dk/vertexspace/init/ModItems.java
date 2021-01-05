@@ -27,6 +27,14 @@ public class ModItems {
     public static final RegistryObject<Item> LAPIS_ALLOY_BLEND = ITEMS.register(NameConstants.LAPIS_ALLOY_BLEND, ItemBase::new);
     public static final RegistryObject<Item> DIAMOND_NUGGET = ITEMS.register(NameConstants.DIAMOND_NUGGET, ItemBase::new);
 
+    public static final RegistryObject<Item> BOT_CORE = ITEMS.register(NameConstants.BOT_CORE, ItemBase::new);
+    public static final RegistryObject<Item> BOT_CORE_ASSEMBLY = ITEMS.register(NameConstants.BOT_CORE_ASSEMBLY, ItemBase::new);
+    public static final RegistryObject<Item> MACHINE_CORE = ITEMS.register(NameConstants.MACHINE_CORE, ItemBase::new);
+    public static final RegistryObject<Item> MACHINE_CORE_ASSEMBLY = ITEMS.register(NameConstants.MACHINE_CORE_ASSEMBLY, ItemBase::new);
+    public static final RegistryObject<Item> CONSOLE_CORE = ITEMS.register(NameConstants.CONSOLE_CORE, ItemBase::new);
+    public static final RegistryObject<Item> CONSOLE_CORE_ASSEMBLY = ITEMS.register(NameConstants.CONSOLE_CORE_ASSEMBLY, ItemBase::new);
+
+
     public static final RegistryObject<Item> CLAWBAR = ITEMS.register(NameConstants.CLAWBAR, Clawbar::new);
     public static final RegistryObject<Item> RAILOMETER = ITEMS.register(NameConstants.RAILOMETER, Railometer::new);
 
