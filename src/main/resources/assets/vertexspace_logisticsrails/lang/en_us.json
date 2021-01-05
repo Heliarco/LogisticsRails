@@ -31,15 +31,18 @@
 
 
   "advancement.vertexspace_logisticsrails.root": "Welcome to Logistics rails",
-  "advancement.vertexspace_logisticsrails.root.description" : "Transporting items, fluid and energy via robots on rails.",
+  "advancement.vertexspace_logisticsrails.root.description" : "Transporting items, fluid and energy via robots on rails",
 
-  "advancement.vertexspace_logisticsrails.redstone_alloy": "Something to transfer logistics signals with.",
-  "advancement.vertexspace_logisticsrails.redstone_alloy.description" : "Smelt up some red alloy.",
+  "advancement.vertexspace_logisticsrails.redstone_alloy": "Get a bar of red alloy",
+  "advancement.vertexspace_logisticsrails.redstone_alloy.description" : "Have we seen this before somewhere?",
 
-  "advancement.vertexspace_logisticsrails.lapis_alloy": "Logistics bots are made of gold, lapis and willing suspension of disbelief.",
-  "advancement.vertexspace_logisticsrails.lapis_alloy.description" : "Mix it, smelt it!",
+  "advancement.vertexspace_logisticsrails.lapis_alloy": "Lapis metal for the masses",
+  "advancement.vertexspace_logisticsrails.lapis_alloy.description" : "Logistics bots are made of gold, lapis and willing suspension of disbelief",
 
-  "advancement.vertexspace_logisticsrails.claycrete": "Is it clay? Is it concrete?... Yes.",
-  "advancement.vertexspace_logisticsrails.claycrete.description" : "Craft a bit of claycrete. You are going to need it."
+  "advancement.vertexspace_logisticsrails.claycrete": "Is it clay? Is it concrete?... Yes",
+  "advancement.vertexspace_logisticsrails.claycrete.description" : "Craft a bit of claycrete. You are going to need it",
+
+  "advancement.vertexspace_logisticsrails.diamond_nugget": "Diamond nuggets",
+  "advancement.vertexspace_logisticsrails.diamond_nugget.description" : "Nine nuggets can make one diamond in one month! (So make one!)"
 
 }

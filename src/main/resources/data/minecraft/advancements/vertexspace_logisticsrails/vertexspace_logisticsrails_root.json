@@ -11,7 +11,8 @@
     },
     "background": "vertexspace_logisticsrails:textures/gui/advancements/backgrounds/background.png",
     "show_toast": true,
-    "announce_to_chat": false
+    "announce_to_chat": false,
+    "frame" : "challenge"
   },
   "rewards": {
     "recipes": [
