@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:vertexspace_logisticsrails/vertexspace_logisticsrails_root",
+  "display": {
+    "icon": {
+      "item": "vertexspace_logisticsrails:lapis_alloy_ingot"
+    },
+    "title": {
+      "translate": "advancement.vertexspace_logisticsrails.lapis_alloy"
+    },
+    "description": {
+      "translate": "advancement.vertexspace_logisticsrails.lapis_alloy.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "get_item": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:ingots/lapis_alloy"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "get_item"
+    ]
+  ]
+}
