@@ -608,8 +608,8 @@
 			"scale": [0.4, 0.4, 0.4]
 		},
 		"gui": {
-			"rotation": [90, 0, 0],
-			"translation": [-0.25, 0, 0],
+			"rotation": [74, -45, 30],
+			"translation": [-2, 3.5, 0],
 			"scale": [0.74, 0.74, 0.74]
 		},
 		"fixed": {
