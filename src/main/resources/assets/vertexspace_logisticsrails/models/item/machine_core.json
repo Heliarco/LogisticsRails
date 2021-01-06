@@ -1,0 +1,8 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "vertexspace_logisticsrails:items/machine_core"
+  }
+}
+
+
