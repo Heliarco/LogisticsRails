@@ -22,7 +22,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "forge:ingots/bot_core"
+            "item": "vertexspace_logisticsrails:bot_core"
           }
         ]
       }

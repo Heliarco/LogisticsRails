@@ -1,27 +1,30 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "x x",
-    "yly",
-    "z z"
+    "lil",
+    "rcr",
+    "lil"
   ],
   "key": {
-    "x": {
+    "g" : {
+      "tag" : "forge:glass"
+    },
+    "i": {
       "tag": "forge:ingots/iron"
     },
-    "y": {
+    "r": {
       "tag": "forge:ingots/red_alloy"
 
     },
-    "z" : {
-      "item": "vertexspace_logisticsrails:claycrete"
+    "c" : {
+      "item": "vertexspace_logisticsrails:machine_core"
     },
     "l" : {
       "tag": "forge:ingots/lapis_alloy"
     }
   },
   "result": {
-    "item": "vertexspace_logisticsrails:rail_straight",
-    "count": 32
+    "item": "vertexspace_logisticsrails:node_supplier",
+    "count": 1
   }
 }

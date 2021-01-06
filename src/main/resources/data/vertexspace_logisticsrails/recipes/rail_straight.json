@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "pattern": [
     "x x",
-    "yly",
+    "y y",
     "z z"
   ],
   "key": {
@@ -15,9 +15,6 @@
     },
     "z" : {
       "item": "vertexspace_logisticsrails:claycrete"
-    },
-    "l" : {
-     "tag": "forge:ingots/lapis_alloy"
     }
   },
   "result": {
