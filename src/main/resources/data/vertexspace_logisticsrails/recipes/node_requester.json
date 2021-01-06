@@ -6,9 +6,6 @@
     "lil"
   ],
   "key": {
-    "g" : {
-      "tag" : "forge:glass"
-    },
     "i": {
       "tag": "forge:ingots/iron"
     },
@@ -24,7 +21,7 @@
     }
   },
   "result": {
-    "item": "vertexspace_logisticsrails:node_supplier",
+    "item": "vertexspace_logisticsrails:node_requester",
     "count": 1
   }
 }

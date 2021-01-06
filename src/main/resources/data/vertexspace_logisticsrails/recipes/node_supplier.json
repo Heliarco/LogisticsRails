@@ -6,9 +6,6 @@
     "lrl"
   ],
   "key": {
-    "g" : {
-      "tag" : "forge:glass"
-    },
     "i": {
       "tag": "forge:ingots/iron"
     },

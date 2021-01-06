@@ -1,10 +1,16 @@
 {
   "parent": "minecraft:vertexspace_logisticsrails/vertexspace_logisticsrails_lapis_alloy",
-
+  "rewards": {
+    "recipes": [
+      "vertexspace_logisticsrails:node_supplier",
+      "vertexspace_logisticsrails:node_requester"
+    ]
+  },
   "display": {
     "icon": {
       "item": "vertexspace_logisticsrails:machine_core"
     },
+
     "title": {
       "translate": "advancement.vertexspace_logisticsrails.machine_core"
     },

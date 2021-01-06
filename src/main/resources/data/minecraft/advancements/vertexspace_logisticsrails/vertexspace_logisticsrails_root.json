@@ -10,7 +10,7 @@
       "translate": "advancement.vertexspace_logisticsrails.root.description"
     },
     "background": "vertexspace_logisticsrails:textures/gui/advancements/backgrounds/background.png",
-    "show_toast": true,
+    "show_toast": false,
     "announce_to_chat": false,
     "frame" : "challenge"
   },
@@ -24,6 +24,8 @@
       "vertexspace_logisticsrails:diamond_nugget"
     ]
   },
+
+
 
   "criteria": {
     "crafting_table": {
