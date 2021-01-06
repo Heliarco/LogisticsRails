@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "  ",
+    "lal",
+    "rrr"
+  ],
+  "key": {
+    "a": {
+      "tag": "forge:nuggets/diamond"
+    },
+
+    "r": {
+      "tag": "forge:ingots/red_alloy"
+    },
+    "l" : {
+      "tag": "forge:ingots/lapis_alloy"
+    }
+  },
+  "result": {
+    "item": "vertexspace_logisticsrails:rail_straight",
+    "count": 32
+  }
+}

@@ -1,5 +1,15 @@
 {
   "parent": "minecraft:vertexspace_logisticsrails/vertexspace_logisticsrails_root",
+  "rewards": {
+    "recipes": [
+      "vertexspace_logisticsrails:bot_core",
+      "vertexspace_logisticsrails:bot_core_assembly",
+      "vertexspace_logisticsrails:console_core",
+      "vertexspace_logisticsrails:console_core_assembly",
+      "vertexspace_logisticsrails:machine_core",
+      "vertexspace_logisticsrails:machine_core_assembly"
+    ]
+  },
   "display": {
     "icon": {
       "item": "vertexspace_logisticsrails:lapis_alloy_ingot"

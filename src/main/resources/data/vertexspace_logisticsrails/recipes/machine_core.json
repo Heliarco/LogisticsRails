@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "vertexspace_logisticsrails:machine_core_assembly"
+  },
+  "result": "vertexspace_logisticsrails:machine_core",
+  "experience": 0.0,
+  "cookingtime": 200
+}

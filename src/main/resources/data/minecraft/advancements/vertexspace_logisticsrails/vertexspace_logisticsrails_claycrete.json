@@ -1,5 +1,10 @@
 {
   "parent": "minecraft:vertexspace_logisticsrails/vertexspace_logisticsrails_root",
+  "rewards": {
+    "recipes": [
+      "vertexspace_logisticsrails:rail_straight"
+    ]
+  },
   "display": {
     "icon": {
       "item": "vertexspace_logisticsrails:claycrete"
