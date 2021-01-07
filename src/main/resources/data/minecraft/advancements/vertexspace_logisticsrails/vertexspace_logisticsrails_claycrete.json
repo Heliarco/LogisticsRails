@@ -1,6 +1,8 @@
 {
   "parent": "minecraft:vertexspace_logisticsrails/vertexspace_logisticsrails_root",
   "rewards": {
+    "experience": 50,
+    "loot": [ "minecraft:rewards/vertexspace_logisticsrails_small"],
     "recipes": [
       "vertexspace_logisticsrails:rail_straight"
     ]

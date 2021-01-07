@@ -2,13 +2,8 @@
     "experience": 1000
   },
 
-"rewards": {
-    "experience": 50
-  },
-
-"rewards" :{
-      "loot": [ "vertexspace_logisticsrails:rewards/small"]
-}
+"rewards": { "experience": 50 },
+"rewards" :{ "loot": [ "vertexspace_logisticsrails:rewards/"] },
 
 
 
@@ -24,3 +19,13 @@
           }
         }
       },
+
+
+
+
+
+       "experience": 50,
+          "loot": [ "minecraft:rewards/vertexspace_logisticsrails_claycrete"],
+          "recipes": [
+            "vertexspace_logisticsrails:rail_straight"
+          ]
