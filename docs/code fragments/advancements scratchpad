@@ -2,9 +2,15 @@
     "experience": 1000
   },
 
-"rewards": { "experience": 50 },
+"rewards": {
+    "experience": 50,
+    "loot": [ "minecraft:rewards/vertexspace_logisticsrails_small"]
+},
+
+
 "rewards" :{ "loot": [ "vertexspace_logisticsrails:rewards/"] },
 
+"rewards"
 
 
 

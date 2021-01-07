@@ -1,6 +1,9 @@
 {
   "parent": "minecraft:vertexspace_logisticsrails/vertexspace_logisticsrails_machine_core",
-
+  "rewards": {
+    "experience": 50,
+    "loot": [ "minecraft:rewards/vertexspace_logisticsrails_small"]
+  },
   "display": {
     "icon": {
       "item": "vertexspace_logisticsrails:node_supplier"

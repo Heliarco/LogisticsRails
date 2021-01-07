@@ -1,6 +1,8 @@
 {
   "parent": "minecraft:vertexspace_logisticsrails/vertexspace_logisticsrails_lapis_alloy",
   "rewards": {
+    "experience": 50,
+    "loot": [ "minecraft:rewards/vertexspace_logisticsrails_small"],
     "recipes": [
       "vertexspace_logisticsrails:node_console"
     ]
