@@ -5,44 +5,62 @@
   "item.vertexspace_logisticsrails.lapis_alloy_ingot": "Lapis Alloy Ingot",
   "item.vertexspace_logisticsrails.lapis_alloy_blend": "Lapis Alloy Blend",
   "item.vertexspace_logisticsrails.diamond_nugget": "Diamond Nugget",
+  "item.vertexspace_logisticsrails.bot_core": "Bot Core",
+  "item.vertexspace_logisticsrails.bot_core_assembly": "Bot Core Assembly",
+  "item.vertexspace_logisticsrails.console_core": "Console Core",
+  "item.vertexspace_logisticsrails.console_core_assembly": "Console Core Assembly",
+  "item.vertexspace_logisticsrails.machine_core": "Machine Core",
+  "item.vertexspace_logisticsrails.machine_core_assembly": "Machine Core Assembly",
+  "item.vertexspace_logisticsrails.bot": "Logistics Robot  ",
+  "item.vertexspace_logisticsrails.clawbar": "Clawbar",
+  "item.vertexspace_logisticsrails.railometer": "Rail-o-meter",
 
-  "item.vertexspace_logisticsrails.bot_core" :  "Bot Core",
-  "item.vertexspace_logisticsrails.bot_core_assembly" : "Bot Core Assembly",
-  "item.vertexspace_logisticsrails.console_core" :  "Console Core",
-  "item.vertexspace_logisticsrails.console_core_assembly" :  "Console Core Assembly",
-  "item.vertexspace_logisticsrails.machine_core" :  "Machine Core",
-  "item.vertexspace_logisticsrails.machine_core_assembly" : "Machine Core Assembly",
-  "item.vertexspace_logisticsrails.bot" :   "Logistics Robot  ",
+  "itemGroup.vertexspace_logisticsrails_tab": "Logistics Rails",
 
-  "item.vertexspace_logisticsrails.clawbar" : "Clawbar",
-  "item.vertexspace_logisticsrails.railometer" : "Rail-o-meter",
-
-  "itemGroup.vertexspace_logisticsrails_tab"  : "Logistics Rails",
-  "block.vertexspace_logisticsrails.rail_straight" : "Rail",
-  "block.vertexspace_logisticsrails.rail_turn" : "Rail (Turn)",
-  "block.vertexspace_logisticsrails.rail_tsection" : "Rail (T Section)",
-  "block.vertexspace_logisticsrails.rail_xsection" : "Rail (X Section)",
-  "block.vertexspace_logisticsrails.rail_bend_up" : "Rail (Up)",
-  "block.vertexspace_logisticsrails.rail_bend_down" : "Rail (Down)",
-  "block.vertexspace_logisticsrails.node_console" : "Logistics Console",
-  "block.vertexspace_logisticsrails.node_requester" : "Logistics Requester",
-  "block.vertexspace_logisticsrails.node_supplier" : "Logistics Supplier",
-
-
+  "block.vertexspace_logisticsrails.rail_straight": "Rail",
+  "block.vertexspace_logisticsrails.rail_turn": "Rail (Turn)",
+  "block.vertexspace_logisticsrails.rail_tsection": "Rail (T Section)",
+  "block.vertexspace_logisticsrails.rail_xsection": "Rail (X Section)",
+  "block.vertexspace_logisticsrails.rail_bend_up": "Rail (Up)",
+  "block.vertexspace_logisticsrails.rail_bend_down": "Rail (Down)",
+  "block.vertexspace_logisticsrails.node_console": "Logistics Console",
+  "block.vertexspace_logisticsrails.node_requester": "Logistics Requester",
+  "block.vertexspace_logisticsrails.node_supplier": "Logistics Supplier",
 
   "advancement.vertexspace_logisticsrails.root": "Welcome to Logistics rails",
-  "advancement.vertexspace_logisticsrails.root.description" : "Transporting items, fluid and energy via robots on rails",
+  "advancement.vertexspace_logisticsrails.root.description": "Transporting items, fluid and energy via robots on rails",
 
   "advancement.vertexspace_logisticsrails.redstone_alloy": "Get a bar of red alloy",
-  "advancement.vertexspace_logisticsrails.redstone_alloy.description" : "Have we seen this before somewhere?",
+  "advancement.vertexspace_logisticsrails.redstone_alloy.description": "Have we seen this before somewhere?",
 
   "advancement.vertexspace_logisticsrails.lapis_alloy": "Blue metal for the masses",
-  "advancement.vertexspace_logisticsrails.lapis_alloy.description" : "Logistics bots are made of gold, lapis and willing suspension of disbelief",
+  "advancement.vertexspace_logisticsrails.lapis_alloy.description": "Logistics bots are made of gold, lapis and willing suspension of disbelief",
 
   "advancement.vertexspace_logisticsrails.claycrete": "Is it clay? Is it concrete?... Yes",
-  "advancement.vertexspace_logisticsrails.claycrete.description" : "Craft a bit of claycrete. You are going to need it",
+  "advancement.vertexspace_logisticsrails.claycrete.description": "Craft a bit of claycrete. You are going to need it",
 
   "advancement.vertexspace_logisticsrails.diamond_nugget": "Diamond nuggets",
-  "advancement.vertexspace_logisticsrails.diamond_nugget.description" : "Nine nuggets can make a diamond in one month! (So make one!)"
+  "advancement.vertexspace_logisticsrails.diamond_nugget.description": "Nine nuggets can make a diamond in one month! (So make one!)",
+
+  "advancement.vertexspace_logisticsrails.bot_core": "Intelligence Core",
+  "advancement.vertexspace_logisticsrails.bot_core.description": "To craft robots you need a robot core",
+
+  "advancement.vertexspace_logisticsrails.machine_core": "Curiosity core",
+  "advancement.vertexspace_logisticsrails.machine_core.description": "Machines like the requester needs a machine core",
+
+  "advancement.vertexspace_logisticsrails.console_core": "Central core",
+  "advancement.vertexspace_logisticsrails.console_core.description": "The console needs one of these",
+
+  "advancement.vertexspace_logisticsrails.node_supplier": "",
+  "advancement.vertexspace_logisticsrails.node_supplier.description": "",
+
+  "advancement.vertexspace_logisticsrails.node_console": "",
+  "advancement.vertexspace_logisticsrails.node_console.description": "",
+
+  "advancement.vertexspace_logisticsrails.node_requester": "",
+  "advancement.vertexspace_logisticsrails.node_requester.description": "",
+
+  "advancement.vertexspace_logisticsrails.rail_straight": "Laying tracks in 3D",
+  "advancement.vertexspace_logisticsrails.rail_straight.description": "Craft a set of straight rails."
 
 }
