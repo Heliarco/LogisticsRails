@@ -18,6 +18,17 @@ apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
+repositories {
+    maven { // JEI
+        url "https://dvs1.progwml6.com/files/maven"
+    }
+    maven { // TOP
+        name 'tterrag maven'
+        url "http://maven.tterrag.com/"
+    }
+}
+
+
 version = '0.0.1'
 group = 'dk.vertexspace' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'Vertexspace-LogisticsRails'
@@ -103,10 +114,24 @@ dependencies {
         }
     }
 
+    compileOnly fg.deobf("mezz.jei:jei-${jei_version}:api")
+    runtimeOnly fg.deobf("mezz.jei:jei-${jei_version}")
+
+
+    compile fg.deobf(project.dependencies.create("mcjty.theoneprobe:TheOneProbe-${top_version}") {
+        transitive = false
+    })
+
+
+
+
+
+
+
     // Specify the version of Minecraft to use, If this is any group other then 'net.minecraft' it is assumed
     // that the dep is a ForgeGradle 'patcher' dependency. And it's patches will be applied.
     // The userdev artifact is a special name and will get all sorts of transformations applied to it.
-   minecraft 'net.minecraftforge:forge:1.16.3-34.1.40'
+    minecraft 'net.minecraftforge:forge:1.16.3-34.1.40'
 
     // You may put jars on which you depend on in ./libs or you may define them like so..
     // compile "some.group:artifact:version:classifier"

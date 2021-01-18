@@ -25,23 +25,11 @@ public class ConsoleTileEntity extends TileEntity implements ITickableTileEntity
         private Queue<BlockPos> traverseQueue = new ArrayDeque<>();
         private RailNetwork inProgressNetwork = new RailNetwork();
     }
-
-
-    private ConsoleLogicState currentState = ConsoleLogicState.SCANNING;
     private static final int TICK_INTERVAL = 20; // Every second
     private int tickCounter = 0;
 
 
 
-    private enum ConsoleLogicState {    // Two modes, canning mode and update mode. Scanning is the stable mode and update means a change was detected. So needs an update. Update mode means "in flux"
-
-
-
-        SCANNING,   // Starting with the console block. Iterate the network. to build a new graph
-        COMPARING,   // Comparing current network with an updated version
-        SYNCHRONIZING, // Distributing network info to connected nodes and bots
-        ROUTEMAPPING // Building network routes
-    }
 
     public ConsoleTileEntity() {
 
@@ -53,7 +41,6 @@ public class ConsoleTileEntity extends TileEntity implements ITickableTileEntity
         boolean dirty = false;
         if (!world.isRemote) {
             if(tickCounter >= TICK_INTERVAL) {
-                dirty = this.update();
                 tickCounter = 0;
             }
             tickCounter++;
@@ -63,17 +50,6 @@ public class ConsoleTileEntity extends TileEntity implements ITickableTileEntity
         }
     }
 
-    // return value indicates dirty
-    private boolean update() {
-        switch (this.currentState) {
-            case SCANNING:
-
-                break;
-            default:
-                this.currentState = ConsoleLogicState.SCANNING;
-        }
-        return false;
-    }
 
     private RailNetwork scanNetwork() {
 
