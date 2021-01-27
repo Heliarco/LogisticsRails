@@ -17,9 +17,9 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.ToolType;
 
 
-public abstract class RailBase extends FaceAttached implements RailConnected {
+public abstract class RailBaseBlock extends FaceAttached implements RailConnected {
 
-    protected RailBase() {
+    protected RailBaseBlock() {
         super(AbstractBlock.Properties.create(Material.MISCELLANEOUS)
                 .hardnessAndResistance(1.0f, 1.0f)
                 .sound(SoundType.METAL)

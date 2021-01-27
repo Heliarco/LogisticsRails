@@ -14,7 +14,7 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 
 @SuppressWarnings("java:S110") // We can't really control the inheritance depth here.
-public class RailXSection extends RailBase{
+public class RailXSectionBlock extends RailBaseBlock {
     @Override
     protected BlockState rotateOnRightClick(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
         return null;

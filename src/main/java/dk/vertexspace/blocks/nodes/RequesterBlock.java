@@ -7,7 +7,7 @@ import net.minecraft.world.IBlockReader;
 
 
 @SuppressWarnings("java:S110") // We can't really control the inheritance depth here.
-public class Requester extends NodeBase {
+public class RequesterBlock extends NodeBaseBlock {
 
 
 

@@ -2,8 +2,8 @@ package dk.vertexspace.util;
 
 import dk.vertexspace.blocks.FaceAttached;
 import dk.vertexspace.blocks.RailConnected;
-import dk.vertexspace.blocks.nodes.Console;
-import dk.vertexspace.blocks.nodes.NodeBase;
+import dk.vertexspace.blocks.nodes.ConsoleBlock;
+import dk.vertexspace.blocks.nodes.NodeBaseBlock;
 import dk.vertexspace.models.RailConnection;
 import dk.vertexspace.blocks.rails.*;
 import dk.vertexspace.stateproperties.RailBendKind;
@@ -429,43 +429,43 @@ public class RailConnectionsHelper {
             return new ArrayList<>(0);
         }
 
-        if (block instanceof RailXSection) {
+        if (block instanceof RailXSectionBlock) {
             Direction facing = blockstate.get(DirectionalBlock.FACING);
             return xSectionConnections.get(facing);
         }
-        else if(block instanceof RailTurn) {
+        else if(block instanceof RailTurnBlock) {
             Direction facing = blockstate.get(DirectionalBlock.FACING);
-            RailRotation rotation = blockstate.get(RailTurn.ROTATION);
+            RailRotation rotation = blockstate.get(RailTurnBlock.ROTATION);
             return turnConnections.get(facing).get(rotation);
         }
-        else if(block instanceof RailStraight) {
+        else if(block instanceof RailStraightBlock) {
             Direction facing = blockstate.get(DirectionalBlock.FACING);
-            boolean rotated = blockstate.get(RailStraight.ROTATED);
+            boolean rotated = blockstate.get(RailStraightBlock.ROTATED);
             return straightConnection.get(facing).get(rotated ? 1 : 0);
         }
-        else if(block instanceof RailBendDown){
-            RailBendKind orientation = blockstate.get(RailBendDown.ORIENTATION);
+        else if(block instanceof RailBendDownBlock){
+            RailBendKind orientation = blockstate.get(RailBendDownBlock.ORIENTATION);
             return bendDownConnections.get(orientation);
         }
-        else if(block instanceof RailBendUp){
-            RailBendKind orientation = blockstate.get(RailBendUp.ORIENTATION);
+        else if(block instanceof RailBendUpBlock){
+            RailBendKind orientation = blockstate.get(RailBendUpBlock.ORIENTATION);
             return bendUpConnections.get(orientation);
         }
-        else if(block instanceof RailTSection){
+        else if(block instanceof RailTSectionBlock){
             Direction facing = blockstate.get(DirectionalBlock.FACING);
-            RailRotation rotation = blockstate.get(RailTurn.ROTATION);
+            RailRotation rotation = blockstate.get(RailTurnBlock.ROTATION);
             return tSectionConnections.get(facing).get(rotation);
         }
-        else if(block instanceof NodeBase){
+        else if(block instanceof NodeBaseBlock){
 
 
-            if (block instanceof Console){
-                Direction facing = blockstate.get(Console.HORIZONTAL_FACING);
+            if (block instanceof ConsoleBlock){
+                Direction facing = blockstate.get(ConsoleBlock.HORIZONTAL_FACING);
                 return consoleConnections.get(facing);
             }
             else{
                 Direction facing = blockstate.get(FaceAttached.FACING);
-                RailRotation rotation = blockstate.get(NodeBase.ROTATION);
+                RailRotation rotation = blockstate.get(NodeBaseBlock.ROTATION);
                 return nodeConnections.get(facing).get(rotation);
             }
         }
