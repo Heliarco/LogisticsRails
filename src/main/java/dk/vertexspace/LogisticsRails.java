@@ -2,10 +2,13 @@ package dk.vertexspace;
 
 import dk.vertexspace.constants.NameConstants;
 import dk.vertexspace.init.ModBlocks;
+import dk.vertexspace.init.ModContainerTypes;
 import dk.vertexspace.init.ModItems;
 import dk.vertexspace.init.ModTileEntityTypes;
 import net.minecraft.block.Blocks;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.ModContainer;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -20,14 +23,15 @@ public class LogisticsRails
 
 
     public LogisticsRails() {
+        IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
+        bus.addListener(this::setup);
+        bus.addListener(this::doClientStuff);
 
-        ModBlocks.BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
-        ModItems.ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
-        ModTileEntityTypes.TILE_ENTITY_TYPES.register(FMLJavaModLoadingContext.get().getModEventBus());
-
+        ModBlocks.BLOCKS.register(bus);
+        ModItems.ITEMS.register(bus);
+        ModTileEntityTypes.TILE_ENTITY_TYPES.register(bus);
+        ModContainerTypes.CONTAINER_TYPES.register(bus);
         MinecraftForge.EVENT_BUS.register(this);
     }
 

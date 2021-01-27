@@ -2,6 +2,7 @@ package dk.vertexspace.init;
 
 import dk.vertexspace.constants.NameConstants;
 import dk.vertexspace.tileentities.ConsoleTileEntity;
+import dk.vertexspace.tileentities.ExampleChestTileEntity;
 import dk.vertexspace.tileentities.RequesterTileEntity;
 import dk.vertexspace.tileentities.SupplierTileEntity;
 import net.minecraft.tileentity.TileEntityType;
@@ -26,5 +27,11 @@ public class ModTileEntityTypes {
 
     public static final RegistryObject<TileEntityType<SupplierTileEntity>> SUPPLIER = TILE_ENTITY_TYPES.register(NameConstants.NODE_SUPPLIER,
             () -> TileEntityType.Builder.create(SupplierTileEntity::new, ModBlocks.NODE_SUPPLIER.get()).build(null));
+
+    public static final RegistryObject<TileEntityType<ExampleChestTileEntity>> EXAMPLE_CHEST = TILE_ENTITY_TYPES.register("example_chest",
+            () -> TileEntityType.Builder.create(ExampleChestTileEntity::new, ModBlocks.EXAMPLE_CHEST.get()).build(null));
+
+
+
 
 }

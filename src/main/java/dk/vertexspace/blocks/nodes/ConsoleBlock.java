@@ -13,7 +13,7 @@ import net.minecraft.world.IBlockReader;
 import javax.annotation.Nullable;
 
 @SuppressWarnings("java:S110") // We can't really control the inheritance depth here.
-public class Console extends NodeBase {
+public class ConsoleBlock extends NodeBaseBlock {
 
     public static final DirectionProperty HORIZONTAL_FACING = HorizontalBlock.HORIZONTAL_FACING;
 

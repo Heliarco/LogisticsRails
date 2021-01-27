@@ -17,8 +17,8 @@ import net.minecraftforge.common.ToolType;
 
 import javax.annotation.Nullable;
 
-public abstract class NodeBase extends FaceAttached implements RailConnected {
-    protected NodeBase() {
+public abstract class NodeBaseBlock extends FaceAttached implements RailConnected {
+    protected NodeBaseBlock() {
         super(AbstractBlock.Properties.create(Material.MISCELLANEOUS)
                 .hardnessAndResistance(1.0f, 1.0f)
                 .setRequiresTool()

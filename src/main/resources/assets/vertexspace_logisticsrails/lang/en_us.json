@@ -30,17 +30,14 @@
   "advancement.vertexspace_logisticsrails.root": "Welcome to Logistics rails",
   "advancement.vertexspace_logisticsrails.root.description": "Transporting items, fluid and energy via robots on rails",
 
-  "advancement.vertexspace_logisticsrails.redstone_alloy": "Get a bar of red alloy",
-  "advancement.vertexspace_logisticsrails.redstone_alloy.description": "Have we seen this before somewhere?",
+  "advancement.vertexspace_logisticsrails.redstone_alloy": "Have we seen this before somewhere?",
+  "advancement.vertexspace_logisticsrails.redstone_alloy.description" : "Obtain som redstone alloy",
 
-  "advancement.vertexspace_logisticsrails.lapis_alloy": "Blue metal for the masses",
-  "advancement.vertexspace_logisticsrails.lapis_alloy.description": "Logistics bots are made of gold, lapis and willing suspension of disbelief",
+  "advancement.vertexspace_logisticsrails.lapis_alloy": "Not the drawing kind",
+  "advancement.vertexspace_logisticsrails.lapis_alloy.description" : "Smelt up a lapis ingot",
 
   "advancement.vertexspace_logisticsrails.claycrete": "Is it clay? Is it concrete?... Yes",
   "advancement.vertexspace_logisticsrails.claycrete.description": "Craft a bit of claycrete. You are going to need it",
-
-  "advancement.vertexspace_logisticsrails.diamond_nugget": "Diamond nuggets",
-  "advancement.vertexspace_logisticsrails.diamond_nugget.description": "Nine nuggets can make a diamond in one month! (So make one!)",
 
   "advancement.vertexspace_logisticsrails.bot_core": "Intelligence Core",
   "advancement.vertexspace_logisticsrails.bot_core.description": "To craft robots you need a robot core",
@@ -61,6 +58,10 @@
   "advancement.vertexspace_logisticsrails.node_requester.description": "",
 
   "advancement.vertexspace_logisticsrails.rail_straight": "Laying tracks in 3D",
-  "advancement.vertexspace_logisticsrails.rail_straight.description": "Craft a set of straight rails."
+  "advancement.vertexspace_logisticsrails.rail_straight.description": "Craft a set of straight rails.",
+
+  "advancement.vertexspace_logisticsrails.diamond_nugget": "Nine nuggets can make a diamond in one month!",
+  "advancement.vertexspace_logisticsrails.diamond_nugget.description" : "Grab a nugget of diamond"
+
 
 }

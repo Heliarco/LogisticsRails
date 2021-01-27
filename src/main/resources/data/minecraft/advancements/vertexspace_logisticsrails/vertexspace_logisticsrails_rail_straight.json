@@ -1,5 +1,9 @@
 {
   "parent": "minecraft:vertexspace_logisticsrails/vertexspace_logisticsrails_claycrete",
+  "rewards": {
+    "experience": 50,
+    "loot": [ "minecraft:rewards/vertexspace_logisticsrails_small"]
+  },
 
   "display": {
     "icon": {

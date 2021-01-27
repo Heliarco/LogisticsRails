@@ -23,7 +23,7 @@ import java.util.Arrays;
 import java.util.Optional;
 
 @SuppressWarnings("java:S110") // We can't really control the inheritance depth here.
-public class RailBendUp extends RailBase {
+public class RailBendUpBlock extends RailBaseBlock {
     public static final RailBendKindProperty ORIENTATION = RailBendKindProperty.create("orientation");
 
 

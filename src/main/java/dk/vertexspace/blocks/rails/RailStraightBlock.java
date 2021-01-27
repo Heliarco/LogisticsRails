@@ -17,7 +17,7 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 
 @SuppressWarnings("java:S110") // We can't really control the inheritance depth here.
-public class RailStraight extends RailBase {
+public class RailStraightBlock extends RailBaseBlock {
     public enum RailStraightOrientations {
         NORTH_SOUTH,
         EAST_WEST,
