@@ -45,7 +45,7 @@ public class ExampleChestBlock extends Block {
     public TileEntity createTileEntity(BlockState state, IBlockReader world) {
         return ModTileEntityTypes.EXAMPLE_CHEST.get().create();
     }
-ChestTileEntity
+
     @Override
     public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
         if(!worldIn.isRemote) { // we are on the logical server
@@ -68,19 +68,22 @@ ChestTileEntity
     }
 
 
-
-    @Override
-    public void onReplaced(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
-        if (state.hasTileEntity() && state.getBlock() != newState.getBlock()) { state.hasTileEntity is no bueno!
-            // drops everything in the inventory
-            worldIn.getTileEntity(pos).getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(h -> {
-                for (int i = 0; i < h.getSlots(); i++) {
-                    spawnAsEntity(worldIn, pos, h.getStackInSlot(i));
-                }
-            });
-            worldIn.removeTileEntity(pos);
-        }
-    }
+    //This should switch to using capability important to note, the capability should reside on the tile entity. We just access it from here
+//
+//
+//
+//    @Override
+//    public void onReplaced(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
+//        if (state.hasTileEntity() && state.getBlock() != newState.getBlock()) { state.hasTileEntity is no bueno!
+//            // drops everything in the inventory
+//            worldIn.getTileEntity(pos).getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(h -> {
+//                for (int i = 0; i < h.getSlots(); i++) {
+//                    spawnAsEntity(worldIn, pos, h.getStackInSlot(i));
+//                }
+//            });
+//            worldIn.removeTileEntity(pos);
+//        }
+//    }
 
 
 
