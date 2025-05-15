@@ -1,0 +1,31 @@
+modLoader="javafml" #mandatory
+
+loaderVersion="[34,)" #mandatory This is typically bumped every Minecraft version by Forge. See our download page for lists of versions.
+
+license="All rights reserved"
+
+issueTrackerURL="https://github.com/Heliarco/LogisticsRails" #optional
+
+[[mods]] #mandatory
+
+modId="vertexspace_logisticsrails" #mandatory
+
+version="1.16.3-0.0.1" #mandatory
+
+displayName="LogisticsRails" #mandatory
+
+#updateJSONURL="http://myurl.me/" #optional
+
+#displayURL="https://github.com/Heliarco/LogisticsRails" #optional
+
+logoFile="logo.png" #optional
+
+credits="Thanks to TechnoVision & SilentChaos512 for introducing me to ForgeModding and going through the initial setups. Check them out on youtube." #optional
+
+authors="Heliarco & Halfheart77" #optional
+
+description='''
+A mod for moving items around with small robots
+'''
+
+

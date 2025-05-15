@@ -20,6 +20,11 @@ build
 # other
 eclipse
 run
+logs
 
 # Files from Forge MDK
 forge*changelog.txt
+
+
+**\~$*.xlsx
+/blockbenchmodels/.vscode/settings.json
