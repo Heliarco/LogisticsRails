@@ -1,6 +1,7 @@
 package dk.vertexspace.logisticsrails;
 
 import com.mojang.logging.LogUtils;
+import dk.vertexspace.logisticsrails.blocks.ModBlocks;
 import dk.vertexspace.logisticsrails.item.ModItems;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.registries.Registries;
@@ -47,7 +48,7 @@ public class LogisticsRails {
         MinecraftForge.EVENT_BUS.register(this);
 
         ModItems.register(modEventBus);
-
+        ModBlocks.register(modEventBus);
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
 
