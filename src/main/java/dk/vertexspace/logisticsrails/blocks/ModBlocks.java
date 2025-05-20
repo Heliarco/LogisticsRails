@@ -30,7 +30,7 @@ public class ModBlocks {
     // Registration here is more complicated, since when we register the block, we ALSO, want to register the item back at block items :)
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block){
         RegistryObject<T> toReturn = BLOCKS.register(name, block);
-        registerBlock(name, toReturn);
+        registerBlockItem(name, toReturn);
         return toReturn;
     }
 
