@@ -2,6 +2,9 @@ package dk.vertexspace.logisticsrails.blocks;
 
 import dk.vertexspace.logisticsrails.LogisticsRails;
 import dk.vertexspace.logisticsrails.item.ModItems;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
@@ -20,7 +23,8 @@ public class ModBlocks {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, LogisticsRails.MODID);
 
     public static final RegistryObject<Block> CONDUCTING_ALLOY = registerBlock("conducting_alloy_block",
-            () -> new Block(BlockBehaviour.Properties.of()
+            () -> new Block(
+                    BlockBehaviour.Properties.of().setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(LogisticsRails.MODID, "conducting_alloy_block")))
                     .strength(4)
                     .requiresCorrectToolForDrops()
                     .sound(SoundType.AMETHYST)
@@ -35,7 +39,8 @@ public class ModBlocks {
     }
 
     private static <T extends Block> void registerBlockItem(String name, RegistryObject<T> block){
-        ModItems.ITEMS.register(name, () ->  new BlockItem(block.get(), new Item.Properties()));
+        ModItems.ITEMS.register(name, () ->  new BlockItem(block.get(), new Item.Properties()
+                .setId(ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(LogisticsRails.MODID, name)))));
     }
 
     // Called by main method at the appropriate event

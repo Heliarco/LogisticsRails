@@ -1,5 +1,9 @@
 {
   "item.vertexspacelogisticsrails.logisticsrail" : "Logistics rail",
-  "item.vertexspacelogisticsrails.logisticswrench" : "Logistics wrench"
+  "item.vertexspacelogisticsrails.logisticswrench" : "Logistics wrench",
+
+
+  "block.vertexspacelogisticsrails.conducting_alloy_block": "Block of conducting alloy",
+  "item.vertexspacelogisticsrails.conducting_alloy_block": "Block of conducting alloy"
 
 }

@@ -1,0 +1,7 @@
+{
+  "variants" :  {
+    "" : {
+      "model": "vertexspacelogisticsrails:block/conducting_alloy_block"
+    }
+  }
+}
